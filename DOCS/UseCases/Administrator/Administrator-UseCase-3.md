@@ -1,4 +1,4 @@
-# USE CASE 4:
+# USE CASE 3:
 ### Update sensor configurations and firmware.
 
 ### Goal in Context:
