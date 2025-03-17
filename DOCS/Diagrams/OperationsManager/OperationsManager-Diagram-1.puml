@@ -1,0 +1,27 @@
+@startuml
+!theme aws-orange
+left to right direction
+
+actor Manager as "Operations Manager"
+
+rectangle Database
+
+rectangle "Sensor Status Monitoring System" {
+
+    usecase UC1 as "View sensor status"
+    usecase UC2 as "Highlight offline or malfunctioning sensors"
+    usecase UC3 as "Apply filters to view specific sensors"
+    usecase UC4 as "Export sensor status report"
+
+    Manager -- UC1
+    Manager -- UC2
+    Manager -- UC3
+    Manager -- UC4
+
+    UC1 --- Database
+    UC2 --- Database
+    UC3 --- Database
+    UC4 --- Database
+
+}
+@enduml
