@@ -36,7 +36,7 @@ Pressing on button in the dashboard called "Errors & Malfunctions"
 
 
 ### Sub-variations:
-1. The Administrator goes to dashboard  and presses on "Errors & Malfunctions".
+1. The Operations Manager goes to dashboard and presses on "Errors & Malfunctions".
 
 ### Schedule:
 TBA
