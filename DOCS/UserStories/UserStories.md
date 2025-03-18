@@ -12,7 +12,7 @@
 ## Operations Manager
 
 1. 
-2. 
+2. As an Operations Manager I want to schedule maintenance and ensure timely checks.
 3. 
 4. As a Operations Manager i want to address and report sensor malfunctions or anomalies.
 
