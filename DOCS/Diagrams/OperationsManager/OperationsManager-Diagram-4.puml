@@ -1,0 +1,24 @@
+@startuml
+!theme aws-orange
+left to right direction
+
+actor Operation as "Operations Manager"
+
+rectangle Database
+
+rectangle "System" {
+usecase UC1 as " View Sensors"
+usecase UC2 as " Click Errors & Malfunctions Button"
+usecase UC3 as "Cannot find malfunctioning sensors"
+
+Operation --> UC1
+Operation --> UC2
+
+UC1 --> Database
+UC2 --> Database
+UC3 --> Database
+
+UC1 <. UC3 : extends
+UC2 <. UC3 : extends
+}
+@enduml
