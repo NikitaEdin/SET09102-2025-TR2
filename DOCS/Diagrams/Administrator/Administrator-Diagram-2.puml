@@ -6,13 +6,13 @@ actor Admin as "Administrator"
 
 rectangle Database
 
-    usecase UC4 as "Error while updating authorisation information"
-
 rectangle "Security Management" {
 
     usecase UC1 as "View Authorisation Information"
     usecase UC2 as "Edit Authorisation Information"
     usecase UC3 as "View Maintenance Log"
+
+    usecase UC4 as "Error while updating authorisation information"
 
     Admin -- UC1
     Admin -- UC2
