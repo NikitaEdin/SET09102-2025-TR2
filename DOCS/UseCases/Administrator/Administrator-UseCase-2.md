@@ -2,7 +2,7 @@
 ### Maintain high levels of system security and data protection.
 
 ### Goal in Context:
-As an Administrator, I want to maintain high levels of system security and data protection as to ensure that data cannot be obtained or altered in unintended ways.
+As an Administrator, I want to maintain high levels of system security and data protection so that I can ensure data cannot be obtained or altered in unintended ways.
 
 ### Scope and Level:
 The functionality of the application that allows the administrator to manage access to specific datasets, user access, and oversee maintenance plans.
