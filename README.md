@@ -55,3 +55,13 @@ As an **Administrator** I want to
 - Oversee data storage and implement backup strategies.
 
 </details>
+
+## Links
+<details>
+<Summary>Links relevant to the project</summary>
+
+- [PlantUML] (https://www.plantuml.com/plantuml/uml/SyfFKj2rKt3CoKnELR1Io4ZDoSa700003)
+
+- [Doxigen] (https://www.doxygen.nl/)
+
+</details>
