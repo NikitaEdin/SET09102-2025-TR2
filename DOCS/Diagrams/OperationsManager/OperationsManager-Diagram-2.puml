@@ -1,0 +1,28 @@
+@startuml
+!theme aws-orange
+left to right direction
+
+actor Manager as "Operations Manager"
+
+rectangle Database
+
+rectangle "Maintenance Scheduling System" {
+
+    usecase UC1 as "View Historical Maintenance Jobs"
+    usecase UC2 as "Edit Maintenance Job"
+    usecase UC3 as "Schedule New Maintenance Job"
+
+    usecase UC4 as "Could not save maintenance job information"
+
+    Manager -- UC1
+    Manager -- UC2
+    Manager -- UC3
+
+    UC1 --- Database
+    UC2 --- Database
+    UC3 --- Database
+
+    UC4 <. UC2 : extends
+    UC4 <. UC3 : extends
+}
+@enduml
