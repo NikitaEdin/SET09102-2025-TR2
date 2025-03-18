@@ -12,6 +12,8 @@ rectangle "Realtime Threshold Breaches" {
     usecase UC2 as "View Interactive Map"
     usecase UC3 as "View Threshold Breach"
 
+    usecase UC4 as "Error occurs while retreiving sensor information"
+
     Scientist -- UC1
     Scientist -- UC2
     Scientist -- UC3
@@ -20,5 +22,7 @@ rectangle "Realtime Threshold Breaches" {
     UC2 --- Database
     UC3 --- Database
 
+    UC4 <. UC2 : extends
+    UC4 <. UC3 : extends
 }
 @enduml

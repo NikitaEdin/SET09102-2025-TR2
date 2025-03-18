@@ -31,7 +31,7 @@ Accessing the maintenance log section, or editing authorisation/role configurati
 4. The system will confirm that committed actions were completed.
 
 ### Extensions:
-3. An error occurs while trying to update cconfiguration
+3. An error occurs while trying to update configuration
   - The system will display an error message
 
 ### Sub-variations:
