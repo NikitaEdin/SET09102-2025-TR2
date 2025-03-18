@@ -2,7 +2,7 @@
 
 ## Environmental Scientist
 
-1. 
+1. As an Environmental Scientist, I want to manage sensor accounts and configure settings.
 2. 
 3.
 4. As a Environmental Scientist i want to generate comprehensive reports on environmental trends.
