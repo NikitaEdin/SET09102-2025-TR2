@@ -1,0 +1,28 @@
+@startuml
+!theme aws-orange
+left to right direction
+
+actor Admin as "Administrator"
+
+rectangle Database
+
+rectangle "System" {
+usecase UC1 as " View Sensors"
+usecase UC2 as "Update Firmware"
+usecase UC3 as "Update Configuration"
+
+usecase UC4 as "Cannot find sensor"
+
+Admin --> UC1
+Admin --> UC2
+Admin --> UC3
+
+UC1 --> Database
+UC2 --> Database
+UC3 --> Database
+
+UC1 <. UC4 : extends
+UC2 <. UC4 : extends
+UC3 <. UC4 : extends
+}
+@enduml
