@@ -23,13 +23,18 @@ Environmental Scientist.
 Pressing on button in the dashboard called "Generate report".
 
 ### Main Success Scenario:
-1. The Environmental Scientist presses "Generate" button.
-2. The system reads the sensor values and calculates an average from the data and calculates trends.
-3. Environmental trends report generated.
-4. System Displays report to the Environmental Scientist.
+1. The Environmental Scientist views sensors.
+2. The Environmental Scientist presses "Generate" button.
+3. The system reads the sensor values and calculates an average from the data and calculates trends.
+4. Environmental trends report generated.
+5. System Displays report to the Environmental Scientist.
 
 
 ### Extensions:
+1. The system cannot find sensors in the database.
+   - The system returns an error message.
+   - The system ends run.
+   
 2. The system cannot calculate trend too few data values.  
    - The system returns an error message.  
    - The system ends run.  
