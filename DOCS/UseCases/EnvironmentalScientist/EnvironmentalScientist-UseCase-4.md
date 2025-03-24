@@ -36,7 +36,7 @@ Pressing on button in the dashboard called "Generate report".
 
 
 ### Sub-variations:
-1. The Environmental Scientist. goes to dashboard and presses on "Generate Report".
+1. The Environmental Scientist goes to dashboard and presses on "Generate Report".
 
 ### Schedule:
 TBA
