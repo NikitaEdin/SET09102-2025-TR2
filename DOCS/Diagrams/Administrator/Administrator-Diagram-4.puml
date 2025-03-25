@@ -1,0 +1,30 @@
+@startuml
+!theme aws-orange
+left to right direction
+
+actor Admin as "Administrator"
+
+rectangle Database
+
+rectangle "Storage Management System" {
+
+    usecase UC1 as "View storage usage"
+    usecase UC2 as "Configure backup strategy"
+    usecase UC3 as "Perform manual backup"
+
+    usecase UC5 as "Display backup error message"
+    usecase UC6 as "Display storage capacity warning"
+
+    Admin -- UC1
+    Admin -- UC2
+    Admin -- UC3
+
+    UC1 --- Database
+    UC2 --- Database
+    UC3 --- Database
+
+    UC5 <. UC3 : extends
+    UC6 <. UC1 : extends
+}
+
+@enduml

@@ -1,0 +1,24 @@
+@startuml
+!theme aws-orange
+left to right direction
+
+actor Scientist as "Environmental Scientist"
+
+rectangle Database
+
+rectangle "Historical Data Analysis" {
+
+    usecase UC1 as "View historical data"
+    usecase UC2 as "Display data in table/graph"
+    usecase UC3 as "Identify trends and patterns"
+
+    Scientist -- UC1
+    Scientist -- UC2
+    Scientist -- UC3
+
+    UC1 --- Database
+    UC2 --- Database
+    UC3 --- Database
+
+}
+@enduml

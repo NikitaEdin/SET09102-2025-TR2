@@ -1,0 +1,27 @@
+@startuml
+!theme aws-orange
+left to right direction
+
+actor Admin as "Administrator"
+
+rectangle Database
+
+rectangle "User Management System" {
+
+    usecase UC1 as "View users and roles"
+    usecase UC2 as "Modify user roles"
+    usecase UC3 as "Remove user access"
+    usecase UC4 as "Create new user"
+
+    Admin -- UC1
+    Admin -- UC2
+    Admin -- UC3
+    Admin -- UC4
+
+    UC1 --- Database
+    UC2 --- Database
+    UC3 --- Database
+    UC4 --- Database
+
+}
+@enduml
