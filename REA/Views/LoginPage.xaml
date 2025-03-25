@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="REA.Views.LoginPage"
+             xmlns:viewModels="clr-namespace:REA.ViewModels"
+             Title="LoginPage">
+    <ContentPage.BindingContext>
+        <viewModels:LoginViewModel/>
+    </ContentPage.BindingContext>
+
+
+    <VerticalStackLayout Padding="30">
+        <Entry Placeholder="Username" Text="{Binding Username}" />
+        <Entry Placeholder="Password" Text="{Binding Password}" IsPassword="True" />
+        <Label Text="{Binding ErrorMessage}" TextColor="Red" IsVisible="{Binding ErrorMessage, Mode=OneWay}"/>
+        <Button Text="Login" Command="{Binding LoginCommand}" />
+    </VerticalStackLayout>
+</ContentPage>
