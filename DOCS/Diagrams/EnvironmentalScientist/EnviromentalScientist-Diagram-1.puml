@@ -1,0 +1,32 @@
+@startuml
+!theme aws-orange
+left to right direction
+
+actor Scientist as "Environmental Scientist"
+
+rectangle Database
+
+rectangle "Sensor Management System" {
+
+    usecase UC1 as "View sensor accounts"
+    usecase UC2 as "Modify sensor settings"
+    usecase UC3 as "Add new sensor account"
+    usecase UC4 as "Delete inactive sensor"
+
+    usecase UC5 as "Display error message - invalid input"
+
+    Scientist -- UC1
+    Scientist -- UC2
+    Scientist -- UC3
+    Scientist -- UC4
+
+    UC1 --- Database
+    UC2 --- Database
+    UC3 --- Database
+    UC4 --- Database
+
+    UC5 <. UC2 : extends
+    UC5 <. UC3 : extends
+}
+
+@enduml

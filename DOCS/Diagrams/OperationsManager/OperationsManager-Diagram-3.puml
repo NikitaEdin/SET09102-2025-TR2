@@ -1,0 +1,31 @@
+@startuml
+!theme aws-orange
+left to right direction
+
+actor Manager as "Operations Manager"
+
+rectangle Database
+
+rectangle "Data Validation System" {
+
+    usecase UC1 as "Retrieve collected data"
+    usecase UC2 as "Run automated data checks"
+    usecase UC3 as "Manually review and approve data"
+    usecase UC4 as "Log data has been reviewed"
+
+    usecase UC5 as "Display error message - data retrieval failed"
+
+    Manager -- UC1
+    Manager -- UC2
+    Manager -- UC3
+
+
+    UC1 --- Database
+    UC2 --- Database
+    UC3 --- Database
+
+    UC5 <. UC1 : extends
+    UC4 .> UC3 : includes
+
+}
+@enduml
