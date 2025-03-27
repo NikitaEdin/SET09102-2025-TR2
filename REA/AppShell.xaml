@@ -20,4 +20,8 @@
         <ShellContent ContentTemplate="{DataTemplate views:DashboardPage}" />
     </FlyoutItem>
 
+    <FlyoutItem Title="Admin" Route="Admin" IsVisible="{Binding IsLoggedIn}">
+        <ShellContent ContentTemplate="{DataTemplate views:AdministratorPage}"></ShellContent>
+    </FlyoutItem>
+
 </Shell>

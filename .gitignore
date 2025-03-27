@@ -400,5 +400,7 @@ FodyWeavers.xsd
 *.sln.iml
 
 # mac
-
 .DS_STORE
+
+# Project settings may cause merge conflicts (Can remove this in future)
+REA/REA.sln

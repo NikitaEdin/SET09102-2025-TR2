@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="REA.Views.DashboardPage"
              xmlns:viewModels="clr-namespace:REA.ViewModels"
-             Title="DashboardPage">
+             Title="Dashboard Page">
 
     <ContentPage.BindingContext>
         <viewModels:DashboardViewModel/>
@@ -11,6 +11,13 @@
 
     <StackLayout Padding="30">
         <Label Text="Welcome" FontSize="24" />
-        <Label Text="{Binding CurrentUser.Username}" FontSize="18" />
+        <Label Text="{Binding CurrentUser.Username}" FontSize="18" Margin="10" />
+
+
+        <Button Text="Administrator" Command="{Binding NavigateToAdminCommand}" Margin="10" />
+
+        <Button Text="Environmental Scientist" Margin="10"></Button>
+        <Button Text="Operations Manager" Margin="10"></Button>
     </StackLayout>
+    
 </ContentPage>

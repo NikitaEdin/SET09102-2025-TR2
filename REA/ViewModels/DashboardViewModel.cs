@@ -12,6 +12,8 @@ using System.Windows.Input;
 namespace REA.ViewModels {
     public partial class DashboardViewModel : ObservableObject {
 
+        public ICommand NavigateToAdminCommand { get; }
+
         private User _currentUser;
 
         public User CurrentUser {
@@ -28,12 +30,20 @@ namespace REA.ViewModels {
         public ICommand LogoutCommand { get; }
 
         public DashboardViewModel() {
+
+            NavigateToAdminCommand = new Command(async () => await NavigateToAdminPage());
+
             LogoutCommand = new RelayCommand(Logout);
             CurrentUser = UserManager.Instance.CurrentUser;
         }
 
         private async void Logout() {
             await Shell.Current.GoToAsync("//Login");
+        }
+
+        // Method to go to Admin route which is set in the app shell
+        private async Task NavigateToAdminPage() {
+            await Shell.Current.GoToAsync("//Admin");
         }
     }
 
