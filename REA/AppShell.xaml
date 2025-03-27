@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="REA.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:views="clr-namespace:REA.Views"
+    xmlns:converters="clr-namespace:REA.Converters"
+    Shell.FlyoutBehavior="Flyout"
+    Title="REA">
+
+    <Shell.Resources>
+        <converters:InverseBooleanConverter x:Key="InverseBooleanConverter" />
+    </Shell.Resources>
+
+    <!-- Define the LoginPage as the starting page, and only visible when the user is not logged in -->
+    <ShellContent Route="Login" Title="Login" ContentTemplate="{DataTemplate views:LoginPage}" IsVisible="{Binding IsLoggedIn, Converter={StaticResource InverseBooleanConverter}}" />
+
+    <!-- FlyoutItem for Dashboard, only visible if the user is logged in -->
+    <FlyoutItem Title="Dashboard" Route="Dashboard" IsVisible="{Binding IsLoggedIn}">
+        <ShellContent ContentTemplate="{DataTemplate views:DashboardPage}" />
+    </FlyoutItem>
+
+</Shell>
