@@ -15,11 +15,13 @@
     <!-- Define the LoginPage as the starting page, and only visible when the user is not logged in -->
     <ShellContent Route="Login" Title="Login" ContentTemplate="{DataTemplate views:LoginPage}" IsVisible="{Binding IsLoggedIn, Converter={StaticResource InverseBooleanConverter}}" />
 
-    <ShellContent Route="Admin" ContentTemplate="{DataTemplate views:AdministratorPage}"></ShellContent>
-    
     <!-- FlyoutItem for Dashboard, only visible if the user is logged in -->
     <FlyoutItem Title="Dashboard" Route="Dashboard" IsVisible="{Binding IsLoggedIn}">
         <ShellContent ContentTemplate="{DataTemplate views:DashboardPage}" />
+    </FlyoutItem>
+
+    <FlyoutItem Title="Admin" Route="Admin" IsVisible="{Binding IsLoggedIn}">
+        <ShellContent ContentTemplate="{DataTemplate views:AdministratorPage}"></ShellContent>
     </FlyoutItem>
 
 </Shell>
