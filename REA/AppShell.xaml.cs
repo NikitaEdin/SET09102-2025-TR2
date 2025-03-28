@@ -1,11 +1,17 @@
 ﻿using REA.ViewModels;  // Assuming UserManager or other login-related logic is in this namespace
 using REA.Utils;    // Assuming UserManager or similar service is here
 using Microsoft.Maui.Controls;
+using REA.Views;
 
 namespace REA {
     public partial class AppShell : Shell {
         public AppShell() {
             InitializeComponent();
+
+            // Routes for subpages
+            Routing.RegisterRoute("UpdateSensor", typeof(UpdateSensorPage));
+
+
             BindingContext = new AppShellViewModel();
 
             // Subscribe to user changes (e.g., when the user logs in or out)
