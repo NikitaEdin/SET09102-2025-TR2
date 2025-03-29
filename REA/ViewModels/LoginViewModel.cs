@@ -3,11 +3,11 @@ using System.Windows.Input;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using REA.Utils;
-using REA.Views;
+using REA.DB;
+using System.Collections.ObjectModel;
 
 namespace REA.ViewModels {
     public partial class LoginViewModel : ObservableObject {
-        private readonly User _validUser = new User { Username = "admin", Password = "123" };
 
         [ObservableProperty]
         private string username;
@@ -25,15 +25,22 @@ namespace REA.ViewModels {
         }
 
         private async void Login() {
-            if (Username == _validUser.Username && Password == _validUser.Password) {
+            // Fetch users from DB
+            var usersFromDb = await SQLiteDatabaseService.Instance.GetItemsAsync<User>();
+            var validUser = usersFromDb.FirstOrDefault(user => user.Username == Username && user.Password == Password);
+
+            if (validUser != null) {
+                // Valid user found in the database
                 ErrorMessage = string.Empty;
-                UserManager.Instance.CurrentUser = _validUser;
+                UserManager.Instance.CurrentUser = validUser;
 
-
+                // Navigate to the dashboard
                 await Shell.Current.GoToAsync("//Dashboard");
             } else {
+                // Invalid credentials
                 ErrorMessage = "Invalid username or password";
             }
         }
+       
     }
 }
