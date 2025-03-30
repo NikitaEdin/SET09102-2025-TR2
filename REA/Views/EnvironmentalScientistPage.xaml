@@ -7,7 +7,7 @@
              Title="Environmental Scientist Page">
     
     <ContentPage.BindingContext>
-        <utils:NavigationCommands/>
+        <viewModels:EnvironmentalScientistViewModel/>
     </ContentPage.BindingContext>
 
     <VerticalStackLayout>
@@ -18,7 +18,7 @@
             VerticalOptions="Center" 
             HorizontalOptions="Center" FontSize="24" Margin="25" />
 
-            <Button Text="Button 1" Margin="10"></Button>
+            <Button Text="Generate Reports" Command="{Binding NavigateToReportsCommand}" Margin="10" />
             <Button Text="Button 2" Margin="10"></Button>
             <Button Text="Back Dashboard" Command="{Binding NavigateToDashboardCommand}" Margin="10" />
 
