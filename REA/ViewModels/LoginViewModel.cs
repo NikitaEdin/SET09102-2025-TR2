@@ -3,7 +3,6 @@ using System.Windows.Input;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using REA.Utils;
-using REA.Views;
 
 namespace REA.ViewModels {
     public partial class LoginViewModel : ObservableObject {

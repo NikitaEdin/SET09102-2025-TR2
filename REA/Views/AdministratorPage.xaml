@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="REA.Views.AdministratorPage"
              Title="Administrator Page">
+    
     <VerticalStackLayout>
         <Label 
             Text="Welcome Adminstrator"
@@ -10,7 +11,7 @@
             HorizontalOptions="Center" FontSize="24" Margin="25" />
         
         <Button Text="Update Sensor Config" Margin="40"></Button>
-        <Button Text="Button 2" Margin="40"></Button>
+        <Button Text="Manage User Access" Margin="40" Clicked="OnManageUserAccessClicked"></Button>
         <Button Text="Back Dashboard" Margin="40"></Button>
 
         <Label Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. In facilisis nulla eu felis fringilla vulputate. Nullam porta eleifend lacinia. Donec at iaculis tellus."
