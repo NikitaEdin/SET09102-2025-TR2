@@ -24,4 +24,12 @@
         <ShellContent ContentTemplate="{DataTemplate views:AdministratorPage}"></ShellContent>
     </FlyoutItem>
 
+    <FlyoutItem Title="Operations" Route="Operations" IsVisible="{Binding IsLoggedIn}">
+        <ShellContent ContentTemplate="{DataTemplate views:OperationsManagerPage}"></ShellContent>
+    </FlyoutItem>
+
+    <FlyoutItem Title="Environmental" Route="Environmental" IsVisible="{Binding IsLoggedIn}">
+        <ShellContent ContentTemplate="{DataTemplate views:EnvironmentalScientistPage}"></ShellContent>
+    </FlyoutItem>
+
 </Shell>
