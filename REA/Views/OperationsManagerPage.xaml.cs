@@ -6,4 +6,8 @@ public partial class OperationsManagerPage : ContentPage
 	{
 		InitializeComponent();
 	}
+
+	private async void OnManageMaintenanceClicked(object sender, EventArgs e) {
+		await Navigation.PushAsync(new ManageMaintenancePage());
+	}
 }

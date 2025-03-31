@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="REA.Views.Maintenance.CreateMaintenancePage"
+             xmlns:viewModels="clr-namespace:REA.ViewModels"
+             Title="Create Maintenance Plan">
+    <ContentPage.BindingContext>
+        <viewModels:CreateMaintenanceViewModel x:Name="CreateMaintenance"/>
+    </ContentPage.BindingContext>
+
+    <VerticalStackLayout Padding="20" Spacing="10">
+        <Entry Placeholder="Name" Text="{Binding Name}"/>
+        <DatePicker Date="{Binding ScheduledDate}"/>
+        <Picker Title="Select a Type" SelectedItem="{Binding Type}">
+            <Picker.ItemsSource>
+                <x:Array Type="{x:Type x:String}">
+                    <x:String>Update</x:String>
+                    <x:String>Sensor Check</x:String>
+                </x:Array>
+            </Picker.ItemsSource>
+        </Picker>
+
+        <Label Text="Assign User"/>
+        <ListView x:Name="UsersListView" SelectionMode="Single" ItemSelected="OnUserSelected">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <TextCell Text="{Binding Name}" Detail="{Binding Role}"/>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+        <Button Text="Create" Command="{Binding CreateMaintenanceCommand}"/>
+    </VerticalStackLayout>
+</ContentPage>
