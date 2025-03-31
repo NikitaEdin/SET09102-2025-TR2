@@ -7,6 +7,11 @@ namespace REA {
     public partial class AppShell : Shell {
         public AppShell() {
             InitializeComponent();
+
+            // Routes for subpages
+            Routing.RegisterRoute("UpdateSensor", typeof(UpdateSensorPage));
+
+
             BindingContext = new AppShellViewModel();
 
             Routing.RegisterRoute("SensorMalfunctions", typeof(ReportMalfunctioningSensorsPage));
