@@ -14,6 +14,8 @@ namespace REA {
 
             BindingContext = new AppShellViewModel();
 
+            Routing.RegisterRoute("SensorMalfunctions", typeof(ReportMalfunctioningSensors))
+
             // Subscribe to user changes (e.g., when the user logs in or out)
             UserManager.Instance.CurrentUserChanged += OnCurrentUserChanged;
         }

@@ -9,7 +9,8 @@
         <viewModels:AdministratorViewModel/>
     </ContentPage.BindingContext>
 
-    <StackLayout>
+    <VerticalStackLayout>
+           <StackLayout>
         <Label 
             Text="Welcome Adminstrator"
             VerticalOptions="Center" 
@@ -25,6 +26,7 @@
         </Border>
 
 
-    </StackLayout>
+        </StackLayout>
+    </VerticalStackLayout>
     
 </ContentPage>
