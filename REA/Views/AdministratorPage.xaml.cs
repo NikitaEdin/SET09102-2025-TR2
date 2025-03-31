@@ -4,7 +4,7 @@ public partial class AdministratorPage : ContentPage
 {
 	public AdministratorPage()
 	{
-		InitializeComponent();
+        InitializeComponent();
 	}
 
     private async void OnManageUserAccessClicked(object sender, EventArgs e) {

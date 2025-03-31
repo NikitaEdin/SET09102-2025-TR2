@@ -10,11 +10,10 @@ namespace REA {
 
             // Routes for subpages
             Routing.RegisterRoute("UpdateSensor", typeof(UpdateSensorPage));
-
+            Routing.RegisterRoute("EnvironmentalReports", typeof(GenerateReportsPage));
+            Routing.RegisterRoute("SensorMalfunctions", typeof(ReportMalfunctioningSensorsPage));
 
             BindingContext = new AppShellViewModel();
-
-            Routing.RegisterRoute("SensorMalfunctions", typeof(ReportMalfunctioningSensorsPage));
 
             // Subscribe to user changes (e.g., when the user logs in or out)
             UserManager.Instance.CurrentUserChanged += OnCurrentUserChanged;
