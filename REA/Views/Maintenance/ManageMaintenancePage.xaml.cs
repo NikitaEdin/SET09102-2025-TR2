@@ -26,10 +26,6 @@ public partial class ManageMaintenancePage : ContentPage {
         MaintenanceListView.ItemsSource = maintenanceList;
     }
 
-    private async void OnCreateMaintenanceClicked(object sender, EventArgs e) {
-        await Navigation.PushAsync(new CreateMaintenancePage());
-    }
-
     private async void OnMaintenanceSelected(object sender, SelectedItemChangedEventArgs e) {
         if (e.SelectedItem != null) {
             var selectedMaintenance = (Models.Maintenance)e.SelectedItem;
