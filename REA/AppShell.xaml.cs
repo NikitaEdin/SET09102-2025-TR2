@@ -7,10 +7,13 @@ namespace REA {
     public partial class AppShell : Shell {
         public AppShell() {
             InitializeComponent();
-            BindingContext = new AppShellViewModel();
 
-
+            // Routes for subpages
+            Routing.RegisterRoute("UpdateSensor", typeof(UpdateSensorPage));
             Routing.RegisterRoute("EnvironmentalReports", typeof(GenerateReportsPage));
+            Routing.RegisterRoute("SensorMalfunctions", typeof(ReportMalfunctioningSensorsPage));
+
+            BindingContext = new AppShellViewModel();
 
             // Subscribe to user changes (e.g., when the user logs in or out)
             UserManager.Instance.CurrentUserChanged += OnCurrentUserChanged;

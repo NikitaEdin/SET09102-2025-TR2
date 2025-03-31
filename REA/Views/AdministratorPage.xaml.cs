@@ -6,4 +6,8 @@ public partial class AdministratorPage : ContentPage
 	{
         InitializeComponent();
 	}
+
+    private async void OnManageUserAccessClicked(object sender, EventArgs e) {
+        await Navigation.PushAsync(new UserManagementPage());
+    }
 }
