@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="REA.Views.ReportMalfunctioningSensorsPage"
+             Title="ReportMalfunctioningSensorsPage">
+    <VerticalStackLayout>
+        <Label 
+            Text="Report Malfunctioning Sensors"
+            VerticalOptions="Center" 
+            HorizontalOptions="Center" />
+
+        <StackLayout HorizontalOptions="Center"  Padding="20">
+            <Label Text="Sensors Count: 4"></Label>
+            <Label Text="Sensors Error:  1"></Label>
+        </StackLayout>
+        
+        <TableView Intent="Data">
+            <TableRoot>
+                <TableSection Title="Sensors Status">
+                    <TextCell Text="Sensor 1 - Operational"
+             Detail="ID:1 | Type:Air | Status: Good"/>
+                    <TextCell Text="Sensor 2 - Operational"
+             Detail="ID:2 | Type:Water | Status: Good"/>
+                    <TextCell Text="Sensor 3 - Operational"
+             Detail="ID:3 | Type:Weather | Status: Good"/>
+                    <TextCell Text="Sensor 4 - Operational"
+             Detail="ID:4 | Type:Air | Status: Good"/>
+                    <TextCell Text="Sensor 5 - Error"
+             Detail="ID:5 | Type:Water | Status: Flooded"/>
+                </TableSection>
+            </TableRoot>
+        </TableView>
+        
+        <StackLayout Orientation="Horizontal" HorizontalOptions="Center" Padding="15">
+            <Button BackgroundColor="Green" Text="Submit"></Button>
+            <Button BackgroundColor="Red"  Text="Report"></Button>
+        </StackLayout>
+    </VerticalStackLayout>
+</ContentPage>
