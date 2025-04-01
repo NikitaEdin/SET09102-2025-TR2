@@ -399,8 +399,11 @@ FodyWeavers.xsd
 # JetBrains Rider
 *.sln.iml
 
-# mac
+# mac
 .DS_STORE
 
 # Project settings may cause merge conflicts (Can remove this in future)
 REA/REA.sln
+
+# Idea
+.idea/
