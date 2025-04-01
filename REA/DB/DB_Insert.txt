@@ -1,0 +1,13 @@
+﻿
+-- Insert roles into the Roles table
+INSERT INTO Roles (title, description, power) VALUES
+('Administrator', 'Has full control over all system settings and data', 90),
+('Operations Manager', 'Manages site operations and monitoring tasks', 70),
+('Environmental Scientist', 'Analyses environmental data and reports', 60);
+
+
+-- Insert users into the Users table with the new structure
+INSERT INTO Users (username, name, password, roleID) VALUES
+('admin', 'Admin User', '123', (SELECT roleID FROM Roles WHERE title = 'Administrator')),
+('operations', 'Operations Manager', '123', (SELECT roleID FROM Roles WHERE title = 'Operations Manager')),
+('env_sci', 'Environmental Scientist', '123', (SELECT roleID FROM Roles WHERE title = 'Environmental Scientist'));
