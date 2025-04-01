@@ -10,7 +10,7 @@
     </ContentPage.BindingContext>
 
     <VerticalStackLayout Padding="20">
-        <Label Text="Available Sensors" FontAttributes="Bold" Margin="0 0 10 0"></Label>
+        <Label Text="Available Sensors" FontAttributes="Bold" Margin="0, 0, 10, 0"/>
         <ListView ItemsSource="{Binding Sensors}"
                   SelectedItem="{Binding SelectedSensor, Mode=TwoWay}">
             <ListView.ItemTemplate>
@@ -27,13 +27,13 @@
             </ListView.ItemTemplate>
         </ListView>
 
-        <Border Margin="10 0">
+        <Border Margin="10, 0">
             <StackLayout>
-                <Label Text="Sensor Details" FontAttributes="Bold" Margin="0 0 10 0"/>
-                <Label Text="{Binding SelectedSensor.SensorType, StringFormat='Type: {0}'}" Margin="0 10"/>
-                <Label Text="{Binding SelectedSensor.SensorUrl, StringFormat='URL: {0}'}" Margin="0 10"/>
-                <Label Text="{Binding SelectedSensor.DeploymentDate, StringFormat='Deployed: {0:d}'}" Margin="0 10"/>
-                <Label Text="{Binding SelectedSensor.IsOperational, StringFormat='Operational: {0}'}" Margin="0 10"/>
+                <Label Text="Sensor Details" FontAttributes="Bold" Margin="0, 0, 10, 0"/>
+                <Label Text="{Binding SelectedSensor.SensorType, StringFormat='Type: {0}'}" Margin="0, 10"/>
+                <Label Text="{Binding SelectedSensor.SensorUrl, StringFormat='URL: {0}'}" Margin="0, 10"/>
+                <Label Text="{Binding SelectedSensor.DeploymentDate, StringFormat='Deployed: {0:d}'}" Margin="0, 10"/>
+                <Label Text="{Binding SelectedSensor.IsOperational, StringFormat='Operational: {0}'}" Margin="0, 10"/>
             </StackLayout>
         </Border>
     </VerticalStackLayout>
