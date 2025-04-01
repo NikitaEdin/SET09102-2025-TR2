@@ -20,6 +20,7 @@
 
             <Button Text="Sensor Malfunctions" Command="{Binding NavigateToSensorMalfunctionsCommand}" Margin="10" />
             <Button Text="Monitor Sensors" Margin="10" Command="{Binding NavigateToMonitorSensorsCommand}"/>
+            <Button Text="Manage Maintenance Plans" Margin="10" Command="{Binding NavigateToManageMaintenanceCommand}"></Button>
             <Button Text="Back Dashboard" Command="{Binding NavigateToDashboardCommand}" Margin="10" />
 
             <Border Margin="10">

@@ -3,18 +3,20 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using REA.Views;
 
 namespace REA.ViewModels;
-
 public class OperationsManagerViewModel : ObservableObject
 {
 	public ICommand NavigateToDashboardCommand {get;}
 	public ICommand NavigateToSensorMalfunctionsCommand {get;}
 	public ICommand NavigateToMonitorSensorsCommand { get; }
 
+    public ICommand NavigateToManageMaintenanceCommand { get; }
+
     public OperationsManagerViewModel()
 	{
 		NavigateToDashboardCommand = new Command(async () => await NavigateToDashboard());
         NavigateToSensorMalfunctionsCommand = new Command(async () => await NavigateToSensorMalfunctions());
 		NavigateToMonitorSensorsCommand = new Command(async () => await NavigateToMonitorSensors());
+        NavigateToManageMaintenanceCommand = new Command(async () => await NavigatoToManageMaintenance());
     }
 
 	private async Task NavigateToDashboard()
@@ -28,5 +30,9 @@ public class OperationsManagerViewModel : ObservableObject
 
     private async Task NavigateToMonitorSensors() {
         await Shell.Current.GoToAsync("MonitorSensors");
+    }
+
+    private async Task NavigatoToManageMaintenance() {
+        await Shell.Current.Navigation.PushAsync(new ManageMaintenancePage());
     }
 }

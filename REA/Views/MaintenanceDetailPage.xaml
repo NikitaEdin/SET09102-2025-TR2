@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewModels="clr-namespace:REA.ViewModels"
+             x:Class="REA.Views.Maintenance.MaintenanceDetailPage"
+             Title="{Binding Name}"
+             >
+    <VerticalStackLayout Padding="20" Spacing="10">
+        <Label Text="Scheduled Date"/>
+        <Label Text="{Binding ScheduledDate, StringFormat='{0:MMMM dd, yyyy}'}"/>
+
+        <Label Text="Type"/>
+        <Label Text="{Binding Type}"/>
+
+        <Label Text="Assigned User"/>
+        <Label Text="{Binding AssignedUser}"/>
+
+        <Button Text="Back" Clicked="OnBackClicked"/>
+    </VerticalStackLayout>
+</ContentPage>
