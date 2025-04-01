@@ -91,12 +91,25 @@
 	  <MauiXaml Update="Views\ReportMalfunctioningSensorsPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Views\Maintenance\ManageMaintenancePage.xaml">
+	  <MauiXaml Update="Views\MaintenanceDetailPage.xaml">
+	    <SubType>Designer</SubType>
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Views\Maintenance\MaintenanceDetailPage.xaml">
+	  <MauiXaml Update="Views\ManageMaintenancePage.xaml">
+	    <SubType>Designer</SubType>
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Compile Update="Views\MaintenanceDetailPage.xaml.cs">
+	    <DependentUpon>MaintenanceDetailPage.xaml</DependentUpon>
+	    <SubType>Code</SubType>
+	  </Compile>
+	  <Compile Update="Views\ManageMaintenancePage.xaml.cs">
+	    <DependentUpon>ManageMaintenancePage.xaml</DependentUpon>
+	    <SubType>Code</SubType>
+	  </Compile>
 	</ItemGroup>
 
 </Project>

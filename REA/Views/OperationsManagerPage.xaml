@@ -7,7 +7,6 @@
              Title="Operations Manager Page">
     
     <ContentPage.BindingContext>
-        <utils:NavigationCommands/>
         <viewModels:OperationsManagerViewModel/>
     </ContentPage.BindingContext>
     
@@ -20,7 +19,7 @@
             HorizontalOptions="Center" FontSize="24" Margin="25" />
 
             <Button Text="Sensor Malfunctions" Command="{Binding NavigateToSensorMalfunctionsCommand}" Margin="10" />
-            <Button Text="Manage Maintenance Plans" Margin="10" Clicked="OnManageMaintenanceClicked"></Button>
+            <Button Text="Manage Maintenance Plans" Margin="10" Command="{Binding NavigateToManageMaintenanceCommand}"></Button>
             <Button Text="Back Dashboard" Command="{Binding NavigateToDashboardCommand}" Margin="10" />
 
             <Border Margin="10">
