@@ -33,6 +33,8 @@ namespace REA.ViewModels
 
         public HistoricalDataViewModel() {
             SelectCategoryCommand = new RelayCommand<string>(SelectCategory);
+
+            // Load dummy data for testing purposes
             LoadDummyData();
         }
 
@@ -67,7 +69,9 @@ namespace REA.ViewModels
     }
 
 
-    // Dummy objecst for prototyping until database is implemented
+    //////// Dummy objects for prototyping until database is implemented ////////
+
+    // Air Quality 
     public class AirQualityData {
         public DateTime Date { get; set; }
         public double NitrogenDioxide { get; set; }
@@ -76,6 +80,7 @@ namespace REA.ViewModels
         public double PM10 { get; set; }
     }
 
+    // Water Quality
     public class WaterQualityData {
         public DateTime Date { get; set; }
         public double Nitrate { get; set; }
@@ -84,6 +89,7 @@ namespace REA.ViewModels
         public double EC { get; set; }
     }
 
+    // Weather Data
     public class WeatherData {
         public DateTime Date { get; set; }
         public double Temperature { get; set; }
