@@ -11,3 +11,15 @@ INSERT INTO Users (username, name, password, roleID) VALUES
 ('admin', 'Admin User', '123', (SELECT roleID FROM Roles WHERE title = 'Administrator')),
 ('operations', 'Operations Manager', '123', (SELECT roleID FROM Roles WHERE title = 'Operations Manager')),
 ('env_sci', 'Environmental Scientist', '123', (SELECT roleID FROM Roles WHERE title = 'Environmental Scientist'));
+
+-- Thomas
+INSERT INTO  Sites (name,latitude,longitude,elevation,timezone,utc_offset,type,zone,Agglomeration,Local_authority) VALUES
+-- Air Quality xlsx
+("Edinburgh Nicolson Street", 55.94476,-3.183991,0,"",0,"Urban Traffic","Central Scotland","Edinburgh Urban Area","Edinburgh"),
+-- Water Quality xlsx
+("Glencorse B",55.86111111,3.25388889,0,"",0,"","","",""),
+-- Weather xlsx
+("",55.008785,-3.5856323,8,"",0,"","","","");
+
+-- Thomas
+INSERT INTO Sensors ("") VALUES

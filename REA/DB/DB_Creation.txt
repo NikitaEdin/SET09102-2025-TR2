@@ -17,10 +17,13 @@ CREATE TABLE Users (
 
 CREATE TABLE Sites (
     site_id INTEGER PRIMARY KEY AUTOINCREMENT,
-    name TEXT NOT NULL,
-    latitude REAL NOT NULL,
-    longitude REAL NOT NULL,
-    type TEXT NOT NULL,
+    name TEXT,
+    latitude REAL,
+    longitude REAL,
+    elevation INTEGER,
+    timezone TEXT,
+    utc_offset INTEGER,
+    type TEXT,
     zone TEXT,
     Agglomeration TEXT,
     Local_authority TEXT
