@@ -7,13 +7,16 @@ public class OperationsManagerViewModel : ObservableObject
 {
 	public ICommand NavigateToDashboardCommand {get;}
 	public ICommand NavigateToSensorMalfunctionsCommand {get;}
-	public OperationsManagerViewModel()
+    public ICommand NavigateToVerifyDataCommand { get; }
+
+    public OperationsManagerViewModel()
 	{
 		NavigateToDashboardCommand = new Command(async () => await NavigateToDashboard());
         NavigateToSensorMalfunctionsCommand = new Command(async () => await NavigateToSensorMalfunctions());
+        NavigateToVerifyDataCommand = new Command(async () => await NavigateToVerifyDataPage());
     }
 
-	private async Task NavigateToDashboard()
+    private async Task NavigateToDashboard()
 	{
 		await Shell.Current.GoToAsync("//Dashboard");
 	}
@@ -21,4 +24,8 @@ public class OperationsManagerViewModel : ObservableObject
 	{
 		await Shell.Current.GoToAsync("SensorMalfunctions");
 	}
+    private async Task NavigateToVerifyDataPage()
+    {
+        await Shell.Current.GoToAsync("VerifyData");
+    }
 }

@@ -10,6 +10,7 @@ namespace REA {
 
             // Routes for subpages
             Routing.RegisterRoute("UpdateSensor", typeof(UpdateSensorPage));
+            Routing.RegisterRoute("VerifyData", typeof(VerifyDataPage));
             Routing.RegisterRoute("EnvironmentalReports", typeof(GenerateReportsPage));
             Routing.RegisterRoute("SensorMalfunctions", typeof(ReportMalfunctioningSensorsPage));
 

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="REA.Views.VerifyDataPage"
+             Title="VerifyDataPage">
+    <VerticalStackLayout Padding="20">
+        <Label Text="Select a data item to Verify:" FontSize="20"/>
+        <!-- List of data items-->
+        <ListView x:Name="DataListView" SelectionMode="Single" ItemSelected="OnDataSelected" HasUnevenRows="True">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout Padding="5">
+                            <Label Text="{Binding ID}" FontAttributes="Bold"/>
+                            <Label Text="{Binding Type}" />
+                            <Label Text="{Binding Description}"/>
+                            <Label Text="{Binding DateCreated, StringFormat='Date: {0:MM/dd/yyyy}'}" FontAttributes="Italic"/>
+                            <!-- Status label with conditional for colour -->
+                            <Label Text="{Binding Status}">
+                                <Label.Triggers>
+                                    <!-- Green text for Approved status -->
+                                    <DataTrigger TargetType="Label" Binding="{Binding Status}" Value="Approved">
+                                        <Setter Property="TextColor" Value="Green" />
+                                    </DataTrigger>
+                                    <!-- Red text for Unapproved status -->
+                                    <DataTrigger TargetType="Label" Binding="{Binding Status}" Value="Unapproved">
+                                        <Setter Property="TextColor" Value="Red" />
+                                    </DataTrigger>
+                                </Label.Triggers>
+                            </Label>
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        
+        <!-- Picker for changing status -->
+        <Label Text="Assign Status:" FontSize="20" Margin="0,20,0,0"/>
+        <Picker x:Name="StatusPicker" Title="Select the status" SelectedIndexChanged="OnStatusSelected"/>
+
+        <!-- Input for editting description -->
+        <Label Text="Edit Description:" FontSize="20" Margin="0,20,0,5"/>
+        <Entry x:Name="DescriptionEntry" Placeholder="Enter new description..." TextChanged="OnDescriptionChanged"/>
+
+        <!-- Button to Save Changes -->
+        <Button Text="Save Changes" Clicked="OnSaveClicked" IsEnabled="False" x:Name="SaveButton" Margin="0,30,0,0"/>
+
+        <!-- TO DO: Add functionality to be able to view the new data items-->
+        <Button Text="View Data" Margin="10"/>
+    </VerticalStackLayout>
+</ContentPage>
