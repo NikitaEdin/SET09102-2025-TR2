@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="REA.Views.UpdateSensorPage"
+             xmlns:viewModels="clr-namespace:REA.ViewModels"
+             Title="Update Sensor Page">
+
+    <VerticalStackLayout Padding="30" Spacing="5">
+
+        <Label FontSize="24" HorizontalOptions="Center">Sensor Config</Label>
+        <Entry Placeholder="Sensor Min Value" Keyboard="Numeric" />
+        <Entry Placeholder="Sensor Max Value" Keyboard="Numeric" />
+        <Entry Placeholder="Sensor Messurement Frequency" Keyboard="Numeric" />
+        <Entry Placeholder="Sensor Firmware Version" Keyboard="Numeric" />
+
+        <Label Margin="5" HorizontalOptions="Center">Deployed Sensors</Label>
+        <Border Margin="1">
+            <StackLayout>
+                <Label Text="ID: 1 | Type: A | Min Value: 0.2 | Max Value: 0.7 | Version: 0.1"/>
+                <Label Text="ID: 2 | Type: W | Min Value: 0.1 | Max Value: 0.9 | Version: 0.1"/>
+                <Label Text="ID: 3 | Type: W | Min Value: 0.3 | Max Value: 0.4 | Version: 0.1"/>
+            </StackLayout>
+        </Border>
+
+        <Button Margin="40" Text="Update"></Button>
+    </VerticalStackLayout>
+</ContentPage>

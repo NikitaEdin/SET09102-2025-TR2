@@ -13,6 +13,8 @@ namespace REA.ViewModels {
     public partial class DashboardViewModel : ObservableObject {
 
         public ICommand NavigateToAdminCommand { get; }
+        public ICommand NavigateToOperationsCommand { get; }
+        public ICommand NavigateToEnvironmentalCommand { get; }
 
         private User _currentUser;
 
@@ -32,6 +34,8 @@ namespace REA.ViewModels {
         public DashboardViewModel() {
 
             NavigateToAdminCommand = new Command(async () => await NavigateToAdminPage());
+            NavigateToEnvironmentalCommand = new Command(async () => await NavigateToEnvironmentalPage());
+            NavigateToOperationsCommand = new Command(async () => await NavigateToOperationsPage());
 
             LogoutCommand = new RelayCommand(Logout);
             CurrentUser = UserManager.Instance.CurrentUser;
@@ -44,6 +48,16 @@ namespace REA.ViewModels {
         // Method to go to Admin route which is set in the app shell
         private async Task NavigateToAdminPage() {
             await Shell.Current.GoToAsync("//Admin");
+        }
+
+        private async Task NavigateToOperationsPage()
+        {
+            await Shell.Current.GoToAsync("//Operations");
+        }
+
+        private async Task NavigateToEnvironmentalPage()
+        {
+            await Shell.Current.GoToAsync("//Environmental");
         }
     }
 
