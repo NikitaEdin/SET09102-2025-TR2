@@ -15,9 +15,8 @@
 
 
         <Button Text="Administrator" Command="{Binding NavigateToAdminCommand}" Margin="10" />
-
-        <Button Text="Environmental Scientist" Margin="10"></Button>
-        <Button Text="Operations Manager" Margin="10"></Button>
+        <Button Text="Environmental Scientist" Command="{Binding NavigateToEnvironmentalCommand}" Margin="10" />
+        <Button Text="Operations Manager" Command="{Binding NavigateToOperationsCommand}" Margin="10" />
     </StackLayout>
     
 </ContentPage>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="REA.Views.GenerateReportsPage"
+             Title="Generate Reports Page">
+    <VerticalStackLayout Spacing="10">
+        <StackLayout Spacing="10" Padding="10">
+            <Label FontSize="24" HorizontalOptions="Center">Generate Sensor Reports</Label>
+            
+            <Button Text="Generate Water Report (Dummy)"></Button>
+
+            <Button Text="Generate Air Report (Dummy)"></Button>
+
+            <Button Text="Generate Weather Report (Dummy)"></Button>
+
+            <!-- This is dummy example based on what the user clicks on generates a report for the user to view-->
+            <TableView Intent="Data">
+                <TableRoot>
+                    <TableSection Title="Weather">
+                        <TextCell Text="Monday - Weather Average Data"
+                      Detail="Speed:6MPH | Wind Direction:78 | Temp:12C | Humidity:98" />
+                        <TextCell Text="Tuesday - Weather Average Data"
+                      Detail="Speed:12MPH | Wind Direction:140 | Temp: 06C | Humidity:78" />
+                        <TextCell Text="Wednesday - Weather Average Data"
+                      Detail="Speed:1MPH | Wind Direction:120 | Temp:18C | Humidity:80" />
+                        <TextCell Text="Thursday -  Weather Average Data"
+                      Detail="Speed:3MPH | Wind Direction:20 | Temp:15C | Humidity:88" /> 
+                        <TextCell Text="Friday - Weather Average Data"
+                      Detail="Speed:3MPH | Wind Direction:190 | Temp:13C | Humidity:99" />
+                    </TableSection>
+                </TableRoot>
+            </TableView>
+
+            <!-- This button when clicked, it reads the database again and outputs new data if the database has modifed data-->
+            <Button BackgroundColor="Green" Margin="0,25,0,0" Text="Update Reports (Dummy)"></Button>
+        </StackLayout>
+    </VerticalStackLayout>
+</ContentPage>
