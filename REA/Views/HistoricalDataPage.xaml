@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="REA.Views.HistoricalDataPage"
+             xmlns:vm="clr-namespace:REA.ViewModels"
+             Title="Historical Data">
+    <ContentPage.BindingContext>
+        <vm:HistoricalDataViewModel />
+    </ContentPage.BindingContext>
+
+    <StackLayout Padding="10">
+        <Label Text="Historical Environmental Data" FontSize="Large" HorizontalOptions="Center" />
+
+        <!-- Tabs for selecting category -->
+        <StackLayout Orientation="Horizontal" Spacing="10" HorizontalOptions="Center">
+            <Button Text="Air Quality" Command="{Binding SelectCategoryCommand}" CommandParameter="AirQuality" />
+            <Button Text="Water Quality" Command="{Binding SelectCategoryCommand}" CommandParameter="WaterQuality" />
+            <Button Text="Weather" Command="{Binding SelectCategoryCommand}" CommandParameter="Weather" />
+        </StackLayout>
+
+        <!-- Air Quality Data Table -->
+        <CollectionView ItemsSource="{Binding AirQualityRecords}" IsVisible="{Binding IsAirQualityVisible}">
+            <CollectionView.Header>
+                <Grid Padding="10">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Label Grid.Row="0" Grid.Column="0" Text="Date" />
+                    <Label Grid.Row="0" Grid.Column="1" Text="NO₂ (µg/m³)" />
+                    <Label Grid.Row="0" Grid.Column="2" Text="SO₂ (µg/m³)" />
+                    <Label Grid.Row="0" Grid.Column="3" Text="PM2.5 (µg/m³)"/>
+                    <Label Grid.Row="0" Grid.Column="4" Text="PM10 (µg/m³)" />
+                </Grid>
+            </CollectionView.Header>
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Grid Padding="5">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Label Grid.Row="0" Grid.Column="0" Text="{Binding Date, StringFormat='{}{0:dd/MM/yyyy}'}" />
+                        <Label Grid.Row="0" Grid.Column="1" Text="{Binding NitrogenDioxide}" />
+                        <Label Grid.Row="0" Grid.Column="2" Text="{Binding SulphurDioxide}" />
+                        <Label Grid.Row="0" Grid.Column="3" Text="{Binding PM25}" />
+                        <Label Grid.Row="0" Grid.Column="4" Text="{Binding PM10}" />
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+        <!-- Water Quality Data Table -->
+        <CollectionView ItemsSource="{Binding WaterQualityRecords}" IsVisible="{Binding IsWaterQualityVisible}">
+            <CollectionView.Header>
+                <Grid Padding="10">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Label Grid.Row="0" Grid.Column="0" Text="Date" />
+                    <Label Grid.Row="0" Grid.Column="1" Text="Nitrate (mg/L)"/>
+                    <Label Grid.Row="0" Grid.Column="2" Text="Nitrite (mg/L)"/>
+                    <Label Grid.Row="0" Grid.Column="3" Text="Phosphate (mg/L)"/>
+                    <Label Grid.Row="0" Grid.Column="4" Text="EC (µS/cm)"/>
+                </Grid>
+            </CollectionView.Header>
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Grid Padding="5">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Label Grid.Row="0" Grid.Column="0" Text="{Binding Date, StringFormat='{}{0:dd/MM/yyyy}'}" />
+                        <Label Grid.Row="0" Grid.Column="1" Text="{Binding Nitrate}" />
+                        <Label Grid.Row="0" Grid.Column="2" Text="{Binding Nitrite}" />
+                        <Label Grid.Row="0" Grid.Column="3" Text="{Binding Phosphate}" />
+                        <Label Grid.Row="0" Grid.Column="4" Text="{Binding EC}" />
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+        <!-- Weather Data Table -->
+        <CollectionView ItemsSource="{Binding WeatherRecords}" IsVisible="{Binding IsWeatherVisible}">
+            <CollectionView.Header>
+                <Grid Padding="10">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Label Grid.Row="0" Grid.Column="0" Text="Date"/>
+                    <Label Grid.Row="0" Grid.Column="1" Text="Temperature (°C)"/>
+                    <Label Grid.Row="0" Grid.Column="2" Text="Humidity (%)"/>
+                    <Label Grid.Row="0" Grid.Column="3" Text="Wind Speed (km/h)"/>
+                    <Label Grid.Row="0" Grid.Column="4" Text="Wind Direction"/>
+                </Grid>
+            </CollectionView.Header>
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Grid Padding="5">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Label Grid.Row="0" Grid.Column="0" Text="{Binding Date, StringFormat='{}{0:dd/MM/yyyy}'}" />
+                        <Label Grid.Row="0" Grid.Column="1" Text="{Binding Temperature}" />
+                        <Label Grid.Row="0" Grid.Column="2" Text="{Binding RelativeHumidity}" />
+                        <Label Grid.Row="0" Grid.Column="3" Text="{Binding WindSpeed}" />
+                        <Label Grid.Row="0" Grid.Column="4" Text="{Binding WindDirection}" />
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+    </StackLayout>
+</ContentPage>
