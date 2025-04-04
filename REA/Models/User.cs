@@ -1,7 +1,12 @@
 ﻿
+using SQLite;
+
 namespace REA.Models {
+    [Table("Users")]
     public  class User {
-        public required string Username { get; set; }
-        public required string Password { get; set; }
+        [PrimaryKey, AutoIncrement]
+        public int Id { get; set; }
+        public string Username { get; set; }
+        public string Password { get; set; }
     }
 }
