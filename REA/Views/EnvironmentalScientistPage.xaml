@@ -12,20 +12,21 @@
 
     <VerticalStackLayout>
         <StackLayout>
-
-            <Label 
-            Text="Welcome Environmental Scientist"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" FontSize="24" Margin="25" />
+            <Label  Text="Welcome Environmental Scientist"
+                VerticalOptions="Center"  HorizontalOptions="Center" FontSize="24" Margin="25" />
 
             <Button Text="Generate Reports" Command="{Binding NavigateToReportsCommand}" Margin="10" />
             <Button Text="Historical Data" Command="{Binding NavigateToHistoricalDataCommand}" Margin="10" />
-            <Button Text="Back Dashboard" Command="{Binding NavigateToDashboardCommand}" Margin="10" />
+            <Button Text="Interactive Map" Command="{Binding NavigateToMapCommand}" Margin="10" />
+            <Button Text="Sensor Accounts" Command="{Binding NavigateToSensorAccountsCommand}" Margin="10" />
+                
+            <Button Text="Back Dashboard" Command="{Binding NavigateToDashboardCommand}" Margin="10, 30, 10, 0" />
 
             <Border Margin="10">
-                <Label Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. In facilisis nulla eu felis fringilla vulputate. Nullam porta eleifend lacinia. Donec at iaculis tellus."
-                    LineBreakMode="WordWrap" MaxLines="3" Margin="25" />
+                <Label Text="Access reports, analyse historical data, and manage sensor accounts to monitor environmental conditions."
+                LineBreakMode="WordWrap" MaxLines="3" Margin="25" />
             </Border>
+
 
         </StackLayout>
     </VerticalStackLayout>

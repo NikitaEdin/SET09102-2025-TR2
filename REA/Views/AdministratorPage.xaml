@@ -10,20 +10,24 @@
     </ContentPage.BindingContext>
 
     <VerticalStackLayout>
-           <StackLayout>
-        <Label 
-            Text="Welcome Adminstrator"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" FontSize="24" Margin="25" />
+        <StackLayout>
+            <Label 
+                Text="Welcome Adminstrator"
+                VerticalOptions="Center" 
+                HorizontalOptions="Center" FontSize="24" Margin="25" />
 
-        <Button Text="Update Sensor Config" Command="{Binding NavigateToUpdateSensorCommand}" Margin="10" />
-        <Button Text="Button 2" Margin="10"></Button>
-        <Button Text="Back Dashboard" Command="{Binding NavigateToDashboardCommand}" Margin="10" />
+             
+            <Button Text="Update Sensor Config" Command="{Binding NavigateToUpdateSensorCommand}" Margin="10"/>
+            <Button Text="User Management" Command="{Binding NavigateToManageUserAccessCommand}" Margin="10" />
+            <Button Text="Storage Management" Command="{Binding NavigateToStorageManagementCommand}" Margin="10" />
+            <Button Text="Authorisation Configuration" Command="{Binding NavigateToAuthConfigCommand}" Margin="10" />
 
-        <Border Margin="10">
-            <Label Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. In facilisis nulla eu felis fringilla vulputate. Nullam porta eleifend lacinia. Donec at iaculis tellus."
-          LineBreakMode="WordWrap" MaxLines="3" Margin="25" />
-        </Border>
+            <Button Text="Back Dashboard" Command="{Binding NavigateToDashboardCommand}" Margin="10, 30, 10, 0" />
+
+            <Border Margin="10">
+                <Label Text="Manage system settings and user access from this panel. Select an option above to proceed."
+                LineBreakMode="WordWrap" MaxLines="3" Margin="25" />
+            </Border>
 
 
         </StackLayout>

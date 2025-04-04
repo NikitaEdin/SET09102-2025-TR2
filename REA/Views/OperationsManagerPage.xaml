@@ -19,15 +19,18 @@
             HorizontalOptions="Center" FontSize="24" Margin="25" />
 
             <Button Text="Sensor Malfunctions" Command="{Binding NavigateToSensorMalfunctionsCommand}" Margin="10" />
-            <Button Text="Monitor Sensors" Command="{Binding NavigateToMonitorSensorsCommand}" Margin="10"/>
-            <Button Text="Manage Maintenance Plans" Margin="10" Command="{Binding NavigateToManageMaintenanceCommand}"/>
-            <Button Text="Back Dashboard" Command="{Binding NavigateToDashboardCommand}" Margin="10" />
+            <Button Text="Monitor Sensors" Command="{Binding NavigateToMonitorSensorsCommand}"  Margin="10"/>
+            <Button Text="Manage Maintenance Plans" Command="{Binding NavigateToManageMaintenanceCommand}"  Margin="10"/>
+            <Button Text="Verify Collected Data" Command="{Binding NavigateToCollectedDataCommand}"  Margin="10"/>
+
+            <Button Text="Back Dashboard" Command="{Binding NavigateToDashboardCommand}" Margin="10, 30, 10, 0"/>
 
             <Border Margin="10">
-                <Label Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. In facilisis nulla eu felis fringilla vulputate. Nullam porta eleifend lacinia. Donec at iaculis tellus."
-                    LineBreakMode="WordWrap" MaxLines="3" Margin="25" />
+                <Label Text="Monitor sensor performance, manage maintenance plans, and verify collected data to ensure system reliability."
+                LineBreakMode="WordWrap" MaxLines="3" Margin="25" />
             </Border>
-            
+
+
         </StackLayout>
     </VerticalStackLayout>
 </ContentPage>
