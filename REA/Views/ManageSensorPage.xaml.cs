@@ -112,12 +112,12 @@ public partial class ManageSensorPage : ContentPage {
             }
 
             // Show user a message to say it has changed
-            string message = $"Sensor ID:{selectedSensor.ID} is {selectedSensor.Type} and URL is '{selectedSensor.Url} and {selectedSensor.Frequency}'";
+            string message = $"Sensor ID: {selectedSensor.ID} \n- Type: {selectedSensor.Type} \n- Url: {selectedSensor.Url} \n- Measurement Frequency: {selectedSensor.Frequency}";
             DisplayAlert("Success", message, "OK");
         }
         else {
             // Show message to users that no item has been selected error
-            DisplayAlert("Error", "Please select a sensor first.", "OK");
+            DisplayAlert("Error", "Please select a sensor and edit details.", "OK");
         }
     }
 }
