@@ -20,6 +20,7 @@
 
             <Button Text="Generate Reports" Command="{Binding NavigateToReportsCommand}" Margin="10" />
             <Button Text="Historical Data" Command="{Binding NavigateToHistoricalDataCommand}" Margin="10" />
+            <Button Text="Manage and Configure Sensor Settings" Command="{Binding NavigateToManageSensorCommand}" Margin="10" />
             <Button Text="Back Dashboard" Command="{Binding NavigateToDashboardCommand}" Margin="10" />
 
             <Border Margin="10">

@@ -13,6 +13,7 @@ namespace REA {
             Routing.RegisterRoute("EnvironmentalReports", typeof(GenerateReportsPage));
             Routing.RegisterRoute("SensorMalfunctions", typeof(ReportMalfunctioningSensorsPage));
             Routing.RegisterRoute("HistoricalData", typeof(HistoricalDataPage));
+            Routing.RegisterRoute("ManageSensor", typeof(ManageSensorPage));
 
             BindingContext = new AppShellViewModel();
 
