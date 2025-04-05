@@ -17,7 +17,7 @@
             HorizontalOptions="Center" FontSize="24" Margin="25" />
 
         <Button Text="Update Sensor Config" Command="{Binding NavigateToUpdateSensorCommand}" Margin="10" />
-        <Button Text="Button 2" Margin="10"></Button>
+        <Button Text="Storage Overview" Command="{Binding NavigateToStorageOverviewCommand}" Margin="10" />
         <Button Text="Back Dashboard" Command="{Binding NavigateToDashboardCommand}" Margin="10" />
 
         <Border Margin="10">

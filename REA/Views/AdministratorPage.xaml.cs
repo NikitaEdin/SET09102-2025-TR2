@@ -10,4 +10,9 @@ public partial class AdministratorPage : ContentPage
     private async void OnManageUserAccessClicked(object sender, EventArgs e) {
         await Navigation.PushAsync(new UserManagementPage());
     }
+
+    private async void OnStorageOverviewClicked(object sender, EventArgs e)
+    {
+        await Navigation.PushAsync(new StorageOverviewPage());
+    }
 }
