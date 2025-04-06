@@ -60,9 +60,20 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <None Remove="Resources\local.db" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <EmbeddedResource Include="Resources\local.db">
+	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+	  </EmbeddedResource>
+	</ItemGroup>
+
+	<ItemGroup>
 		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.0" />
 		<PackageReference Include="Microsoft.Maui.Controls" Version="$(MauiVersion)" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="9.0.0" />
+		<PackageReference Include="sqlite-net-pcl" Version="1.9.172" />
 		<PackageReference Include="Microsoft.Maui.Controls.Xaml" Version="$(MauiVersion)" />
 	</ItemGroup>
 
@@ -86,6 +97,9 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\StorageOverviewPage.xaml">
+ 	 	<Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\MonitorSensorsPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\UpdateSensorPage.xaml">
