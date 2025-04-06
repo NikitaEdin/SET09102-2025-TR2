@@ -34,9 +34,9 @@ CREATE TABLE Sensors (
     sensor_type TEXT NOT NULL,
     sensor_url TEXT,
     deployment_date DATE,
-    sensor_operational BOOLEAN,
-    configID INTEGER,
-    FOREIGN KEY (configID) REFERENCES Configuration(ConfigID) ON DELETE SET NULL
+    sensor_operational BOOLEAN
+   -- configID INTEGER, Circular Dependency with Sensor
+   -- FOREIGN KEY (configID) REFERENCES Configuration(ConfigID) ON DELETE SET NULL
 );
 
 CREATE TABLE Configuration (
@@ -45,8 +45,8 @@ CREATE TABLE Configuration (
     minMeasurement REAL NOT NULL,
     maxMeasurement REAL NOT NULL,
     type TEXT NOT NULL,
-    unit TEXT NOT NULL,
-    firmware BLOB, -- assuming firmware is a file, stored as BLOB
+   -- unit TEXT NOT NULL, This isn't needed 
+    firmware REAL, -- assuming firmware is a file, stored as BLOB (REAL Datetype for now)
     FOREIGN KEY (sensor_id) REFERENCES Sensors(sensor_id) ON DELETE CASCADE
 );
 
