@@ -22,26 +22,26 @@ INSERT INTO  Sites (name,latitude,longitude,elevation,timezone,utc_offset,type,z
 ("",55.008785,-3.5856323,8,"",0,"","","","");
 
 -- Thomas Sensors Table
-INSERT INTO Sensors (sensor_type,sensor_url,deployment_date,sensor_operational) VALUES
+INSERT INTO Sensors (site_id,sensor_type,sensor_url,deployment_date,sensor_operational) VALUES
 -- Air
-("Air","https://airly.org/en/features/air-quality-sensors/","2025-04-06",TRUE),
-("Air","https://airly.org/en/features/air-quality-sensors/","2023-11-02",TRUE),
-("Air","https://airly.org/en/features/air-quality-sensors/","2024-02-16",TRUE),
-("Air","https://airly.org/en/features/air-quality-sensors/","2025-03-10",FALSE),
+(1,"Air","https://airly.org/en/features/air-quality-sensors/","2025-04-06",TRUE),
+(1,"Air","https://airly.org/en/features/air-quality-sensors/","2023-11-02",TRUE),
+(1,"Air","https://airly.org/en/features/air-quality-sensors/","2024-02-16",TRUE),
+(1,"Air","https://airly.org/en/features/air-quality-sensors/","2025-03-10",FALSE),
 -- Water
-("Water","https://clearwatersensors.com/nitrate-sensor.html","2023-01-01",TRUE),
-("Water","https://clearwatersensors.com/nitrate-sensor.html","2023-05-07",TRUE),
-("Water","https://clearwatersensors.com/nitrate-sensor.html","2024-02-22",TRUE),
-("Water","https://clearwatersensors.com/nitrate-sensor.html","2025-01-12",TRUE),
-("Water","https://clearwatersensors.com/nitrate-sensor.html","2021-01-18",FALSE),
+(2,"Water","https://clearwatersensors.com/nitrate-sensor.html","2023-01-01",TRUE),
+(2,"Water","https://clearwatersensors.com/nitrate-sensor.html","2023-05-07",TRUE),
+(2,"Water","https://clearwatersensors.com/nitrate-sensor.html","2024-02-22",TRUE),
+(2,"Water","https://clearwatersensors.com/nitrate-sensor.html","2025-01-12",TRUE),
+(2,"Water","https://clearwatersensors.com/nitrate-sensor.html","2021-01-18",FALSE),
 -- Weather
-("Weather","https://www.alliot.co.uk/product/netvox-outdoor-temperature-and-humidity-sensor/","2024-08-12",TRUE),
-("Weather","https://www.alliot.co.uk/product/netvox-outdoor-temperature-and-humidity-sensor/","2025-08-15",TRUE),
-("Weather","https://www.vaisala.com/en/products/ultrasonic-wind-sensor-wm80","2024-06-11",TRUE),
-("Weather","https://www.vaisala.com/en/products/ultrasonic-wind-sensor-wm80","2025-02-11",FALSE);
+(3,"Weather","https://www.alliot.co.uk/product/netvox-outdoor-temperature-and-humidity-sensor/","2024-08-12",TRUE),
+(3,"Weather","https://www.alliot.co.uk/product/netvox-outdoor-temperature-and-humidity-sensor/","2025-08-15",TRUE),
+(3,"Weather","https://www.vaisala.com/en/products/ultrasonic-wind-sensor-wm80","2024-06-11",TRUE),
+(3,"Weather","https://www.vaisala.com/en/products/ultrasonic-wind-sensor-wm80","2025-02-11",FALSE);
 
 -- Thomas Config Table
-INSERT INTO  Configuration(sensor_id,minMeasurement,maxMeasurement,type,firmware) VALUES
+INSERT INTO  Configuration(sensor_id,min_measurement,max_measurement,type,firmware) VALUES
 -- Air Sensors config
 (1,0.1,199,"Nitrogen dioxide",0.1),
 (2,0.1,265,"Sulphur dioxide",0.1),

@@ -31,6 +31,7 @@ CREATE TABLE Sites (
 
 CREATE TABLE Sensors (
     sensor_id INTEGER PRIMARY KEY AUTOINCREMENT,
+    site_id INTEGER,
     sensor_type TEXT NOT NULL,
     sensor_url TEXT,
     deployment_date DATE,
@@ -40,10 +41,10 @@ CREATE TABLE Sensors (
 );
 
 CREATE TABLE Configuration (
-    ConfigID INTEGER PRIMARY KEY AUTOINCREMENT,
+    config_id INTEGER PRIMARY KEY AUTOINCREMENT,
     sensor_id INTEGER NOT NULL,
-    minMeasurement REAL NOT NULL,
-    maxMeasurement REAL NOT NULL,
+    min_measurement REAL NOT NULL,
+    max_measurement REAL NOT NULL,
     type TEXT NOT NULL,
    -- unit TEXT NOT NULL, This isn't needed 
     firmware REAL, -- assuming firmware is a file, stored as BLOB (REAL Datetype for now)
