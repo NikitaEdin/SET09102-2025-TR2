@@ -1,6 +1,5 @@
-﻿using REA.ViewModels;  // Assuming UserManager or other login-related logic is in this namespace
-using REA.Utils;    // Assuming UserManager or similar service is here
-using Microsoft.Maui.Controls;
+﻿using REA.ViewModels; 
+using REA.Utils;
 using REA.Views;
 
 namespace REA {
@@ -8,38 +7,49 @@ namespace REA {
         public AppShell() {
             InitializeComponent();
 
-            // Routes for subpages
-            Routing.RegisterRoute("UpdateSensor", typeof(UpdateSensorPage));
-            Routing.RegisterRoute("EnvironmentalReports", typeof(GenerateReportsPage));
-            Routing.RegisterRoute("SensorMalfunctions", typeof(ReportMalfunctioningSensorsPage));
-            Routing.RegisterRoute("MonitorSensors", typeof(MonitorSensorsPage));
-            Routing.RegisterRoute("HistoricalData", typeof(HistoricalDataPage));
+            /////// Routes for Subpages ///////
+            // Admin routes
+            Routing.RegisterRoute("UserManagement", typeof(UserManagementPage)); // Nikita
+            Routing.RegisterRoute("UpdateSensor", typeof(UpdateSensorPage)); // Thomas
+            // Routing.RegisterRoute("AuthConfig", typeof(CLASS)); // Ramsay
+            // Routing.RegisterRoute("StorageManagement", typeof(CLASS)); // Rachael
+
+            // Environmetal Scientist routes
+            // Routing.RegisterRoute("Sensor Accounts", typeof(CLASS)); // Rachael
+            Routing.RegisterRoute("HistoricalData", typeof(HistoricalDataPage)); // Nikita
+            // Routing.RegisterRoute("Map", typeof(CLASS)); // Ramsay
+            Routing.RegisterRoute("EnvironmentalReports", typeof(GenerateReportsPage)); // Thomas
+
+            // Operations Manager routes
+            Routing.RegisterRoute("MonitorSensors", typeof(MonitorSensorsPage)); // Nikita
+            Routing.RegisterRoute("ManageMaintenance", typeof(ManageMaintenancePage)); // Ramsay
+            // Routing.RegisterRoute("CollectedData", typeof(CLASS)); // Rachael
+            Routing.RegisterRoute("SensorMalfunctions", typeof(ReportMalfunctioningSensorsPage)); // Thomas
 
             BindingContext = new AppShellViewModel();
 
-            // Subscribe to user changes (e.g., when the user logs in or out)
+            // Sub to user changes
             UserManager.Instance.CurrentUserChanged += OnCurrentUserChanged;
         }
 
-        // OnAppearing is called when the shell (app) is fully loaded
+        // Auto navigate based on isLoggedIn 
         protected override void OnAppearing() {
             base.OnAppearing();
 
-            // Check if the user is logged in
+            // Is user logged in
             bool isLoggedIn = UserManager.Instance.CurrentUser != null;
 
-            // Perform navigation based on login state
+            // Navigation based login state
             if (isLoggedIn) {
-                Shell.Current.GoToAsync("//Dashboard");  // Navigate to Dashboard if logged in
+                Current.GoToAsync("//Dashboard"); 
             } else {
-                Shell.Current.GoToAsync("//Login");  // Navigate to Login if not logged in
+                Current.GoToAsync("//Login");
             }
         }
 
+        // Track if current user is logged in
         private void OnCurrentUserChanged(object sender, EventArgs e) {
-            // Handle changes in the current user, such as login/logout.
             bool isLoggedIn = UserManager.Instance.CurrentUser != null;
-            // You can perform any necessary actions here when the user state changes.
         }
     }
 }
