@@ -39,7 +39,7 @@
                             <Label Text="{Binding SensorId, StringFormat='ID: {0}'}" FontSize="16" />
                             <Label Text="{Binding SensorType, StringFormat='Type: {0}'}" FontSize="16"/>
                             <Label Text="{Binding SensorOperational, StringFormat='Operational: {0}'}" FontSize="16"/>
-                        </VerticalStackLayout>
+                            </VerticalStackLayout>
                     </Border>
                 </DataTemplate>
             </CollectionView.ItemTemplate>

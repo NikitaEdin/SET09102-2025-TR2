@@ -1,7 +1,6 @@
 ﻿
 using System.Collections.ObjectModel;
 using System.Diagnostics;
-using System.Windows.Input;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using REA.DB;
@@ -70,6 +69,14 @@ namespace REA.ViewModels
             SensorErrorCount = errorSensors.Count;
         }
 
+        private void WriteReport()
+        {
+            string filePath = Path.Combine(FileSystem.AppDataDirectory, "report.txt");
+            File.WriteAllLinesAsync(filePath, (IEnumerable<string>)MalfunctioningSensors);
+
+        }
+
+
         /// <summary>
         /// Command to navigate to operations page
         /// </summary>
@@ -80,11 +87,27 @@ namespace REA.ViewModels
             await Shell.Current.GoToAsync("//Operations");
         }
 
+        /// <summary>
+        /// Command to navigate to Sensors errors page
+        /// </summary>
+        /// <returns>Task to peform a navigation operation to the error sensors page</returns>
         [RelayCommand]
         public async Task NavigateToSensorErrors()
         {
             await Shell.Current.GoToAsync("SensorMalfunctionsReport");
         }
 
+        [RelayCommand]
+        public async Task ReportSensor()
+        {
+            WriteReport();
+        }
+
+
+        //[RelayCommand]
+        //public async Task ReportSensor()
+        //{
+        //    ViewReport();
+        //}
     }
 }

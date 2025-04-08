@@ -23,7 +23,7 @@ namespace REA.DB {
             string dbPath = Path.Combine(FileSystem.AppDataDirectory, "local.db");
 
             try {
-                if (!File.Exists(dbPath)) {
+                //if (!File.Exists(dbPath)) {
                     var assembly = GetType().Assembly;
                     using (Stream stream = assembly.GetManifestResourceStream("REA.Resources.local.db")) {
                         if (stream != null) {
@@ -31,7 +31,7 @@ namespace REA.DB {
                                 stream.CopyTo(fileStream);
                             }
                         }
-                    }
+                    //}
                 }
             } catch (Exception ex) { }
 
