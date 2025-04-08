@@ -1,7 +1,9 @@
 ﻿
 using System.Collections.ObjectModel;
 using System.Diagnostics;
+using System.Windows.Input;
 using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using REA.DB;
 using REA.Models;
 
@@ -16,22 +18,21 @@ namespace REA.ViewModels
         private ObservableCollection<Sensors> malfunctioningSensors;
         [ObservableProperty]
         private ObservableCollection<Sensors> functioningSensors;
-
         [ObservableProperty]
         private int sensorCount;
         [ObservableProperty]
         private int sensorErrorCount;
 
-        
+
         public ReportMalfunctioningSensorsViewModel()
         {
             // Call the sensor method
             LoadSensors();
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
+       /// <summary>
+       /// Get sensors from the database and put them into appropriate collections.
+       /// </summary>
         private async void LoadSensors()
         {
             Debug.WriteLine("LoadSensors method is being called...");
@@ -57,10 +58,32 @@ namespace REA.ViewModels
             }
 
         }
+
+        /// <summary>
+        ///  Counts how many sensors and how many malfunctioning sensors
+        /// </summary>
+        /// <param name="allSensors"> Collection full of all sensors.</param>
+        /// <param name="errorSensors">Collection with the list of malfunctioning sensors.</param>
         private void CountSensors(ObservableCollection<Sensors> allSensors, ObservableCollection<Sensors> errorSensors)
         {
             SensorCount = allSensors.Count;
             SensorErrorCount = errorSensors.Count;
+        }
+
+        /// <summary>
+        /// Command to navigate to operations page
+        /// </summary>
+        /// <returns>A Task to perform a navigation operation to the operations page</returns>
+        [RelayCommand]
+        public async Task NavigateToOperations()
+        {
+            await Shell.Current.GoToAsync("//Operations");
+        }
+
+        [RelayCommand]
+        public async Task NavigateToSensorErrors()
+        {
+            await Shell.Current.GoToAsync("SensorMalfunctionsReport");
         }
 
     }

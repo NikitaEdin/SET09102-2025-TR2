@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="REA.Views.ReportMalfunctioningSensors.SensorErrorsPage"
+             xmlns:viewModels="clr-namespace:REA.ViewModels"
+             Title="Sensor Errors">
+    <ContentPage.BindingContext>
+        <viewModels:ReportMalfunctioningSensorsViewModel/>
+    </ContentPage.BindingContext>
+    <VerticalStackLayout>
+        <StackLayout HorizontalOptions="Center"  Padding="20" >
+            <Label Text="Report Non-operational sensors" FontSize="20"></Label>
+        </StackLayout>
+
+
+        <CollectionView ItemsSource="{Binding MalfunctioningSensors}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Border Padding="10" Margin="5">
+                        <VerticalStackLayout>
+                            <Label Text="{Binding SensorId, StringFormat='ID: {0}'}" FontSize="16" />
+                            <Label Text="{Binding SensorType, StringFormat='Type: {0}'}" FontSize="16"/>
+                            <Label Text="{Binding SensorOperational, StringFormat='Operational: {0}'}" FontSize="16"/>
+                        </VerticalStackLayout>
+                    </Border>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+        <StackLayout Orientation="Horizontal" HorizontalOptions="Center" Padding="15">
+            <Button Text="Report" BackgroundColor="Red" Margin="5"></Button>
+            <Button Text="View Report" BackgroundColor="Green" Margin="5"></Button>
+        </StackLayout>
+        <StackLayout Orientation="Horizontal" HorizontalOptions="Center" Padding="5">
+            <Button Text="Back" Margin="5" Command="{Binding NavigateToOperationsCommand}"></Button>
+        </StackLayout>
+       
+    </VerticalStackLayout>
+</ContentPage>

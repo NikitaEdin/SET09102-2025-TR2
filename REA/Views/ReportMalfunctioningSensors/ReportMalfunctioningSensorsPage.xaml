@@ -3,20 +3,15 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="REA.Views.ReportMalfunctioningSensorsPage"
              xmlns:viewModels="clr-namespace:REA.ViewModels"
-             Title="ReportMalfunctioningSensorsPage">
+             Title="Report Malfunctioning Sensors">
     <ContentPage.BindingContext>
         <viewModels:ReportMalfunctioningSensorsViewModel/>
     </ContentPage.BindingContext>
     <ScrollView>
-    <VerticalStackLayout>
-        <Label 
-            Text="Report Malfunctioning Sensors"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-
-        <StackLayout HorizontalOptions="Center"  Padding="20">
-            <Label Text="{Binding SensorCount, StringFormat='Total Sensors: {0}'}"></Label>
-            <Label Text="Sensors Error:  1"></Label>
+        <VerticalStackLayout>
+            <StackLayout HorizontalOptions="Center"  Padding="20" >
+            <Label Text="{Binding SensorCount, StringFormat='Total Sensors: {0}'}" FontSize="16" TextColor="Green"></Label>
+            <Label Text="{Binding SensorErrorCount, StringFormat='Errors Sensors: {0}'}" FontSize="16" TextColor="Red"></Label>
         </StackLayout>
         
        <!--<TableView Intent="Data">
@@ -43,7 +38,7 @@
                         <VerticalStackLayout>
                             <Label Text="{Binding SensorId, StringFormat='ID: {0}'}" FontSize="16" />
                             <Label Text="{Binding SensorType, StringFormat='Type: {0}'}" FontSize="16"/>
-                            <Label Text="{Binding SensorOperational, StringFormat='Type: {0}'}" FontSize="16"/>
+                            <Label Text="{Binding SensorOperational, StringFormat='Operational: {0}'}" FontSize="16"/>
                         </VerticalStackLayout>
                     </Border>
                 </DataTemplate>
@@ -53,9 +48,9 @@
 
 
         <StackLayout Orientation="Horizontal" HorizontalOptions="Center" Padding="15">
-            <Button BackgroundColor="Green" Text="Submit"></Button>
-            <Button BackgroundColor="Red"  Text="Report"></Button>
-        </StackLayout>
+            <Button BackgroundColor="Green" Text="View Errors" Margin="5" Command="{Binding NavigateToSensorErrorsCommand}"></Button>
+                <Button BackgroundColor="Red"  Text="Back" Margin="5" Command="{Binding NavigateToOperationsCommand}"/>
+            </StackLayout>
     </VerticalStackLayout>
     </ScrollView>
 </ContentPage>
