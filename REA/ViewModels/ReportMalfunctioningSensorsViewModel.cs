@@ -16,6 +16,12 @@ namespace REA.ViewModels
         private ObservableCollection<Sensors> malfunctioningSensors;
         [ObservableProperty]
         private ObservableCollection<Sensors> functioningSensors;
+
+        [ObservableProperty]
+        private int sensorCount;
+        [ObservableProperty]
+        private int sensorErrorCount;
+
         
         public ReportMalfunctioningSensorsViewModel()
         {
@@ -23,6 +29,9 @@ namespace REA.ViewModels
             LoadSensors();
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         private async void LoadSensors()
         {
             Debug.WriteLine("LoadSensors method is being called...");
@@ -39,11 +48,7 @@ namespace REA.ViewModels
                 FunctioningSensors = new ObservableCollection<Sensors>(
                     sensors.Where(s => s.SensorOperational));
 
-                // Debug
-                foreach (var sensor in SensorsList)
-                {
-                    Debug.WriteLine($"ID: {sensor.SensorId}, Type: {sensor.SensorType}, URL: {sensor.SensorUrl}, Operational: {sensor.SensorOperational}");
-                }
+                CountSensors(SensorsList, MalfunctioningSensors);
 
             }
             else
@@ -52,7 +57,11 @@ namespace REA.ViewModels
             }
 
         }
-
+        private void CountSensors(ObservableCollection<Sensors> allSensors, ObservableCollection<Sensors> errorSensors)
+        {
+            SensorCount = allSensors.Count;
+            SensorErrorCount = errorSensors.Count;
+        }
 
     }
 }

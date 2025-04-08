@@ -7,6 +7,7 @@
     <ContentPage.BindingContext>
         <viewModels:ReportMalfunctioningSensorsViewModel/>
     </ContentPage.BindingContext>
+    <ScrollView>
     <VerticalStackLayout>
         <Label 
             Text="Report Malfunctioning Sensors"
@@ -14,11 +15,11 @@
             HorizontalOptions="Center" />
 
         <StackLayout HorizontalOptions="Center"  Padding="20">
-            <Label Text="Sensors Count: 4"></Label>
+            <Label Text="{Binding SensorCount, StringFormat='Total Sensors: {0}'}"></Label>
             <Label Text="Sensors Error:  1"></Label>
         </StackLayout>
         
-        <TableView Intent="Data">
+       <!--<TableView Intent="Data">
             <TableRoot>
                 <TableSection Title="Sensors Status">
                     <TextCell Text="Sensor 1 - Operational"
@@ -33,16 +34,16 @@
              Detail="ID:5 | Type:Water | Status: Flooded"/>
                 </TableSection>
             </TableRoot>
-        </TableView>
+        </TableView>-->
         
-        <CollectionView ItemsSource="{Binding FunctioningSensors}">
+        <CollectionView ItemsSource="{Binding SensorsList}">
             <CollectionView.ItemTemplate>
                 <DataTemplate>
                     <Border Padding="10" Margin="5">
                         <VerticalStackLayout>
-                            <Label Text="{Binding SensorType}" FontSize="16" />
-                            <Label Text="{Binding SensorUrl}" FontSize="12" TextColor="Red" />
-                            <Label Text="Boop"></Label>
+                            <Label Text="{Binding SensorId, StringFormat='ID: {0}'}" FontSize="16" />
+                            <Label Text="{Binding SensorType, StringFormat='Type: {0}'}" FontSize="16"/>
+                            <Label Text="{Binding SensorOperational, StringFormat='Type: {0}'}" FontSize="16"/>
                         </VerticalStackLayout>
                     </Border>
                 </DataTemplate>
@@ -56,4 +57,5 @@
             <Button BackgroundColor="Red"  Text="Report"></Button>
         </StackLayout>
     </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>
