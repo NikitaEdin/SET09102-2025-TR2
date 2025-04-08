@@ -4,7 +4,7 @@ using SQLite;
 namespace REA.Models {
     /// <summary>
     /// Metadata model holding record data of metadata attributes
-    /// Author: Nikita Lanetksy.
+    /// Author: Nikita Lanetsky.
     /// </summary>
     public class Metadata {
         [PrimaryKey, AutoIncrement]

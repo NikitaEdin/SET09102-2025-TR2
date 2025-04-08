@@ -5,7 +5,7 @@ using SQLite;
 namespace REA.Models {
     /// <summary>
     /// Water Measurement Model holding record data of water related attributes
-    /// Author: Nikita Lanetksy.
+    /// Author: Nikita Lanetsky.
     /// </summary>
     [Table("water_measurements")]
     public class WaterMeasurement {

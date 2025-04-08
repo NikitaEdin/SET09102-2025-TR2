@@ -4,7 +4,7 @@ using SQLite;
 namespace REA.Models {
     /// <summary>
     /// Role model holding record data of user roles
-    /// Author: Nikita Lanetksy.
+    /// Author: Nikita Lanetsky.
     /// </summary>
     [Table("Roles")]
     public class Role {
