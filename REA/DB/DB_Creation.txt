@@ -51,26 +51,39 @@ CREATE TABLE Configuration (
     FOREIGN KEY (sensor_id) REFERENCES Sensors(sensor_id) ON DELETE CASCADE
 );
 
-CREATE TABLE Metadata (
-    parameter TEXT PRIMARY KEY,
+-- Nikita Metadata
+CREATE TABLE IF NOT EXISTS Metadata (
+    ID INTEGER PRIMARY KEY AUTOINCREMENT,
     category TEXT NOT NULL,
+    quantity TEXT NOT NULL,
     symbol TEXT NOT NULL,
     unit TEXT NOT NULL,
-    unit_description TEXT,
-    measurement_freq TEXT NOT NULL,
-    safe_limit REAL,
+    unit_drescription TEXT,
+    measurement_freq TEXT,
+    safe_level REAL,
+    Sensor TEXT,
     reference_url TEXT,
     sensor_id INTEGER,
-    FOREIGN KEY (sensor_id) REFERENCES Sensors(sensor_id) ON DELETE SET NULL
+    FOREIGN KEY (sensor_id) REFERENCES Sensors(sensor_id)
 );
 
-CREATE TABLE Measurements (
+
+-- Nikita Water Measurements Table
+CREATE TABLE IF NOT EXISTS water_measurements (
     ID INTEGER PRIMARY KEY AUTOINCREMENT,
     datetime DATETIME NOT NULL,
-    parameter TEXT NOT NULL,
-    value REAL NOT NULL,
-    unit TEXT NOT NULL,
-    site_id INTEGER,
-    FOREIGN KEY (site_id) REFERENCES Sites(site_id) ON DELETE SET NULL,
-    FOREIGN KEY (parameter) REFERENCES Metadata(parameter) ON DELETE CASCADE
+    Nitrate REAL,
+    Nitrite REAL,
+    Phosphate REAL,
+    EC REAL,
+    metadata INTEGER,
+    FOREIGN KEY (metadata) REFERENCES Metadata(ID)
+);
+
+-- Nikita Role Table
+CREATE TABLE IF NOT EXISTS Roles (
+    RoleID INTEGER PRIMARY KEY AUTOINCREMENT,
+    Title TEXT NOT NULL,
+    Description TEXT,
+    Power INTEGER
 );
