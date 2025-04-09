@@ -24,8 +24,7 @@ namespace REA.ViewModels
 
 
         public ReportMalfunctioningSensorsViewModel()
-        {
-            // Call the sensor method
+        { 
             LoadSensors();
         }
 
@@ -69,13 +68,6 @@ namespace REA.ViewModels
             SensorErrorCount = errorSensors.Count;
         }
 
-        private void WriteReport()
-        {
-            string filePath = Path.Combine(FileSystem.AppDataDirectory, "report.txt");
-            File.WriteAllLinesAsync(filePath, (IEnumerable<string>)MalfunctioningSensors);
-
-        }
-
 
         /// <summary>
         /// Command to navigate to operations page
@@ -97,17 +89,6 @@ namespace REA.ViewModels
             await Shell.Current.GoToAsync("SensorMalfunctionsReport");
         }
 
-        [RelayCommand]
-        public async Task ReportSensor()
-        {
-            WriteReport();
-        }
-
-
-        //[RelayCommand]
-        //public async Task ReportSensor()
-        //{
-        //    ViewReport();
-        //}
+     
     }
 }

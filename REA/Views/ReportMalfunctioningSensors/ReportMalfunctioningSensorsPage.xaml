@@ -14,22 +14,6 @@
             <Label Text="{Binding SensorErrorCount, StringFormat='Errors Sensors: {0}'}" FontSize="16" TextColor="Red"></Label>
         </StackLayout>
         
-       <!--<TableView Intent="Data">
-            <TableRoot>
-                <TableSection Title="Sensors Status">
-                    <TextCell Text="Sensor 1 - Operational"
-             Detail="ID:1 | Type:Air | Status: Good"/>
-                    <TextCell Text="Sensor 2 - Operational"
-             Detail="ID:2 | Type:Water | Status: Good"/>
-                    <TextCell Text="Sensor 3 - Operational"
-             Detail="ID:3 | Type:Weather | Status: Good"/>
-                    <TextCell Text="Sensor 4 - Operational"
-             Detail="ID:4 | Type:Air | Status: Good"/>
-                    <TextCell Text="Sensor 5 - Error"
-             Detail="ID:5 | Type:Water | Status: Flooded"/>
-                </TableSection>
-            </TableRoot>
-        </TableView>-->
         
         <CollectionView ItemsSource="{Binding SensorsList}">
             <CollectionView.ItemTemplate>
@@ -39,6 +23,7 @@
                             <Label Text="{Binding SensorId, StringFormat='ID: {0}'}" FontSize="16" />
                             <Label Text="{Binding SensorType, StringFormat='Type: {0}'}" FontSize="16"/>
                             <Label Text="{Binding SensorOperational, StringFormat='Operational: {0}'}" FontSize="16"/>
+                            <Label Text="{Binding DeploymentDate, StringFormat='Deployment Date: {0}'}" FontSize="16"/>
                             </VerticalStackLayout>
                     </Border>
                 </DataTemplate>

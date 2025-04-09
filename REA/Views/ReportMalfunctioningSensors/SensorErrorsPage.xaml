@@ -21,6 +21,7 @@
                             <Label Text="{Binding SensorId, StringFormat='ID: {0}'}" FontSize="16" />
                             <Label Text="{Binding SensorType, StringFormat='Type: {0}'}" FontSize="16"/>
                             <Label Text="{Binding SensorOperational, StringFormat='Operational: {0}'}" FontSize="16"/>
+                            <Label Text="{Binding DeploymentDate, StringFormat='Deployment Date: {0}'}" FontSize="16"/>
                         </VerticalStackLayout>
                     </Border>
                 </DataTemplate>
@@ -28,12 +29,8 @@
         </CollectionView>
 
         <StackLayout Orientation="Horizontal" HorizontalOptions="Center" Padding="15">
-            <Button Text="Report" BackgroundColor="Red" Margin="5"></Button>
-            <Button Text="View Report" BackgroundColor="Green" Margin="5"></Button>
+            <Button Text="Back to operations" BackgroundColor="Red" Margin="5" Command="{Binding NavigateToOperationsCommand}"></Button>
         </StackLayout>
-        <StackLayout Orientation="Horizontal" HorizontalOptions="Center" Padding="5">
-            <Button Text="Back" Margin="5" Command="{Binding NavigateToOperationsCommand}"></Button>
-        </StackLayout>
-       
+
     </VerticalStackLayout>
 </ContentPage>
