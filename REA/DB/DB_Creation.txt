@@ -31,10 +31,10 @@ CREATE TABLE Sites (
 
 CREATE TABLE Sensors (
     sensor_id INTEGER PRIMARY KEY AUTOINCREMENT,
-    site_id INTEGER,
+    site_id INTEGER NOT NULL,
     sensor_type TEXT NOT NULL,
     sensor_url TEXT,
-    deployment_date DATE,
+    deployment_date TEXT,
     sensor_operational BOOLEAN
    -- configID INTEGER, Circular Dependency with Sensor
    -- FOREIGN KEY (configID) REFERENCES Configuration(ConfigID) ON DELETE SET NULL

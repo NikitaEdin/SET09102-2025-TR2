@@ -17,7 +17,7 @@ namespace REA.Models
         [Column("sensor_url")]
         public string SensorUrl { get; set; }
         [Column("deployment_date")]
-        public DateTime DeploymentDate { get; set; }
+        public string DeploymentDate { get; set; }
         [Column("sensor_operational")]
         public bool SensorOperational { get; set; }
 
