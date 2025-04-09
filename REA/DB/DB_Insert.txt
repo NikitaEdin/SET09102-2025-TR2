@@ -118,4 +118,10 @@ INSERT INTO AirMeasurements (date_time, nitrogen_dioxide, sulphur_dioxide, pm2_5
 
 
 
-
+-- Ramsay Alerts Table
+INSERT INTO "Alerts" VALUES (1,1,'Sensor reading breached threshold with value 2123. Please review.','2024-04-09 16:37:00');
+INSERT INTO "Alerts" VALUES (2,2,'Sensor failed to get readings for 10 minutes','2024-05-10 20:41:00');
+INSERT INTO "Alerts" VALUES (3,3,'Sensor reading breached threshold with value 1233','2024-04-10 16:40:00');
+INSERT INTO "Alerts" VALUES (4,4,'Sensor reading breached threshold with value 23413','2024-04-11 16:40:00');
+INSERT INTO "Alerts" VALUES (5,5,'Sensor reading breached threshold with value 9412','2024-04-12 16:40:00');
+INSERT INTO "Alerts" VALUES (6,6,'Sensor reading breached threshold with value 6123','2024-04-13 16:40:00');

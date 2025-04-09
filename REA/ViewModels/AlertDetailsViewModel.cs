@@ -9,9 +9,9 @@ namespace REA.ViewModels;
 public class AlertDetailsViewModel : ObservableObject, IQueryAttributable {
     private Alert _alert;
 
-    public string Metadata => _alert?.Metadata.ToString() ?? string.Empty;
+    public string Metadata => _alert?.Metadata_ID.ToString() ?? string.Empty;
     public string Message => _alert?.Message ?? string.Empty;
-    public string TriggeredAt => _alert?.TriggeredAt.ToString("g") ?? string.Empty;
+    public string TriggeredAt => _alert?.GetTriggeredAtDateTime().ToString("g") ?? string.Empty;
 
     public ICommand BackCommand { get; }
 
