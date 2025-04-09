@@ -15,13 +15,13 @@
 
         <!-- Tabs for selecting category -->
         <StackLayout Orientation="Horizontal" Spacing="10" HorizontalOptions="Center">
-            <Button Text="Air Quality" Command="{Binding SelectCategoryCommand}" CommandParameter="AirQuality" />
+            <Button Text="Air Quality" Command="{Binding SelectCategoryCommand}" IsEnabled="False" CommandParameter="AirQuality" />
             <Button Text="Water Quality" Command="{Binding SelectCategoryCommand}" CommandParameter="WaterQuality" />
-            <Button Text="Weather" Command="{Binding SelectCategoryCommand}" CommandParameter="Weather" />
+            <Button Text="Weather" Command="{Binding SelectCategoryCommand}" IsEnabled="False" CommandParameter="Weather" />
         </StackLayout>
 
         <!-- Air Quality Data Table -->
-        <CollectionView ItemsSource="{Binding AirQualityRecords}" IsVisible="{Binding IsAirQualityVisible}">
+        <CollectionView ItemsSource="{Binding AirMeasurements}" IsVisible="{Binding IsAirQualityVisible}">
             <CollectionView.Header>
                 <Grid Padding="10">
                     <Grid.RowDefinitions>
@@ -66,7 +66,7 @@
         </CollectionView>
 
         <!-- Water Quality Data Table -->
-        <CollectionView ItemsSource="{Binding WaterQualityRecords}" IsVisible="{Binding IsWaterQualityVisible}">
+        <CollectionView ItemsSource="{Binding WaterMeasurements}" IsVisible="{Binding IsWaterQualityVisible}">
             <CollectionView.Header>
                 <Grid Padding="10">
                     <Grid.RowDefinitions>
@@ -80,7 +80,7 @@
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
-                    <Label Grid.Row="0" Grid.Column="0" Text="Date" />
+                    <Label Grid.Row="0" Grid.Column="0" Text="Datetime" />
                     <Label Grid.Row="0" Grid.Column="1" Text="Nitrate (mg/L)"/>
                     <Label Grid.Row="0" Grid.Column="2" Text="Nitrite (mg/L)"/>
                     <Label Grid.Row="0" Grid.Column="3" Text="Phosphate (mg/L)"/>
@@ -100,7 +100,7 @@
                             <ColumnDefinition Width="*" />
                             <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
-                        <Label Grid.Row="0" Grid.Column="0" Text="{Binding Date, StringFormat='{}{0:dd/MM/yyyy}'}" />
+                        <Label Grid.Row="0" Grid.Column="0" Text="{Binding Datetime}" />
                         <Label Grid.Row="0" Grid.Column="1" Text="{Binding Nitrate}" />
                         <Label Grid.Row="0" Grid.Column="2" Text="{Binding Nitrite}" />
                         <Label Grid.Row="0" Grid.Column="3" Text="{Binding Phosphate}" />
@@ -111,7 +111,7 @@
         </CollectionView>
 
         <!-- Weather Data Table -->
-        <CollectionView ItemsSource="{Binding WeatherRecords}" IsVisible="{Binding IsWeatherVisible}">
+        <CollectionView ItemsSource="{Binding WeatherMeasurements}" IsVisible="{Binding IsWeatherVisible}">
             <CollectionView.Header>
                 <Grid Padding="10">
                     <Grid.RowDefinitions>

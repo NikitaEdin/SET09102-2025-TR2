@@ -1,22 +1,24 @@
-﻿CREATE TABLE Roles (
-    roleID INTEGER PRIMARY KEY AUTOINCREMENT,
+﻿-- Nikita Roles Table
+CREATE TABLE IF NOT EXISTS Roles (
+    role_id INTEGER PRIMARY KEY AUTOINCREMENT,
     title TEXT NOT NULL,
     description TEXT,
-    power INTEGER NOT NULL
+    power INTEGER
 );
 
 
+-- Nikita Users Table
 CREATE TABLE Users (
-    UserID INTEGER PRIMARY KEY AUTOINCREMENT,
+    user_id INTEGER PRIMARY KEY AUTOINCREMENT,
     username TEXT NOT NULL,
     name TEXT NOT NULL,
     password TEXT NOT NULL,
-    roleID INTEGER,
-    FOREIGN KEY (roleID) REFERENCES Roles(roleID) ON DELETE SET NULL
+    role_id INTEGER,
+    FOREIGN KEY (role_id) REFERENCES Roles(role_id) ON DELETE SET NULL
 );
 
 CREATE TABLE Sites (
-    site_id INTEGER PRIMARY KEY AUTOINCREMENT,
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
     name TEXT,
     latitude REAL,
     longitude REAL,
@@ -51,17 +53,17 @@ CREATE TABLE Configuration (
     FOREIGN KEY (sensor_id) REFERENCES Sensors(sensor_id) ON DELETE CASCADE
 );
 
--- Nikita Metadata
+-- Nikita Metadata Table
 CREATE TABLE IF NOT EXISTS Metadata (
-    ID INTEGER PRIMARY KEY AUTOINCREMENT,
+    metadata_id INTEGER PRIMARY KEY AUTOINCREMENT,
     category TEXT NOT NULL,
     quantity TEXT NOT NULL,
     symbol TEXT NOT NULL,
     unit TEXT NOT NULL,
-    unit_drescription TEXT,
+    unit_desc TEXT,
     measurement_freq TEXT,
     safe_level REAL,
-    Sensor TEXT,
+    sensor TEXT,
     reference_url TEXT,
     sensor_id INTEGER,
     FOREIGN KEY (sensor_id) REFERENCES Sensors(sensor_id)
@@ -69,21 +71,13 @@ CREATE TABLE IF NOT EXISTS Metadata (
 
 
 -- Nikita Water Measurements Table
-CREATE TABLE IF NOT EXISTS water_measurements (
-    ID INTEGER PRIMARY KEY AUTOINCREMENT,
-    datetime DATETIME NOT NULL,
-    Nitrate REAL,
-    Nitrite REAL,
-    Phosphate REAL,
-    EC REAL,
+CREATE TABLE IF NOT EXISTS Water_measurements (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    datetime TEXT NOT NULL,
+    nitrate REAL,
+    nitrite REAL,
+    phosphate REAL,
+    ec REAL,
     metadata INTEGER,
-    FOREIGN KEY (metadata) REFERENCES Metadata(ID)
-);
-
--- Nikita Role Table
-CREATE TABLE IF NOT EXISTS Roles (
-    RoleID INTEGER PRIMARY KEY AUTOINCREMENT,
-    Title TEXT NOT NULL,
-    Description TEXT,
-    Power INTEGER
+    FOREIGN KEY (metadata) REFERENCES Metadata(metadata_id)
 );
