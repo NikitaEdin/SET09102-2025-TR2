@@ -11,17 +11,15 @@ namespace REA.ViewModels {
     /// </summary>
     public partial class HistoricalDataViewModel : ObservableObject {
 
-        // TODO: Add air and weather measurements once they're added to DB
-
         // Data categories
-        //[ObservableProperty]
-        //private ObservableCollection<AirMeasurement> airMeasurments; 
+        [ObservableProperty]
+        private ObservableCollection<AirMeasurement> airMeasurements; 
 
         [ObservableProperty]
         private ObservableCollection<WaterMeasurement> waterMeasurements;
 
-        //[ObservableProperty]
-        //private ObservableCollection<WeatherMeasurement> weatherMeasurements;
+        [ObservableProperty]
+        private ObservableCollection<WeatherMeasurement> weatherMeasurements;
 
         // Control visibility of categories
         [ObservableProperty]
@@ -47,8 +45,11 @@ namespace REA.ViewModels {
 
         public async void populateRecords() {
             // Water
-            var items = await SQLiteDatabaseService.Instance.GetItemsAsync<WaterMeasurement>();
-            WaterMeasurements = new ObservableCollection<WaterMeasurement>(items);
+            WaterMeasurements = new ObservableCollection<WaterMeasurement>(await SQLiteDatabaseService.Instance.GetItemsAsync<WaterMeasurement>());
+            // Air
+            AirMeasurements = new ObservableCollection<AirMeasurement>(await SQLiteDatabaseService.Instance.GetItemsAsync<AirMeasurement>());
+            // Weather
+            WeatherMeasurements = new ObservableCollection<WeatherMeasurement>(await SQLiteDatabaseService.Instance.GetItemsAsync<WeatherMeasurement>());
         }
 
 

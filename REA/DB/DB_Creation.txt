@@ -71,8 +71,8 @@ CREATE TABLE IF NOT EXISTS Metadata (
 
 
 -- Nikita Water Measurements Table
-CREATE TABLE IF NOT EXISTS Water_measurements (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
+CREATE TABLE IF NOT EXISTS water_measurements (
+    ID INTEGER PRIMARY KEY AUTOINCREMENT,
     datetime TEXT NOT NULL,
     nitrate REAL,
     nitrite REAL,

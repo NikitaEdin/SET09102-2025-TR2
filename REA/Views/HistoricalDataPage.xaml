@@ -15,9 +15,9 @@
 
         <!-- Tabs for selecting category -->
         <StackLayout Orientation="Horizontal" Spacing="10" HorizontalOptions="Center">
-            <Button Text="Air Quality" Command="{Binding SelectCategoryCommand}" IsEnabled="False" CommandParameter="AirQuality" />
+            <Button Text="Air Quality" Command="{Binding SelectCategoryCommand}" CommandParameter="AirQuality" />
             <Button Text="Water Quality" Command="{Binding SelectCategoryCommand}" CommandParameter="WaterQuality" />
-            <Button Text="Weather" Command="{Binding SelectCategoryCommand}" IsEnabled="False" CommandParameter="Weather" />
+            <Button Text="Weather" Command="{Binding SelectCategoryCommand}" CommandParameter="Weather" />
         </StackLayout>
 
         <!-- Air Quality Data Table -->
@@ -55,10 +55,10 @@
                             <ColumnDefinition Width="*" />
                             <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
-                        <Label Grid.Row="0" Grid.Column="0" Text="{Binding Date, StringFormat='{}{0:dd/MM/yyyy}'}" />
-                        <Label Grid.Row="0" Grid.Column="1" Text="{Binding NitrogenDioxide}" />
-                        <Label Grid.Row="0" Grid.Column="2" Text="{Binding SulphurDioxide}" />
-                        <Label Grid.Row="0" Grid.Column="3" Text="{Binding PM25}" />
+                        <Label Grid.Row="0" Grid.Column="0" Text="{Binding date_time}" />
+                        <Label Grid.Row="0" Grid.Column="1" Text="{Binding Nitrogen_Dioxide}" />
+                        <Label Grid.Row="0" Grid.Column="2" Text="{Binding Sulphur_Dioxide}" />
+                        <Label Grid.Row="0" Grid.Column="3" Text="{Binding PM2_5}" />
                         <Label Grid.Row="0" Grid.Column="4" Text="{Binding PM10}" />
                     </Grid>
                 </DataTemplate>
@@ -80,7 +80,7 @@
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
-                    <Label Grid.Row="0" Grid.Column="0" Text="Datetime" />
+                    <Label Grid.Row="0" Grid.Column="0" Text="Date" />
                     <Label Grid.Row="0" Grid.Column="1" Text="Nitrate (mg/L)"/>
                     <Label Grid.Row="0" Grid.Column="2" Text="Nitrite (mg/L)"/>
                     <Label Grid.Row="0" Grid.Column="3" Text="Phosphate (mg/L)"/>
@@ -145,11 +145,11 @@
                             <ColumnDefinition Width="*" />
                             <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
-                        <Label Grid.Row="0" Grid.Column="0" Text="{Binding Date, StringFormat='{}{0:dd/MM/yyyy}'}" />
-                        <Label Grid.Row="0" Grid.Column="1" Text="{Binding Temperature}" />
-                        <Label Grid.Row="0" Grid.Column="2" Text="{Binding RelativeHumidity}" />
-                        <Label Grid.Row="0" Grid.Column="3" Text="{Binding WindSpeed}" />
-                        <Label Grid.Row="0" Grid.Column="4" Text="{Binding WindDirection}" />
+                        <Label Grid.Row="0" Grid.Column="0" Text="{Binding date_time}" />
+                        <Label Grid.Row="0" Grid.Column="1" Text="{Binding temperature_2m}" />
+                        <Label Grid.Row="0" Grid.Column="2" Text="{Binding relative_humidity_2m}" />
+                        <Label Grid.Row="0" Grid.Column="3" Text="{Binding wind_speed_10m}" />
+                        <Label Grid.Row="0" Grid.Column="4" Text="{Binding wind_direction_10m}" />
                     </Grid>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
