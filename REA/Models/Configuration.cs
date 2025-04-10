@@ -3,6 +3,11 @@ using System.ComponentModel.DataAnnotations;
 using SQLite;
 namespace REA.Models
 {
+    /// <summary>
+    /// Configuration Model 
+    /// Author: Thomas Smith
+    /// Last Updated: Thomas Smith: 10/04/25
+    /// </summary>
     [Table("Configuration")]
     public class Configuration
     {

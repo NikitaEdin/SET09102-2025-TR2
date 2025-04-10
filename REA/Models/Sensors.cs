@@ -4,6 +4,11 @@ using System.ComponentModel.DataAnnotations;
 using SQLite;
 namespace REA.Models
 {
+    /// <summary>
+    /// Sensors Model 
+    /// Author: Thomas
+    /// Last Updated: Thomas: 10/04/25
+    /// </summary>
     [Table("Sensors")]
     public class Sensors
     {
