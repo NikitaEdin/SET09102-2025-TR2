@@ -6,8 +6,8 @@ namespace REA.Models
 {
     /// <summary>
     /// Sensors Model 
-    /// Author: Thomas
-    /// Last Updated: Thomas: 10/04/25
+    /// Author: Thomas Smith
+    /// Last Updated: Thomas Smith: 10/04/25
     /// </summary>
     [Table("Sensors")]
     public class Sensors
