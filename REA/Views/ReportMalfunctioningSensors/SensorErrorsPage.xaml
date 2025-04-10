@@ -5,7 +5,7 @@
              xmlns:viewModels="clr-namespace:REA.ViewModels"
              Title="Sensor Errors">
     <ContentPage.BindingContext>
-        <viewModels:ReportMalfunctioningSensorsViewModel/>
+        <viewModels:SensorErrorsViewModel/>
     </ContentPage.BindingContext>
     <VerticalStackLayout>
         <StackLayout HorizontalOptions="Center"  Padding="20" >

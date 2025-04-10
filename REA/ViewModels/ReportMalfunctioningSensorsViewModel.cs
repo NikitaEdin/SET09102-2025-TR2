@@ -25,13 +25,13 @@ namespace REA.ViewModels
 
         public ReportMalfunctioningSensorsViewModel()
         { 
-            LoadSensors();
         }
 
-       /// <summary>
-       /// Get sensors from the database and put them into appropriate collections.
-       /// </summary>
-        private async void LoadSensors()
+
+        /// <summary>
+        /// Get sensors from the database and put them into appropriate collections.
+        /// </summary>
+        public async Task LoadSensors()
         {
             Debug.WriteLine("LoadSensors method is being called...");
             // Get the sensors from the database
