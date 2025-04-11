@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="REA.Views.ManageSensorPage"
+             Title="ManageSensorPage">
+    <VerticalStackLayout Padding="20">
+        <Label Text="Select a sensor to Verify:" FontSize="20"/>
+        <!-- List of sensors -->
+        <ListView x:Name="SensorListView" SelectionMode="Single" ItemSelected="OnSensorSelected" HasUnevenRows="True">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout Padding="5">
+                            <Label>
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Text="ID: " FontAttributes="Bold" TextColor="Purple"/>
+                                        <Span Text="{Binding ID}" TextColor="Purple"/>
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+
+                            <Label>
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Text="Type: " FontAttributes="Bold"/>
+                                        <Span Text="{Binding Type}" />
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+
+                            <Label>
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Text="URL: " FontAttributes="Bold"/>
+                                        <Span Text="{Binding Url}" />
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+
+                            <Label>
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Text="Frequency: " FontAttributes="Bold"/>
+                                        <Span Text="{Binding Frequency}" />
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+        <!-- Picker for changing Type -->
+        <Label Text="Assign Type:" FontSize="20" Margin="0,20,0,0"/>
+        <Picker x:Name="TypePicker" Title="Select the type of sensor" SelectedIndexChanged="OnTypeSelected"/>
+
+        <!-- Input for editting URL -->
+        <Label Text="Edit URL:" FontSize="20" Margin="0,20,0,5"/>
+        <Entry x:Name="UrlEntry" Placeholder="Enter new URL" TextChanged="OnUrlChanged"/>
+
+        <!-- Picker for changing measurment frequency -->
+        <Label Text="Assign measurement frequency:" FontSize="20" Margin="0,20,0,0"/>
+        <Picker x:Name="FrequencyPicker" Title="Select the measurement frequency" SelectedIndexChanged="OnFrequencySelected"/>
+
+        <!-- Button to Save Changes -->
+        <Button Text="Save Changes" Clicked="OnSaveClicked" IsEnabled="False" x:Name="SaveButton" Margin="0,30,0,0"/>
+    </VerticalStackLayout>
+</ContentPage>

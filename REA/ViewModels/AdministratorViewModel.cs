@@ -41,8 +41,7 @@ public partial class AdministratorViewModel : ObservableObject {
     /// Navigate to Storage Management - Rachael
     /// </summary>
     private async Task NavigateToStorageManagement() {
-        await Shell.Current.DisplayAlert("Feature Unavailable", "This feature is not yet implemented.", "OK");
-        //await Shell.Current.GoToAsync("StorageManagement");
+        await Shell.Current.GoToAsync("StorageManagement");
     }
 
     /// <summary>
