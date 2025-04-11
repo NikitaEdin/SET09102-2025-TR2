@@ -22,23 +22,23 @@ INSERT INTO  Sites (name,latitude,longitude,elevation,timezone,utc_offset,type,z
 ("",55.008785,-3.5856323,8,"",0,"","","","");
 
 -- Thomas Sensors Table
-INSERT INTO Sensors (site_id,sensor_type,sensor_url,deployment_date,sensor_operational) VALUES
+INSERT INTO Sensors (sensor_id,site_id,sensor_type,sensor_url,deployment_date,sensor_operational) VALUES
 -- Air
-(1,"Air","https://airly.org/en/features/air-quality-sensors/","2025-04-06",TRUE),
-(1,"Air","https://airly.org/en/features/air-quality-sensors/","2023-11-02",TRUE),
-(1,"Air","https://airly.org/en/features/air-quality-sensors/","2024-02-16",TRUE),
-(1,"Air","https://airly.org/en/features/air-quality-sensors/","2025-03-10",FALSE),
+(1,1,"Air","https://airly.org/en/features/air-quality-sensors/","2025-04-06",TRUE),
+(2,1,"Air","https://airly.org/en/features/air-quality-sensors/","2023-11-02",TRUE),
+(3,1,"Air","https://airly.org/en/features/air-quality-sensors/","2024-02-16",TRUE),
+(4,1,"Air","https://airly.org/en/features/air-quality-sensors/","2025-03-10",FALSE),
 -- Water
-(2,"Water","https://clearwatersensors.com/nitrate-sensor.html","2023-01-01",TRUE),
-(2,"Water","https://clearwatersensors.com/nitrate-sensor.html","2023-05-07",TRUE),
-(2,"Water","https://clearwatersensors.com/nitrate-sensor.html","2024-02-22",TRUE),
-(2,"Water","https://clearwatersensors.com/nitrate-sensor.html","2025-01-12",TRUE),
-(2,"Water","https://clearwatersensors.com/nitrate-sensor.html","2021-01-18",FALSE),
+(5,2,"Water","https://clearwatersensors.com/nitrate-sensor.html","2023-01-01",TRUE),
+(6,2,"Water","https://clearwatersensors.com/nitrate-sensor.html","2023-05-07",TRUE),
+(7,2,"Water","https://clearwatersensors.com/nitrate-sensor.html","2024-02-22",TRUE),
+(8,2,"Water","https://clearwatersensors.com/nitrate-sensor.html","2025-01-12",TRUE),
+(9,2,"Water","https://clearwatersensors.com/nitrate-sensor.html","2021-01-18",FALSE),
 -- Weather
-(3,"Weather","https://www.alliot.co.uk/product/netvox-outdoor-temperature-and-humidity-sensor/","2024-08-12",TRUE),
-(3,"Weather","https://www.alliot.co.uk/product/netvox-outdoor-temperature-and-humidity-sensor/","2025-08-15",TRUE),
-(3,"Weather","https://www.vaisala.com/en/products/ultrasonic-wind-sensor-wm80","2024-06-11",TRUE),
-(3,"Weather","https://www.vaisala.com/en/products/ultrasonic-wind-sensor-wm80","2025-02-11",FALSE);
+(10,3,"Weather","https://www.alliot.co.uk/product/netvox-outdoor-temperature-and-humidity-sensor/","2024-08-12",TRUE),
+(11,3,"Weather","https://www.alliot.co.uk/product/netvox-outdoor-temperature-and-humidity-sensor/","2025-08-15",TRUE),
+(12,3,"Weather","https://www.vaisala.com/en/products/ultrasonic-wind-sensor-wm80","2024-06-11",TRUE),
+(13,3,"Weather","https://www.vaisala.com/en/products/ultrasonic-wind-sensor-wm80","2025-02-11",FALSE);
 
 -- Thomas Config Table
 INSERT INTO  Configuration(sensor_id,min_measurement,max_measurement,type,firmware) VALUES
@@ -89,9 +89,8 @@ INSERT INTO water_measurements (datetime, nitrate, nitrite, phosphate, ec, metad
 ('01/02/2025 09:00:00', 27.25, 1.26, 0.06, 0, null),
 ('01/02/2025 10:00:00', 29.07, 1.4, 0.07, 0, null);
 
--- Rachael Weather Measurement table
-INSERT INTO weather_measurements (date_time, relative_humidity_2m, wind_speed_10m, wind_direction_10m, metadata)
-VALUES 
+-- Rachael Weather Measurements table (10 rows)
+INSERT INTO WeatherMeasurements (date_time, temperature_2m, relative_humidity_2m, wind_speed_10m, wind_direction_10m, metadata) VALUES 
 ('01/02/2025 00:00:00', 0.6, 98, 1.18, 78, NULL),
 ('01/02/2025 01:00:00', 2.4, 96, 0.93, 106, NULL),
 ('01/02/2025 02:00:00', 2.5, 97, 1.08, 103, NULL),
@@ -103,9 +102,8 @@ VALUES
 ('01/02/2025 08:00:00', 3.3, 93, 3.38, 161, NULL),
 ('01/02/2025 09:00:00', 3.0, 95, 3.36, 152, NULL);
 
--- Rachael Air Measurment Table
-INSERT INTO air_measurements (date_time, nitrogen_dioxide, sulphur_dioxide, pm2_5, pm10, metadata)
-VALUES
+-- Rachael Air Measurments Table (10 rows)
+INSERT INTO AirMeasurements (date_time, nitrogen_dioxide, sulphur_dioxide, pm2_5, pm10, metadata) VALUES
 ('2025-02-01 01:00:00', 26.3925, 1.59654, 5.094, 8.3, NULL),
 ('2025-02-01 02:00:00', 22.5675, 1.33045, 5.094, 7.9, NULL),
 ('2025-02-01 03:00:00', 14.5350, 1.46350, 5.755, 8.5, NULL),
