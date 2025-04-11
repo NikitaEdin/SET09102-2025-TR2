@@ -5,9 +5,13 @@ namespace REA.Views;
 public partial class AlertListPage : ContentPage {
     public AlertListPage() {
         InitializeComponent();
-
-        AlertListView.ItemsSource = ViewModel.Alerts;
     }
+
+    protected override async void OnAppearing() {
+        base.OnAppearing();
+        await ViewModel.LoadAlerts();
+    }
+
 
     private void OnAlertSelected(object sender, SelectedItemChangedEventArgs e) {
         if (e.SelectedItem != null) {

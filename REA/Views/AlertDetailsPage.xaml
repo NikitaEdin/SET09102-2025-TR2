@@ -11,8 +11,13 @@
 
     <VerticalStackLayout Padding="20" Spacing="30">
         <VerticalStackLayout Spacing="10">
-            <Label Text="{Binding Message}" FontAttributes="Bold" />
+            <Label Text="Message" FontAttributes="Bold"/>
+            <Label Text="{Binding Message}" />
+
+            <Label Text="Metadata ID" FontAttributes="Bold"/>
             <Label Text="{Binding Metadata}" />
+
+            <Label Text="Triggered At" FontAttributes="Bold"/>
             <Label Text="{Binding TriggeredAt}" />
         </VerticalStackLayout>
 

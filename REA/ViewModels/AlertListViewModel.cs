@@ -13,16 +13,18 @@ public class AlertListViewModel : ObservableObject {
 
     public AlertListViewModel() {
         NavigateToAlertDetailsCommand = new Command<Alert>(async (alert) => await NavigateToAlertDetails(alert));
+    }
 
-        Task.Run(async () => {
-            var alerts = await Alert.GetAllAlertsAsync();
+    public async Task LoadAlerts() {
+        Alerts.Clear();
 
-            foreach (var alert in alerts) {
-                Alerts.Add(alert);
-            }
+        var alerts = await Alert.GetAllAlertsAsync();
 
-            OnPropertyChanged(nameof(Alerts));
-        });
+        foreach (var alert in alerts) {
+            Alerts.Add(alert);
+        }
+
+        OnPropertyChanged(nameof(Alerts));
     }
 
     private async Task NavigateToAlertDetails(Alert alert) {
