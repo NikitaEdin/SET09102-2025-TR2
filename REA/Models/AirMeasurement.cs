@@ -1,49 +1,33 @@
-﻿using REA.DB;
+﻿using REA.Models;
 using SQLite;
 
-namespace REA.Models
-{
+namespace REA.Models {
     /// <summary>
-    /// Air Measurement model representing air quality data.
-    /// Author: Rachael Banks
+    /// Table for air measurements
+    /// Author: Rachael
     /// </summary>
-    [Table("air_measurements")]
-    public class AirMeasurement
-    {
+    [Table("AirMeasurements")]
+    public class AirMeasurements {
         [PrimaryKey, AutoIncrement]
-        public int ID { get; set; }
+        [Column("id")]
+        public int Id { get; set; }
 
-        [NotNull]
-        public string? date_time { get; set; }
+        [Column("date_time"),NotNull]
+        public required string DateTime { get; set; }
 
-        public double? Nitrogen_Dioxide { get; set; }
+        [Column("nitrogen_dioxide")]
+        public double? NitrogenDioxide { get; set; }
 
-        public double? Sulphur_Dioxide { get; set; }
+        [Column("sulphur_dioxide")]
+        public double? SulphurDioxide { get; set; }
 
+        [Column("pm2_5")]
         public double? PM2_5 { get; set; }
 
+        [Column("pm10")]
         public double? PM10 { get; set; }
 
-        public int? metadata { get; set; }  // Foreign key to Metadata table
-
-        /// <summary>
-        /// Retrieves all air measurements from the local SQLite database.
-        /// </summary>
-        public static async Task<List<AirMeasurement>> GetAllAsync() {
-            return await SQLiteDatabaseService.Instance.GetItemsAsync<AirMeasurement>() ?? new List<AirMeasurement>();
-        }
-
-        /// <summary>
-        /// Returns a string of the air measurement object.
-        /// </summary>
-        public override string ToString() {
-            return $"ID: {ID}, " +
-                   $"Datetime: {date_time}, " +
-                   $"NO₂: {(Nitrogen_Dioxide?.ToString("F2") ?? "null")} µg/m³, " +
-                   $"SO₂: {(Sulphur_Dioxide?.ToString("F2") ?? "null")} µg/m³, " +
-                   $"PM2.5: {(PM2_5?.ToString("F2") ?? "null")} µg/m³, " +
-                   $"PM10: {(PM10?.ToString("F2") ?? "null")} µg/m³, " +
-                   $"Metadata ID: {(metadata?.ToString() ?? "null")}";
-        }
+        [Column("metadata")]
+        public int? Metadata { get; set; }
     }
 }
