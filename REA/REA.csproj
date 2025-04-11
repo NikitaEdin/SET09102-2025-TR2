@@ -102,6 +102,9 @@
 	  <MauiXaml Update="Views\MonitorSensorsPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Views\ReportMalfunctioningSensors\SensorErrorsPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Views\ManageSensorPage.xaml">
 		<Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>	
@@ -111,7 +114,7 @@
 	  <MauiXaml Update="Views\OperationsManagerPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Views\ReportMalfunctioningSensorsPage.xaml">
+	  <MauiXaml Update="Views\ReportMalfunctioningSensors\ReportMalfunctioningSensorsPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\MaintenanceDetailPage.xaml">

@@ -1,6 +1,7 @@
 ﻿using REA.ViewModels; 
 using REA.Utils;
 using REA.Views;
+using REA.Views.ReportMalfunctioningSensors;
 
 namespace REA {
     public partial class AppShell : Shell {
@@ -23,7 +24,9 @@ namespace REA {
             // Operations Manager routes
             Routing.RegisterRoute("MonitorSensors", typeof(MonitorSensorsPage)); // Nikita
             Routing.RegisterRoute("ManageMaintenance", typeof(ManageMaintenancePage)); // Ramsay
-            // Routing.RegisterRoute("CollectedData", typeof(CLASS));
+            // Routing.RegisterRoute("CollectedData", typeof(CLASS)); // Rachael
+            Routing.RegisterRoute("SensorMalfunctions", typeof(ReportMalfunctioningSensorsPage)); // Thomas - Main Page
+            Routing.RegisterRoute("SensorMalfunctionsReport", typeof(SensorErrorsPage)); // Thomas - sub-page of ReportMalfunctioningSensorsPage
 
             BindingContext = new AppShellViewModel();
 
