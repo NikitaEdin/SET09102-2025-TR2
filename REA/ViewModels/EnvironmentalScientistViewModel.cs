@@ -9,7 +9,7 @@ public class EnvironmentalScientistViewModel : ObservableObject {
     public ICommand NavigateToReportsCommand {  get; }
     public ICommand NavigateToHistoricalDataCommand {  get; }
     public ICommand NavigateToMapCommand { get; }
-    public ICommand NavigateToSensorAccountsCommand { get; }
+    public ICommand NavigateToManageSensorCommand { get; }
 
     // Back command
     public ICommand NavigateToDashboardCommand { get; }
@@ -19,7 +19,7 @@ public class EnvironmentalScientistViewModel : ObservableObject {
         NavigateToReportsCommand = new Command(async () => await NavigateToReports());
         NavigateToHistoricalDataCommand = new Command(async () => await NavigateToHistoricalData());
         NavigateToMapCommand = new Command(async () => await NavigateToMap());
-        NavigateToSensorAccountsCommand = new Command(async () => await NavigateToSensorAccounts());
+        NavigateToManageSensorCommand = new Command(async () => await NavigateToManageSensor());
 
         NavigateToDashboardCommand = new Command(async () => await NavigateToDashboard());
     }
@@ -27,9 +27,8 @@ public class EnvironmentalScientistViewModel : ObservableObject {
     /// <summary>
     /// Navigate to sensor account and configuration settings - Rachael
     /// </summary>
-    private async Task NavigateToSensorAccounts() {
-        await Shell.Current.DisplayAlert("Feature Unavailable", "This feature is not yet implemented.", "OK");
-        //await Shell.Current.GoToAsync("");
+    private async Task NavigateToManageSensor() {
+        await Shell.Current.GoToAsync("ManageSensor");
     }
 
     /// <summary>
@@ -60,4 +59,5 @@ public class EnvironmentalScientistViewModel : ObservableObject {
     private async Task NavigateToDashboard() {
         await Shell.Current.GoToAsync("//Dashboard");
     }
+
 }

@@ -16,10 +16,10 @@ namespace REA {
             Routing.RegisterRoute("StorageManagement", typeof(StorageManagementPage)); // Rachael
 
             // Environmetal Scientist routes
-            // Routing.RegisterRoute("Sensor Accounts", typeof(CLASS)); // Rachael
             Routing.RegisterRoute("HistoricalData", typeof(HistoricalDataPage)); // Nikita
             // Routing.RegisterRoute("Map", typeof(CLASS)); // Ramsay
             Routing.RegisterRoute("EnvironmentalReports", typeof(GenerateReportsPage)); // Thomas
+            Routing.RegisterRoute("ManageSensor", typeof(ManageSensorPage)); // Rachael
 
             // Operations Manager routes
             Routing.RegisterRoute("MonitorSensors", typeof(MonitorSensorsPage)); // Nikita
