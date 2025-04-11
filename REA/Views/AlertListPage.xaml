@@ -2,16 +2,21 @@
 
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="REA.Views.ManageMaintenancePage"
-             Title="Manage Maintenance Plans">
+             xmlns:viewModels="clr-namespace:REA.ViewModels"
+             x:Class="REA.Views.AlertListPage"
+             Title="Alert List Page">
+    <ContentPage.BindingContext>
+        <viewModels:AlertListViewModel x:Name="ViewModel"/>
+    </ContentPage.BindingContext>
+
     <VerticalStackLayout Padding="20" Spacing="30">
         <VerticalStackLayout Spacing="10">
-            <Label Text="Scheduled Maintenance"/>
+            <Label Text="Alert List"/>
 
-            <ListView x:Name="MaintenanceListView" SelectionMode="Single" ItemSelected="OnMaintenanceSelected">
+            <ListView x:Name="AlertListView" SelectionMode="Single" ItemSelected="OnAlertSelected">
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <TextCell Text="{Binding Name}" Detail="{Binding Type}"/>
+                        <TextCell Text="{Binding Message}" Detail="{Binding TriggeredAt}"/>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>

@@ -17,7 +17,7 @@
 
             <Button Text="Generate Reports" Command="{Binding NavigateToReportsCommand}" Margin="10" />
             <Button Text="Historical Data" Command="{Binding NavigateToHistoricalDataCommand}" Margin="10" />
-            <Button Text="Interactive Map" Command="{Binding NavigateToMapCommand}" Margin="10" />
+            <Button Text="Alerts" Command="{Binding NavigateToAlertsCommand}" Margin="10" />
             <Button Text="Sensor Accounts" Command="{Binding NavigateToManageSensorCommand}" Margin="10" />
                 
             <Button Text="Back Dashboard" Command="{Binding NavigateToDashboardCommand}" Margin="10, 30, 10, 0" />
