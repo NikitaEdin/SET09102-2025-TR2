@@ -9,8 +9,8 @@ namespace REA.Models {
     [Table("AirMeasurements")]
     public class AirMeasurements {
         [PrimaryKey, AutoIncrement]
-        [Column("id")]
-        public int Id { get; set; }
+        [Column("air_measurements_id")]
+        public int AirMeasurementsId { get; set; }
 
         [Column("date_time"),NotNull]
         public required string DateTime { get; set; }

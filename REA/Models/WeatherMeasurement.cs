@@ -8,8 +8,8 @@ namespace REA.Models {
     [Table("WeatherMeasurements")]
     public class WeatherMeasurements {
         [PrimaryKey, AutoIncrement]
-        [Column("id")]
-        public int Id { get; set; }
+        [Column("weather_measurements_id")]
+        public int WeatherMeasurementsId { get; set; }
 
         [Column("date_time"), NotNull]
         public required string DateTime { get; set; }
