@@ -9,6 +9,7 @@ namespace REA.Models {
     [Table("Roles")]
     public class Role {
         [PrimaryKey, AutoIncrement]
+        [Column("role_id")]
         public int RoleID { get; set; }
 
         public string Title { get; set; }
