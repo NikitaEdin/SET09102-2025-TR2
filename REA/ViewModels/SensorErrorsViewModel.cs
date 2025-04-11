@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using CommunityToolkit.Mvvm.ComponentModel;
 using REA.Models;
 using REA.DB;
+using CommunityToolkit.Mvvm.Input;
 
 
 namespace REA.ViewModels
@@ -41,6 +42,16 @@ namespace REA.ViewModels
                 Debug.WriteLine("Sensors table is Null");
             }
 
+        }
+
+        /// <summary>
+        /// Command to navigate to operations page
+        /// </summary>
+        /// <returns>A Task to perform a navigation operation to the operations page</returns>
+        [RelayCommand]
+        public async Task NavigateToOperations()
+        {
+            await Shell.Current.GoToAsync("//Operations");
         }
 
     }
