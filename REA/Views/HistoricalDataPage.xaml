@@ -55,9 +55,9 @@
                             <ColumnDefinition Width="*" />
                             <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
-                        <Label Grid.Row="0" Grid.Column="0" Text="{Binding date_time}" />
-                        <Label Grid.Row="0" Grid.Column="1" Text="{Binding Nitrogen_Dioxide}" />
-                        <Label Grid.Row="0" Grid.Column="2" Text="{Binding Sulphur_Dioxide}" />
+                        <Label Grid.Row="0" Grid.Column="0" Text="{Binding DateTime}" />
+                        <Label Grid.Row="0" Grid.Column="1" Text="{Binding NitrogenDioxide}" />
+                        <Label Grid.Row="0" Grid.Column="2" Text="{Binding SulphurDioxide}" />
                         <Label Grid.Row="0" Grid.Column="3" Text="{Binding PM2_5}" />
                         <Label Grid.Row="0" Grid.Column="4" Text="{Binding PM10}" />
                     </Grid>
@@ -145,11 +145,11 @@
                             <ColumnDefinition Width="*" />
                             <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
-                        <Label Grid.Row="0" Grid.Column="0" Text="{Binding date_time}" />
-                        <Label Grid.Row="0" Grid.Column="1" Text="{Binding temperature_2m}" />
-                        <Label Grid.Row="0" Grid.Column="2" Text="{Binding relative_humidity_2m}" />
-                        <Label Grid.Row="0" Grid.Column="3" Text="{Binding wind_speed_10m}" />
-                        <Label Grid.Row="0" Grid.Column="4" Text="{Binding wind_direction_10m}" />
+                        <Label Grid.Row="0" Grid.Column="0" Text="{Binding DateTime}" />
+                        <Label Grid.Row="0" Grid.Column="1" Text="{Binding Temperature2m}" />
+                        <Label Grid.Row="0" Grid.Column="2" Text="{Binding RelativeHumidity2m}" />
+                        <Label Grid.Row="0" Grid.Column="3" Text="{Binding WindSpeed10m}" />
+                        <Label Grid.Row="0" Grid.Column="4" Text="{Binding WindDirection10m}" />
                     </Grid>
                 </DataTemplate>
             </CollectionView.ItemTemplate>

@@ -77,7 +77,7 @@ INSERT INTO Metadata (category, quantity, symbol, unit, unit_desc, measurement_f
 
 
 -- Nikita Water Measurements Table
-INSERT INTO water_measurements (datetime, nitrate, nitrite, phosphate, ec, metadata) VALUES
+INSERT INTO WaterMeasurements (datetime, nitrate, nitrite, phosphate, ec, metadata) VALUES
 ('01/02/2025 01:00:00', 26.33, 1.33, 0.07, 0, null),
 ('01/02/2025 02:00:00', 23.4, 1.52, 0.06, 0, null),
 ('01/02/2025 03:00:00', 28.9, 1.32, 0.05, 0, null),

@@ -6,7 +6,7 @@ namespace REA.Models {
     /// Water Measurement Model holding record data of water related attributes
     /// Author: Nikita Lanetsky.
     /// </summary>
-    [Table("water_measurements")]
+    [Table("WaterMeasurements")]
     public class WaterMeasurement {
         [PrimaryKey, AutoIncrement]
 

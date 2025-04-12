@@ -45,11 +45,14 @@ namespace REA.ViewModels {
 
         public async void populateRecords() {
             // Water
-            WaterMeasurements = new ObservableCollection<WaterMeasurement>(await SQLiteDatabaseService.Instance.GetItemsAsync<WaterMeasurement>());
+            var water = await SQLiteDatabaseService.Instance.GetItemsAsync<WaterMeasurement>();
+            WaterMeasurements = new ObservableCollection<WaterMeasurement>(water?.ToList() ?? new List<WaterMeasurement>());
             // Air
-            AirMeasurements = new ObservableCollection<AirMeasurement>(await SQLiteDatabaseService.Instance.GetItemsAsync<AirMeasurement>());
+            var air = await SQLiteDatabaseService.Instance.GetItemsAsync<AirMeasurement>();
+            AirMeasurements = new ObservableCollection<AirMeasurement>(air?.ToList() ?? new List<AirMeasurement>());
             // Weather
-            WeatherMeasurements = new ObservableCollection<WeatherMeasurement>(await SQLiteDatabaseService.Instance.GetItemsAsync<WeatherMeasurement>());
+            var weather = await SQLiteDatabaseService.Instance.GetItemsAsync<WeatherMeasurement>();
+            WeatherMeasurements = new ObservableCollection<WeatherMeasurement>(weather?.ToList() ?? new List<WeatherMeasurement>());
         }
 
 
