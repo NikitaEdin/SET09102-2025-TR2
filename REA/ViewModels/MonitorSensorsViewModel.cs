@@ -26,7 +26,6 @@ namespace REA.ViewModels {
         private async void GetSensors() {
             // Get all sensors from database
             Sensors = new ObservableCollection<Sensors>(await SQLiteDatabaseService.Instance.GetItemsAsync<Sensors>());
-            var items = new ObservableCollection<Sensors>(await SQLiteDatabaseService.Instance.GetItemsAsync<Sensors>());
         }
 
         // Set the selected sensor
