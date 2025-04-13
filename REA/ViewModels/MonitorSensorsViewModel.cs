@@ -1,27 +1,36 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
+﻿using System.Collections.ObjectModel;
+using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using REA.DB;
 using REA.Models;
-using System.Collections.ObjectModel;
 
 namespace REA.ViewModels {
+    /// <summary>
+    /// ViewModel responsible for backend for displaying all sensors and their details.
+    /// Author: Nikita Lanetsky
+    /// </summary>
     public partial class MonitorSensorsViewModel : ObservableObject {
 
+        // Selected sensor (if any)
         [ObservableProperty]
-        private Sensor selectedSensor;
+        private Sensors selectedSensor;
 
-        public ObservableCollection<Sensor> Sensors { get; set; }
+        // List of available sensors
+        [ObservableProperty]
+        private ObservableCollection<Sensors> sensors;
 
         public MonitorSensorsViewModel() {
-            Sensors = new ObservableCollection<Sensor>
-            {
-                new Sensor { Id = 1, SensorType = "Temperature", SensorUrl = "http://temp-sensor.com", DeploymentDate = DateTime.Now.AddDays(-10), IsOperational = true },
-                new Sensor { Id = 2, SensorType = "Pressure", SensorUrl = "http://pressure-sensor.com", DeploymentDate = DateTime.Now.AddDays(-20), IsOperational = false },
-                new Sensor { Id = 3, SensorType = "Humidity", SensorUrl = "http://humidity-sensor.com", DeploymentDate = DateTime.Now.AddDays(-30), IsOperational = true }
-            };
+            GetSensors();
         }
 
+        private async void GetSensors() {
+            // Get all sensors from database
+            Sensors = new ObservableCollection<Sensors>(await SQLiteDatabaseService.Instance.GetItemsAsync<Sensors>());
+        }
+
+        // Set the selected sensor
         [RelayCommand]
-        private void SelectSensor(Sensor sensor) {
+        private void SelectSensor(Sensors sensor) {
             SelectedSensor = sensor;
         }
     }
