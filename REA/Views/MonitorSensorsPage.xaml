@@ -9,32 +9,36 @@
         <vm:MonitorSensorsViewModel />
     </ContentPage.BindingContext>
 
-    <VerticalStackLayout Padding="20">
-        <Label Text="Available Sensors" FontAttributes="Bold" Margin="0, 0, 10, 0"/>
+    <VerticalStackLayout Padding="10" Spacing="10">
+
+        <Label Text="Available Sensors" FontAttributes="Bold" />
+        <!--Listview of available sensors-->
         <ListView ItemsSource="{Binding Sensors}"
-                  SelectedItem="{Binding SelectedSensor, Mode=TwoWay}">
+                  SelectedItem="{Binding SelectedSensor, Mode=TwoWay}"
+                  HeightRequest="250">
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <TextCell  Text="{Binding SensorType}" Detail="{Binding SensorUrl}">
-                        <TextCell.Command>
-                            <Binding Path="BindingContext.SelectSensorCommand" Source="{x:Reference MonitorSensorsPage}" />
-                        </TextCell.Command>
-                        <TextCell.CommandParameter>
-                            <Binding />
-                        </TextCell.CommandParameter>
-                    </TextCell>
+                    <ViewCell>
+                        <StackLayout Padding="5">
+                            <!--Each sensor - display id and type-->
+                            <Label Text="{Binding SensorId, StringFormat='Sensor ID: {0}'}" />
+                            <Label Text="{Binding SensorType, StringFormat='Sensor Type: {0}'}" />
+                        </StackLayout>
+                    </ViewCell>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
 
-        <Border Margin="10, 0">
-            <StackLayout>
-                <Label Text="Sensor Details" FontAttributes="Bold" Margin="0, 0, 10, 0"/>
-                <Label Text="{Binding SelectedSensor.SensorType, StringFormat='Type: {0}'}" Margin="0, 10"/>
-                <Label Text="{Binding SelectedSensor.SensorUrl, StringFormat='URL: {0}'}" Margin="0, 10"/>
-                <Label Text="{Binding SelectedSensor.DeploymentDate, StringFormat='Deployed: {0:d}'}" Margin="0, 10"/>
-                <Label Text="{Binding SelectedSensor.IsOperational, StringFormat='Operational: {0}'}" Margin="0, 10"/>
-            </StackLayout>
-        </Border>
+
+        <BoxView HeightRequest="1" Color="Gray" />
+
+        <Label Text="Sensor Details" FontAttributes="Bold" />
+        <!--Selected sensor details-->
+        <Label Text="{Binding SelectedSensor.SensorId, StringFormat='ID: {0}'}" />
+        <Label Text="{Binding SelectedSensor.SensorType, StringFormat='Type: {0}'}" />
+        <Label Text="{Binding SelectedSensor.SensorUrl, StringFormat='URL: {0}'}" />
+        <Label Text="{Binding SelectedSensor.DeploymentDate, StringFormat='Deployed: {0:d}'}" />
+        <Label Text="{Binding SelectedSensor.SensorOperational, StringFormat='Operational: {0}'}" />
+
     </VerticalStackLayout>
 </ContentPage>
