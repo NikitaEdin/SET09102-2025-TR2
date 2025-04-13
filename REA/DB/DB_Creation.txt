@@ -107,3 +107,13 @@ CREATE TABLE IF NOT EXISTS AirMeasurements (
     metadata INTEGER,
     FOREIGN KEY (metadata) REFERENCES Metadata(ID)
 );
+
+-- Ramsay Alerts Table
+CREATE TABLE IF NOT EXISTS "Alerts" (
+    ID INTEGER,
+    Metadata_ID INTEGER NOT NULL,
+    Message TEXT NOT NULL,
+    TriggeredAt TEXT NOT NULL,
+    PRIMARY KEY("ID" AUTOINCREMENT),
+    FOREIGN KEY("Metadata_ID") REFERENCES "Metadata"("ID") ON DELETE CASCADE
+);

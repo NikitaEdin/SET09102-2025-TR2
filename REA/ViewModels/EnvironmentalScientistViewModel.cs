@@ -8,7 +8,7 @@ public class EnvironmentalScientistViewModel : ObservableObject {
 
     public ICommand NavigateToReportsCommand {  get; }
     public ICommand NavigateToHistoricalDataCommand {  get; }
-    public ICommand NavigateToMapCommand { get; }
+    public ICommand NavigateToAlertsCommand { get; }
     public ICommand NavigateToManageSensorCommand { get; }
 
     // Back command
@@ -18,7 +18,7 @@ public class EnvironmentalScientistViewModel : ObservableObject {
         // Init navigation commands
         NavigateToReportsCommand = new Command(async () => await NavigateToReports());
         NavigateToHistoricalDataCommand = new Command(async () => await NavigateToHistoricalData());
-        NavigateToMapCommand = new Command(async () => await NavigateToMap());
+        NavigateToAlertsCommand = new Command(async () => await NavigateToAlerts());
         NavigateToManageSensorCommand = new Command(async () => await NavigateToManageSensor());
 
         NavigateToDashboardCommand = new Command(async () => await NavigateToDashboard());
@@ -41,9 +41,8 @@ public class EnvironmentalScientistViewModel : ObservableObject {
     /// <summary>
     /// Navigate to interactive map to view sensors based on location - Ramsay
     /// </summary>
-    private async Task NavigateToMap() {
-        await Shell.Current.DisplayAlert("Feature Unavailable", "This feature is not yet implemented.", "OK");
-        //await Shell.Current.GoToAsync("");
+    private async Task NavigateToAlerts() {
+        await Shell.Current.GoToAsync("AlertList");
     }
 
     /// <summary>
