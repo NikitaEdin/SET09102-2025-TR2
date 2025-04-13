@@ -2,22 +2,50 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="REA.Views.UserManagementPage"
+             xmlns:vm="clr-namespace:REA.ViewModels"
              Title="User Management">
+    <ContentPage.BindingContext>
+        <vm:UserManagementViewModel />
+    </ContentPage.BindingContext>
 
-    <VerticalStackLayout Padding="20">
-        <Label Text="Select a User:" FontSize="20"/>
-
-        <ListView x:Name="UsersListView" SelectionMode="Single" ItemSelected="OnUserSelected">
+    <VerticalStackLayout Padding="20" Spacing="20">
+        <Label Text="Select a User:" FontSize="20" />
+        
+        <!--All users (displaying username and user id)-->
+        <ListView x:Name="UsersListView"
+                  ItemsSource="{Binding Users}"
+                  SelectedItem="{Binding SelectedUser, Mode=TwoWay}"
+                  SelectionMode="Single">
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <TextCell Text="{Binding Name}" Detail="{Binding Role}"/>
+                    <ViewCell>
+                        <!--Username and UD-->
+                        <StackLayout Padding="10" Orientation="Horizontal" Spacing="10">
+                            <Label Text="User: " VerticalOptions="Center" />
+                            <Label Text="{Binding Username}" VerticalOptions="Center" HorizontalOptions="StartAndExpand"/>
+                            <Label Text="ID: " VerticalOptions="Center" />
+                            <Label Text="{Binding UserID}" VerticalOptions="Center" HorizontalOptions="End"/>
+                        </StackLayout>
+                    </ViewCell>
                 </DataTemplate>
             </ListView.ItemTemplate>
+
         </ListView>
 
-        <Label Text="Assign Role:" FontSize="20" Margin="0,20,0,0"/>
-        <Picker x:Name="RolesPicker" Title="Select a Role" SelectedIndexChanged="OnRoleSelected"/>
 
-        <Button Text="Save Changes" Clicked="OnSaveClicked" IsEnabled="False" x:Name="SaveButton" Margin="0,30,0,0"/>
+        <Label Text="Assign Role:" FontSize="20" />
+        <!--Role pick-->
+        <Picker x:Name="RolesPicker"
+                Title="Select a Role"
+                ItemsSource="{Binding Roles}"
+                ItemDisplayBinding="{Binding Title}"
+                SelectedItem="{Binding SelectedRole, Mode=TwoWay}" />
+
+        <!-- Save-->
+        <Button Text="Save Changes"
+                Command="{Binding SaveCommand}"
+                IsEnabled="{Binding SaveCommand.CanExecute(null)}"
+                Margin="0,30,0,0" />
+
     </VerticalStackLayout>
 </ContentPage>
