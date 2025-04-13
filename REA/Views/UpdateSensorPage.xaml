@@ -5,11 +5,15 @@
              xmlns:viewModels="clr-namespace:REA.ViewModels"
              Title="Update Sensor Page">
 
-    <VerticalStackLayout Padding="30" Spacing="5">
+    <ContentPage.BindingContext>
+        <viewModels:UpdateSensorViewModel/>
+    </ContentPage.BindingContext>
+
+    <VerticalStackLayout Padding="30" Spacing="5" >
 
         <Label FontSize="24" HorizontalOptions="Center">Sensor Config</Label>
         <Label Text="Select Sensor Type:" FontSize="20"/>
-        <Picker x:Name="SensorTypePicker" Title="Select a type"/>
+        <Picker x:Name="SensorTypePicker" Title="Select a type"  ItemsSource="{Binding SensorTypes}"/>
         <Entry Placeholder="Sensor Min Value" Keyboard="Numeric" />
         <Entry Placeholder="Sensor Max Value" Keyboard="Numeric" />
         <Entry Placeholder="Sensor Messurement Frequency" Keyboard="Numeric" />
