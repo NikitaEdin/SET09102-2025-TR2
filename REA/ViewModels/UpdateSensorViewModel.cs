@@ -9,15 +9,29 @@ using REA.Utils;
 using REA.Models;
 using System.Diagnostics;
 using Microsoft.Maui.Controls;
+using REA.DB;
 
 namespace REA.ViewModels
 {
     public partial class UpdateSensorViewModel : ObservableObject
     {
         [ObservableProperty]
-        private ObservableCollection<Configuration> waterSensorType;
-        [ObservableProperty]
         private ObservableCollection<Configuration> airSensorType;
+
+        [ObservableProperty]
+        private ObservableCollection<Configuration> nitrogenDioxide;
+
+        [ObservableProperty]
+        private ObservableCollection<Configuration> sulphurDioxide;
+
+        [ObservableProperty]
+        private ObservableCollection<Configuration> particulateMatter;
+
+
+
+        [ObservableProperty]
+        private ObservableCollection<Configuration> waterSensorType;
+       
         [ObservableProperty]
         private ObservableCollection<Configuration> weatherSensorType;
 
@@ -51,7 +65,10 @@ namespace REA.ViewModels
             {
                 // Air
                 AirSensorType = new ObservableCollection<Configuration>(configs.Where(c => c.Type == "Nitrogen dioxide" || c.Type == "Sulphur dioxide" || c.Type == "Particulate matter"));
-                //NitrogenDioxide = new ObservableCollection<Configuration>(configs.Where(c => c.Type == "Nitrogen dioxide"));
+
+                NitrogenDioxide = new ObservableCollection<Configuration>(configs.Where(c => c.Type == "Nitrogen dioxide"));
+                SulphurDioxide = new ObservableCollection<Configuration>(configs.Where(c => c.Type == "Sulphur dioxide"));
+                ParticulateMatter = new ObservableCollection<Configuration>(configs.Where(c => c.Type == "Particulate matter"));
 
                 WaterSensorType = new ObservableCollection<Configuration>(configs.Where(c => c.Type == "Nitrate" || c.Type == "Phosphate" || c.Type == "Escherichia coli" || c.Type == "Intestinal enterococci"));
                 WeatherSensorType = new ObservableCollection<Configuration>(configs.Where(c => c.Type == "Air Temperature" || c.Type == "Humidity" || c.Type == "Wind speed" || c.Type == "Wind Direction"));
@@ -63,19 +80,31 @@ namespace REA.ViewModels
                 Debug.WriteLine("UNABLE TO POPULATE ");
             }
 
-            SensorTypes = new ObservableCollection<string> { "Air", "Water", "Weather" };
+            SensorTypes = new ObservableCollection<string> { "Air", "Nitrogen dioxide","Sulphur dioxide", "Particulate matter", "Water", "Weather" };
 
         }
 
         public async Task UpdateConfig()
         {
-            if (SensorTypes != null)
-            {
-                if (SensorMinValue != null)
-                {
+           foreach (var sensorType in SensorTypes) {
 
+                switch (sensorType)
+                {
+                    case "Nitrogen dioxide":
+                        await SQLiteDatabaseService.Instance.UpdateAsync(NitrogenDioxide.Where(t => t.Type == "Nitrogen dioxide"));
+                        break;
+
+                    case "Sulphur dioxide":
+                        await SQLiteDatabaseService.Instance.UpdateAsync(SulphurDioxide.Where(t => t.Type == "Sulphur dioxide"));
+                        break;
+
+                    case "Particulate matter":
+                        await SQLiteDatabaseService.Instance.UpdateAsync(ParticulateMatter.Where(t => t.Type == "Particulate matter"));
+                        break;
                 }
             }
+
+
         }
     }
 }
