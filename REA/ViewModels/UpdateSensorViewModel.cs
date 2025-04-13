@@ -11,14 +11,13 @@ using System.Diagnostics;
 using Microsoft.Maui.Controls;
 using REA.DB;
 using static Microsoft.Maui.ApplicationModel.Permissions;
+using CommunityToolkit.Mvvm.Input;
 
 namespace REA.ViewModels
 {
     public partial class UpdateSensorViewModel : ObservableObject
     {
         // AIR
-        [ObservableProperty]
-        private ObservableCollection<Configuration> airSensorType;
         [ObservableProperty]
         private ObservableCollection<Configuration> nitrogenDioxide;
         [ObservableProperty]
@@ -27,8 +26,6 @@ namespace REA.ViewModels
         private ObservableCollection<Configuration> particulateMatter;
 
         // WATER
-        [ObservableProperty]
-        private ObservableCollection<Configuration> waterSensorType;
         [ObservableProperty]
         private ObservableCollection<Configuration> nitrate;
         [ObservableProperty]
@@ -41,8 +38,6 @@ namespace REA.ViewModels
 
         // WEATHER
         [ObservableProperty]
-        private ObservableCollection<Configuration> weatherSensorType;
-        [ObservableProperty]
         private ObservableCollection<Configuration> airTemperature;
         [ObservableProperty]
         private ObservableCollection<Configuration> humidity;
@@ -54,6 +49,15 @@ namespace REA.ViewModels
         // Drop down of the different sensor types
         [ObservableProperty]
         private ObservableCollection<string> sensorTypes;
+
+        // Selected item binding
+        [ObservableProperty]
+        private string selectedSensorType;
+
+        // Used to show a coresponding collection based on the selection
+        [ObservableProperty]
+        private ObservableCollection<Configuration> selectedSensorCollection;
+
 
         // User inputs
         [ObservableProperty]
@@ -74,9 +78,9 @@ namespace REA.ViewModels
         }
 
         /// <summary>
-        /// 
+        /// This method loads the configs and all the initalisation for the config
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Populated collections for Air, Water, Weather</returns>
         public async Task LoadConfigs()
         {
             // Call the factory
@@ -84,18 +88,16 @@ namespace REA.ViewModels
 
             ObservableCollection<Configuration> configs = factory.GetConfigurations();
 
+            SensorTypes = new ObservableCollection<string> { "Nitrogen dioxide", "Sulphur dioxide", "Particulate matter", "Nitrate", "Phosphate", "Escherichia coli", "Intestinal enterococci", "Air Temperature", "Humidity", "Wind speed", "Wind Direction" };
+
             if (configs != null)
             {
                 // Air
-                AirSensorType = new ObservableCollection<Configuration>(configs.Where(c => c.Type == "Nitrogen dioxide" || c.Type == "Sulphur dioxide" || c.Type == "Particulate matter"));
-
                 NitrogenDioxide = new ObservableCollection<Configuration>(configs.Where(c => c.Type == "Nitrogen dioxide"));
                 SulphurDioxide = new ObservableCollection<Configuration>(configs.Where(c => c.Type == "Sulphur dioxide"));
                 ParticulateMatter = new ObservableCollection<Configuration>(configs.Where(c => c.Type == "Particulate matter"));
 
                 // Water
-                WaterSensorType = new ObservableCollection<Configuration>(configs.Where(c => c.Type == "Nitrate" || c.Type == "Phosphate" || c.Type == "Escherichia coli" || c.Type == "Intestinal enterococci"));
-
                 Nitrate = new ObservableCollection<Configuration>(configs.Where(c => c.Type == "Nitrate"));
                 Phosphate = new ObservableCollection<Configuration>(configs.Where(c => c.Type == "Phosphate"));
                 EscherichiaColi = new ObservableCollection<Configuration>(configs.Where(c => c.Type == "Escherichia coli"));
@@ -103,8 +105,6 @@ namespace REA.ViewModels
 
 
                 // Weather
-                WeatherSensorType = new ObservableCollection<Configuration>(configs.Where(c => c.Type == "Air Temperature" || c.Type == "Humidity" || c.Type == "Wind speed" || c.Type == "Wind Direction"));
-
                 AirTemperature = new ObservableCollection<Configuration>(configs.Where(c => c.Type == "Air Temperature"));
                 Humidity = new ObservableCollection<Configuration>(configs.Where(c => c.Type == "Humidity"));
                 WindSpeed = new ObservableCollection<Configuration>(configs.Where(c => c.Type == "Wind speed"));
@@ -119,31 +119,52 @@ namespace REA.ViewModels
                 Debug.WriteLine("UNABLE TO POPULATE ");
             }
 
-            SensorTypes = new ObservableCollection<string> { "Nitrogen dioxide","Sulphur dioxide", "Particulate matter", "Nitrate", "Phosphate" , "Escherichia coli" , "Intestinal enterococci", "Air Temperature", "Humidity", "Wind speed", "Wind Direction" };
-
         }
 
+        // Called when the user selects a sensor type to update the UI
+        private void LoadSelectedSensorCollection()
+        {
+            switch (SelectedSensorType)
+            {
+                case "Nitrogen dioxide":
+                    SelectedSensorCollection = NitrogenDioxide;
+                    break;
+                case "Sulphur dioxide":
+                    SelectedSensorCollection = SulphurDioxide;
+                    break;
+                case "Particulate matter":
+                    SelectedSensorCollection = ParticulateMatter;
+                    break;
+                default:
+                    SelectedSensorCollection = new ObservableCollection<Configuration>();
+                    break;
+            }
+        }
+
+
+        // Make this command in future 
         public async Task UpdateConfig()
         {
-           foreach (var sensorType in SensorTypes) {
+            if (SelectedSensorCollection == null || SelectedSensorCollection.Count == 0)
+                return;
 
-                switch (sensorType)
-                {
-                    case "Nitrogen dioxide":
-                        await SQLiteDatabaseService.Instance.UpdateAsync(NitrogenDioxide.Where(t => t.Type == "Nitrogen dioxide"));
-                        break;
+            foreach (var item in SelectedSensorCollection)
+            {
+                
+                item.MinMeasurement = SensorMinValue;
+                item.MaxMeasurement = SensorMaxValue;
+                item.Firmware = SensorFirmware;
 
-                    case "Sulphur dioxide":
-                        await SQLiteDatabaseService.Instance.UpdateAsync(SulphurDioxide.Where(t => t.Type == "Sulphur dioxide"));
-                        break;
-
-                    case "Particulate matter":
-                        await SQLiteDatabaseService.Instance.UpdateAsync(ParticulateMatter.Where(t => t.Type == "Particulate matter"));
-                        break;
-                }
+                await SQLiteDatabaseService.Instance.UpdateAsync(item);
             }
-
-
         }
+
+        // When the dropdown is selected load the method
+        partial void OnSelectedSensorTypeChanged(string value)
+        {
+            LoadSelectedSensorCollection(); 
+        }
+
+
     }
 }
