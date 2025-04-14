@@ -7,13 +7,13 @@ namespace REA.Models {
     /// Author: Rachael
     /// </summary>
     [Table("AirMeasurements")]
-    public class AirMeasurements {
+    public class AirMeasurement {
         [PrimaryKey, AutoIncrement]
         [Column("air_measurements_id")]
         public int AirMeasurementsId { get; set; }
 
         [Column("date_time"),NotNull]
-        public required string DateTime { get; set; }
+        public string DateTime { get; set; }
 
         [Column("nitrogen_dioxide")]
         public double? NitrogenDioxide { get; set; }

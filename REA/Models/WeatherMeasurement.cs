@@ -6,13 +6,13 @@ namespace REA.Models {
     /// Author: Rachael
     /// </summary>
     [Table("WeatherMeasurements")]
-    public class WeatherMeasurements {
+    public class WeatherMeasurement {
         [PrimaryKey, AutoIncrement]
         [Column("weather_measurements_id")]
         public int WeatherMeasurementsId { get; set; }
 
         [Column("date_time"), NotNull]
-        public required string DateTime { get; set; }
+        public string DateTime { get; set; }
 
         [Column("temperature_2m")]
         public double? Temperature2m { get; set; }

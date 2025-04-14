@@ -17,7 +17,8 @@ namespace REA {
 
             // Environmetal Scientist routes
             Routing.RegisterRoute("HistoricalData", typeof(HistoricalDataPage)); // Nikita
-            // Routing.RegisterRoute("Map", typeof(CLASS)); // Ramsay
+            Routing.RegisterRoute("AlertList", typeof(AlertListPage)); // Ramsay
+            Routing.RegisterRoute("AlertDetails", typeof(AlertDetailsPage)); // Ramsay
             Routing.RegisterRoute("EnvironmentalReports", typeof(GenerateReportsPage)); // Thomas
             Routing.RegisterRoute("ManageSensor", typeof(ManageSensorPage)); // Rachael
 

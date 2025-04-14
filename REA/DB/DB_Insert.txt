@@ -7,10 +7,10 @@ INSERT INTO Roles (title, description, power) VALUES
 
 
 -- Nikita -Users table with the new structure
-INSERT INTO Users (username, name, password, roleID) VALUES
-('admin', 'Admin User', '123', (SELECT roleID FROM Roles WHERE title = 'Administrator')),
-('operations', 'Operations Manager', '123', (SELECT roleID FROM Roles WHERE title = 'Operations Manager')),
-('env_sci', 'Environmental Scientist', '123', (SELECT roleID FROM Roles WHERE title = 'Environmental Scientist'));
+INSERT INTO Users (username, name, password, role_id) VALUES
+('admin', 'Admin User', '123', (SELECT role_id FROM Roles WHERE title = 'Administrator')),
+('operations', 'Operations Manager', '123', (SELECT role_id FROM Roles WHERE title = 'Operations Manager')),
+('env_sci', 'Environmental Scientist', '123', (SELECT role_id FROM Roles WHERE title = 'Environmental Scientist'));
 
 -- Thomas Sites Table
 INSERT INTO  Sites (name,latitude,longitude,elevation,timezone,utc_offset,type,zone,Agglomeration,Local_authority) VALUES
@@ -60,48 +60,24 @@ INSERT INTO  Configuration(sensor_id,min_measurement,max_measurement,type,firmwa
 (13,0.1,184,"Wind Direction",0.1);
 
 -- Nikita Metadata Table
-INSERT INTO Metadata (category, quantity, symbol, unit, unit_drescription, measurement_freq, safe_level, reference_url, Sensor, Sensor_ID)
-VALUES ('Air quality', 'Nitrogen dioxide', 'NO2', 'ug/m3', 'microgrammes per cubic metre', 'Hourly', 200, 'https://uk-air.defra.gov.uk/air-pollution/daqi?view=more-info&pollutant=no2#pollutant', 'Airly', NULL);
-
-INSERT INTO Metadata (category, quantity, symbol, unit, unit_drescription, measurement_freq, safe_level, reference_url, Sensor, Sensor_ID)
-VALUES ('Air quality', 'Sulphur dioxide', 'SO2', 'ug/m3', 'microgrammes per cubic metre', 'Hourly', 266, 'https://uk-air.defra.gov.uk/air-pollution/daqi?view=more-info&pollutant=so2#pollutant', 'Airly', NULL);
-
-INSERT INTO Metadata (category, quantity, symbol, unit, unit_drescription, measurement_freq, safe_level, reference_url, Sensor, Sensor_ID)
-VALUES ('Air quality', 'Particulate matter <= 2.5 microns in diameter', 'PM2.5', 'ug/m3', 'microgrammes per cubic metre', 'Hourly', 35, 'https://www.gov.uk/government/statistics/air-quality-statistics/concentrations-of-particulate-matter-pm10-and-pm25', 'Airly', NULL);
-
-INSERT INTO Metadata (category, quantity, symbol, unit, unit_drescription, measurement_freq, safe_level, reference_url, Sensor, Sensor_ID)
-VALUES ('Air quality', 'Particulate matter <= 10 microns in diameter', 'PM10', 'ug/m3', 'microgrammes per cubic metre', 'Hourly', 50, 'https://www.gov.uk/government/statistics/air-quality-statistics/concentrations-of-particulate-matter-pm10-and-pm25', 'Airly', NULL);
-
-INSERT INTO Metadata (category, quantity, symbol, unit, unit_drescription, measurement_freq, safe_level, reference_url, Sensor, Sensor_ID)
-VALUES ('Water quality', 'Nitrite', '-NO3', 'mg/l', 'milligrammes per litre', 'Hourly', 3, 'https://cdn.who.int/media/docs/default-source/wash-documents/water-safety-and-quality/chemical-fact-sheets-2022/nitrate-and-nitrite-fact-sheet-2022.pdf?sfvrsn=a65406e9_2&download=true', 'ClearWater', NULL);
-
-INSERT INTO Metadata (category, quantity, symbol, unit, unit_drescription, measurement_freq, safe_level, reference_url, Sensor, Sensor_ID)
-VALUES ('Water quality', 'Nitrate', '-NO2', 'mg/l', 'milligrammes per litre', 'Hourly', 50, 'https://cdn.who.int/media/docs/default-source/wash-documents/water-safety-and-quality/chemical-fact-sheets-2022/nitrate-and-nitrite-fact-sheet-2022.pdf?sfvrsn=a65406e9_2&download=true', 'ClearWater', NULL);
-
-INSERT INTO Metadata (category, quantity, symbol, unit, unit_drescription, measurement_freq, safe_level, reference_url, Sensor, Sensor_ID)
-VALUES ('Water quality', 'Phosphate', '-PO4', 'mg/l', 'milligrammes per litre', 'Hourly', 0.1, 'https://assets.publishing.service.gov.uk/media/5a7b1f23ed915d3ed90624fc/defra-stats-observatory-indicators-da3-120224.pdf', 'ClearWater', NULL);
-
-INSERT INTO Metadata (category, quantity, symbol, unit, unit_drescription, measurement_freq, safe_level, reference_url, Sensor, Sensor_ID)
-VALUES ('Water quality', 'Escherichia coli', 'EC', 'cfu/100ml', 'Colony forming units (cfu) per 100ml', 'Daily', 500, 'https://environment.data.gov.uk/bwq/profiles/help-understanding-data.html', 'ALERT', NULL);
-
-INSERT INTO Metadata (category, quantity, symbol, unit, unit_drescription, measurement_freq, safe_level, reference_url, Sensor, Sensor_ID)
-VALUES ('Water quality', 'Intestinal enterococci', 'IE', 'cfu/100ml', 'Colony forming units (cfu) per 100ml', 'Daily', 185, 'https://environment.data.gov.uk/bwq/profiles/help-understanding-data.html', 'ALERT', NULL);
-
-INSERT INTO Metadata (category, quantity, symbol, unit, unit_drescription, measurement_freq, safe_level, reference_url, Sensor, Sensor_ID)
-VALUES ('Weather', 'Air temperature', 'T', 'C', 'Degrees Celcius', 'Hourly', 0, '', 'Netvox R712', NULL);
-
-INSERT INTO Metadata (category, quantity, symbol, unit, unit_drescription, measurement_freq, safe_level, reference_url, Sensor, Sensor_ID)
-VALUES ('Weather', 'Humidity', 'H', '%', 'Percentage', 'Hourly', 0, '', 'Netvox R712', NULL);
-
-INSERT INTO Metadata (category, quantity, symbol, unit, unit_drescription, measurement_freq, safe_level, reference_url, Sensor, Sensor_ID)
-VALUES ('Weather', 'Wind speed', 'WS', 'm/s', 'Metres per second', 'Hourly', 0, '', 'Vaisala WM80', NULL);
-
-INSERT INTO Metadata (category, quantity, symbol, unit, unit_drescription, measurement_freq, safe_level, reference_url, Sensor, Sensor_ID)
-VALUES ('Weather', 'Wind direction', 'WD', 'degree', 'Degrees from north', 'Hourly', 0, '', 'Vaisala WM80', NULL);
+INSERT INTO Metadata (category, quantity, symbol, unit, unit_desc, measurement_freq, safe_level, reference_url, sensor, sensor_id) VALUES
+('Air quality', 'Nitrogen dioxide', 'NO2', 'ug/m3', 'microgrammes per cubic metre', 'Hourly', 200, 'https://uk-air.defra.gov.uk/air-pollution/daqi?view=more-info&pollutant=no2#pollutant', 'Airly', NULL),
+('Air quality', 'Sulphur dioxide', 'SO2', 'ug/m3', 'microgrammes per cubic metre', 'Hourly', 266, 'https://uk-air.defra.gov.uk/air-pollution/daqi?view=more-info&pollutant=so2#pollutant', 'Airly', NULL),
+('Air quality', 'Particulate matter <= 2.5 microns in diameter', 'PM2.5', 'ug/m3', 'microgrammes per cubic metre', 'Hourly', 35, 'https://www.gov.uk/government/statistics/air-quality-statistics/concentrations-of-particulate-matter-pm10-and-pm25', 'Airly', NULL),
+('Air quality', 'Particulate matter <= 10 microns in diameter', 'PM10', 'ug/m3', 'microgrammes per cubic metre', 'Hourly', 50, 'https://www.gov.uk/government/statistics/air-quality-statistics/concentrations-of-particulate-matter-pm10-and-pm25', 'Airly', NULL),
+('Water quality', 'Nitrite', '-NO3', 'mg/l', 'milligrammes per litre', 'Hourly', 3, 'https://cdn.who.int/media/docs/default-source/wash-documents/water-safety-and-quality/chemical-fact-sheets-2022/nitrate-and-nitrite-fact-sheet-2022.pdf?sfvrsn=a65406e9_2&download=true', 'ClearWater', NULL),
+('Water quality', 'Nitrate', '-NO2', 'mg/l', 'milligrammes per litre', 'Hourly', 50, 'https://cdn.who.int/media/docs/default-source/wash-documents/water-safety-and-quality/chemical-fact-sheets-2022/nitrate-and-nitrite-fact-sheet-2022.pdf?sfvrsn=a65406e9_2&download=true', 'ClearWater', NULL),
+('Water quality', 'Phosphate', '-PO4', 'mg/l', 'milligrammes per litre', 'Hourly', 0.1, 'https://assets.publishing.service.gov.uk/media/5a7b1f23ed915d3ed90624fc/defra-stats-observatory-indicators-da3-120224.pdf', 'ClearWater', NULL),
+('Water quality', 'Escherichia coli', 'EC', 'cfu/100ml', 'Colony forming units (cfu) per 100ml', 'Daily', 500, 'https://environment.data.gov.uk/bwq/profiles/help-understanding-data.html', 'ALERT', NULL),
+('Water quality', 'Intestinal enterococci', 'IE', 'cfu/100ml', 'Colony forming units (cfu) per 100ml', 'Daily', 185, 'https://environment.data.gov.uk/bwq/profiles/help-understanding-data.html', 'ALERT', NULL),
+('Weather', 'Air temperature', 'T', 'C', 'Degrees Celcius', 'Hourly', 0, '', 'Netvox R712', NULL),
+('Weather', 'Humidity', 'H', '%', 'Percentage', 'Hourly', 0, '', 'Netvox R712', NULL),
+('Weather', 'Wind speed', 'WS', 'm/s', 'Metres per second', 'Hourly', 0, '', 'Vaisala WM80', NULL),
+('Weather', 'Wind direction', 'WD', 'degree', 'Degrees from north', 'Hourly', 0, '', 'Vaisala WM80', NULL);
 
 
 -- Nikita Water Measurements Table
-INSERT INTO water_measurements (datetime, Nitrate, Nitrite, Phosphate, EC,metadata) VALUES
+INSERT INTO WaterMeasurements (datetime, nitrate, nitrite, phosphate, ec, metadata) VALUES
 ('01/02/2025 01:00:00', 26.33, 1.33, 0.07, 0, null),
 ('01/02/2025 02:00:00', 23.4, 1.52, 0.06, 0, null),
 ('01/02/2025 03:00:00', 28.9, 1.32, 0.05, 0, null),
@@ -139,6 +115,10 @@ INSERT INTO AirMeasurements (date_time, nitrogen_dioxide, sulphur_dioxide, pm2_5
 ('2025-02-01 09:00:00', 67.8938, 1.72959, 6.604, 11.3, NULL),
 ('2025-02-01 10:00:00', 51.6375, 1.53002, 5.755, 9.2, NULL);
 
-
-
-
+-- Ramsay Alerts Table
+INSERT INTO "Alerts" VALUES (1,1,'Sensor reading breached threshold with value 2123. Please review.','2024-04-09 16:37:00');
+INSERT INTO "Alerts" VALUES (2,2,'Sensor failed to get readings for 10 minutes','2024-05-10 20:41:00');
+INSERT INTO "Alerts" VALUES (3,3,'Sensor reading breached threshold with value 1233','2024-04-10 16:40:00');
+INSERT INTO "Alerts" VALUES (4,4,'Sensor reading breached threshold with value 23413','2024-04-11 16:40:00');
+INSERT INTO "Alerts" VALUES (5,5,'Sensor reading breached threshold with value 9412','2024-04-12 16:40:00');
+INSERT INTO "Alerts" VALUES (6,6,'Sensor reading breached threshold with value 6123','2024-04-13 16:40:00');

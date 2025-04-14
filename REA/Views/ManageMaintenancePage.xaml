@@ -7,6 +7,7 @@
     <VerticalStackLayout Padding="20" Spacing="30">
         <VerticalStackLayout Spacing="10">
             <Label Text="Scheduled Maintenance"/>
+
             <ListView x:Name="MaintenanceListView" SelectionMode="Single" ItemSelected="OnMaintenanceSelected">
                 <ListView.ItemTemplate>
                     <DataTemplate>

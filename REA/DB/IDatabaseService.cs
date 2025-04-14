@@ -6,5 +6,6 @@ namespace REA.DB {
         Task<int> UpdateAsync<T>(T item);
         Task<List<T>> GetItemsAsync<T>() where T : new();
         Task<int> DeleteAsync<T>(T item);
+        Task<int> UpdateAsync<T>(T item);
     }
 }
