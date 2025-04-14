@@ -8,8 +8,8 @@
         <ContentPage.BindingContext>
             <viewModels:UpdateSensorViewModel/>
         </ContentPage.BindingContext>
-
-    <VerticalStackLayout Padding="30" Spacing="5" >
+    <ScrollView>
+        <VerticalStackLayout Padding="30" Spacing="5" >
 
         <Label FontSize="24" HorizontalOptions="Center">Sensor Config</Label>
             <Label Text="Select Sensor Type:" FontSize="20"/>
@@ -39,4 +39,5 @@
 
         <Button Margin="40" Command="{Binding UpdateConfigCommand}" Text="Update"></Button>
     </VerticalStackLayout>
+        </ScrollView>
 </ContentPage>
