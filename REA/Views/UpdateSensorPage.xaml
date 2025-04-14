@@ -9,17 +9,17 @@
             <viewModels:UpdateSensorViewModel/>
         </ContentPage.BindingContext>
 
-        <VerticalStackLayout Padding="30" Spacing="5" >
+    <VerticalStackLayout Padding="30" Spacing="5" >
 
-            <Label FontSize="24" HorizontalOptions="Center">Sensor Config</Label>
+        <Label FontSize="24" HorizontalOptions="Center">Sensor Config</Label>
             <Label Text="Select Sensor Type:" FontSize="20"/>
             <Picker Title="Select a type" SelectedItem="{Binding SelectedSensorType}" ItemsSource="{Binding SensorTypes}"/>
-            <Entry Text="{Binding SensorMinValue}"  Placeholder="Sensor Min Value" Keyboard="Numeric" />
-            <Entry Text="{Binding SensorMaxValue}"  Placeholder="Sensor Max Value" Keyboard="Numeric" />
-            <Entry Text="{Binding SensorMesFreq}"  Placeholder="Sensor Messurement Frequency" Keyboard="Numeric" />
-            <Entry Text="{Binding SensorFirmware}"  Placeholder="Sensor Firmware Version" Keyboard="Numeric" />
+        <Entry Text="{Binding SensorMinValue, Mode=TwoWay}"  Placeholder="Sensor Min Value" Keyboard="Numeric" />
+        <Entry Text="{Binding SensorMaxValue, Mode=TwoWay}"  Placeholder="Sensor Max Value" Keyboard="Numeric" />
+        <Entry Text="{Binding SensorMesFreq, Mode=TwoWay}"  Placeholder="Sensor Messurement Frequency" Keyboard="Numeric" />
+        <Entry Text="{Binding SensorFirmware, Mode=TwoWay}"  Placeholder="Sensor Firmware Version" Keyboard="Numeric" />
 
-        <ScrollView>
+        
             <CollectionView ItemsSource="{Binding SelectedSensorCollection}">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
@@ -35,8 +35,8 @@
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
-    </ScrollView>
 
-    <Button Margin="40" Text="Update"></Button>
+
+        <Button Margin="40" Command="{Binding UpdateConfigCommand}" Text="Update"></Button>
     </VerticalStackLayout>
 </ContentPage>

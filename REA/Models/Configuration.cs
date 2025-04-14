@@ -17,13 +17,13 @@ namespace REA.Models
         [Column("sensor_id")]
         public int SensorId { get; set; }
         [Column("min_measurement")]
-        public string MinMeasurement { get; set; }
+        public float MinMeasurement { get; set; }
         [Column("max_measurement")]
-        public string MaxMeasurement { get; set; }
+        public float MaxMeasurement { get; set; }
         [Column("type")]
         public string Type { get; set; }
         [Column("firmware")]
-        public string Firmware { get; set; }
+        public float Firmware { get; set; }
 
     }
 }

@@ -59,7 +59,7 @@ namespace REA.ViewModels
         private ObservableCollection<Configuration> selectedSensorCollection;
 
 
-        // User inputs
+        // User inputs - these are strings for the Binding
         [ObservableProperty]
         private string sensorMinValue;
         [ObservableProperty]
@@ -69,9 +69,7 @@ namespace REA.ViewModels
         [ObservableProperty]
         private string sensorFirmware;
 
-        /// <summary>
-        /// Constructor
-        /// </summary>
+      
         public UpdateSensorViewModel()
         {
             LoadConfigs();
@@ -122,6 +120,9 @@ namespace REA.ViewModels
         }
 
         // Called when the user selects a sensor type to update the UI
+        /// <summary>
+        /// This method is to show relevant collections based on what the user has selected to update.
+        /// </summary>
         private void LoadSelectedSensorCollection()
         {
             switch (SelectedSensorType)
@@ -135,6 +136,32 @@ namespace REA.ViewModels
                 case "Particulate matter":
                     SelectedSensorCollection = ParticulateMatter;
                     break;
+                case "Nitrate":
+                    SelectedSensorCollection = Nitrate;
+                break;
+                case "Phosphate":
+                    SelectedSensorCollection = Phosphate;
+                    break;
+                case "Escherichia coli":
+                    SelectedSensorCollection = EscherichiaColi;
+                    break;
+                case "Intestinal enterococci":
+                    SelectedSensorCollection = IntestinalEnterococci;
+                    break;
+                case "Air Temperature":
+                    SelectedSensorCollection = AirTemperature;
+                    break;
+                case "Humidity":
+                    SelectedSensorCollection = Humidity;
+                    break;
+                case "Wind speed":
+                    SelectedSensorCollection = WindSpeed;
+                    break;
+                case "Wind Direction":
+                    SelectedSensorCollection = WindDirection;
+                    break;
+
+
                 default:
                     SelectedSensorCollection = new ObservableCollection<Configuration>();
                     break;
@@ -142,7 +169,11 @@ namespace REA.ViewModels
         }
 
 
-        // Make this command in future 
+        /// <summary>
+        /// This is a command on a button that updates the database 
+        /// </summary>
+        /// <returns>Updates the database based on user input </returns>
+        [RelayCommand]
         public async Task UpdateConfig()
         {
             if (SelectedSensorCollection == null || SelectedSensorCollection.Count == 0)
@@ -150,13 +181,35 @@ namespace REA.ViewModels
 
             foreach (var item in SelectedSensorCollection)
             {
-                
-                item.MinMeasurement = SensorMinValue;
-                item.MaxMeasurement = SensorMaxValue;
-                item.Firmware = SensorFirmware;
+                item.MinMeasurement = ConvertStringToFloat(sensorMaxValue);
+                item.MaxMeasurement = ConvertStringToFloat(sensorMaxValue);
+                item.Firmware = ConvertStringToFloat(sensorFirmware);
 
                 await SQLiteDatabaseService.Instance.UpdateAsync(item);
+
+                // Trigger IPropertyChanged to update the ui 
+                SelectedSensorCollection = new ObservableCollection<Configuration>(SelectedSensorCollection);
             }
+        }
+
+        /// <summary>
+        /// This method converts strings to float
+        /// </summary>
+        /// <param name="input">The string to be converted to float</param>
+        /// <returns>returns a float from the string input</returns>
+        private float ConvertStringToFloat(string input)
+        {
+            float convertedFloat = 0f;
+            try
+            {
+                convertedFloat = float.Parse(input);
+            }
+            catch(FormatException)
+            {
+                Debug.WriteLine("Invalid format");
+                convertedFloat = 0f;
+            }
+            return convertedFloat;
         }
 
         // When the dropdown is selected load the method
