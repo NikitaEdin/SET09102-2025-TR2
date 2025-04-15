@@ -4,24 +4,40 @@
              x:Class="REA.Views.UpdateSensorPage"
              xmlns:viewModels="clr-namespace:REA.ViewModels"
              Title="Update Sensor Page">
-
-    <VerticalStackLayout Padding="30" Spacing="5">
+ 
+        <ContentPage.BindingContext>
+            <viewModels:UpdateSensorViewModel/>
+        </ContentPage.BindingContext>
+    <ScrollView>
+        <VerticalStackLayout Padding="30" Spacing="5" >
 
         <Label FontSize="24" HorizontalOptions="Center">Sensor Config</Label>
-        <Entry Placeholder="Sensor Min Value" Keyboard="Numeric" />
-        <Entry Placeholder="Sensor Max Value" Keyboard="Numeric" />
-        <Entry Placeholder="Sensor Messurement Frequency" Keyboard="Numeric" />
-        <Entry Placeholder="Sensor Firmware Version" Keyboard="Numeric" />
+            <Label Text="Select Sensor Type:" FontSize="20"/>
+            <Picker Title="Select a type" SelectedItem="{Binding SelectedSensorType}" ItemsSource="{Binding SensorTypes}"/>
+        <Entry Text="{Binding SensorMinValue, Mode=TwoWay}"  Placeholder="Sensor Min Value" Keyboard="Numeric" />
+        <Entry Text="{Binding SensorMaxValue, Mode=TwoWay}"  Placeholder="Sensor Max Value" Keyboard="Numeric" />
+        <Entry Text="{Binding SensorMesFreq, Mode=TwoWay}"  Placeholder="Sensor Messurement Frequency" Keyboard="Numeric" />
+        <Entry Text="{Binding SensorFirmware, Mode=TwoWay}"  Placeholder="Sensor Firmware Version" Keyboard="Numeric" />
 
-        <Label Margin="5" HorizontalOptions="Center">Deployed Sensors</Label>
-        <Border Margin="1">
-            <StackLayout>
-                <Label Text="ID: 1 | Type: A | Min Value: 0.2 | Max Value: 0.7 | Version: 0.1"/>
-                <Label Text="ID: 2 | Type: W | Min Value: 0.1 | Max Value: 0.9 | Version: 0.1"/>
-                <Label Text="ID: 3 | Type: W | Min Value: 0.3 | Max Value: 0.4 | Version: 0.1"/>
-            </StackLayout>
-        </Border>
+        
+            <CollectionView ItemsSource="{Binding SelectedSensorCollection}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Border Padding="10" Margin="5">
+                            <VerticalStackLayout>
+                                <Label Text="{Binding ConfigId, StringFormat='ID: {0}'}" FontSize="16"/>
+                                <Label Text="{Binding MinMeasurement, StringFormat='Min Messurement: {0}'}" FontSize="16"/>
+                                <Label Text="{Binding MaxMeasurement, StringFormat='Max Messurement: {0}'}" FontSize="16"/>
+                                <Label Text="{Binding Type, StringFormat='Type: {0}'}" FontSize="16"/>
+                                <Label Text="{Binding Firmware, StringFormat='Firmware: {0}'}" FontSize="16"/>
+                            </VerticalStackLayout>
+                        </Border>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
 
-        <Button Margin="40" Text="Update"></Button>
+
+        <Button Margin="40" Command="{Binding UpdateConfigCommand}" Text="Update"></Button>
     </VerticalStackLayout>
+        </ScrollView>
 </ContentPage>

@@ -53,6 +53,7 @@ namespace REA.DB {
             return await _database.InsertAsync(item);
         }
 
+
         // Get all items of type T from the database
         public async Task<List<T>> GetItemsAsync<T>() where T : new() {
             return await _database.Table<T>().ToListAsync();
