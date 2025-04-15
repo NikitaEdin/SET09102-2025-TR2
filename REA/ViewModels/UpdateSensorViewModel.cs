@@ -109,12 +109,6 @@ namespace REA.ViewModels
                 WindDirection = new ObservableCollection<Configuration>(configs.Where(c => c.Type == "Wind Direction"));
 
 
-                Debug.WriteLine(configs);
-
-            }
-            else
-            {
-                Debug.WriteLine("UNABLE TO POPULATE ");
             }
 
         }
@@ -181,7 +175,7 @@ namespace REA.ViewModels
 
             foreach (var item in SelectedSensorCollection)
             {
-                item.MinMeasurement = ConvertStringToFloat(sensorMaxValue);
+                item.MinMeasurement = ConvertStringToFloat(sensorMinValue);
                 item.MaxMeasurement = ConvertStringToFloat(sensorMaxValue);
                 item.Firmware = ConvertStringToFloat(sensorFirmware);
 
