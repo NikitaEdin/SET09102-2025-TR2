@@ -4,7 +4,6 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using REA.Utils;
 using REA.DB;
-using System.Collections.ObjectModel;
 
 namespace REA.ViewModels {
     public partial class LoginViewModel : ObservableObject {
@@ -27,7 +26,7 @@ namespace REA.ViewModels {
         private async void Login() {
             // Fetch users from DB
             var usersFromDb = await SQLiteDatabaseService.Instance.GetItemsAsync<User>();
-            var validUser = usersFromDb.FirstOrDefault(user => user.Username == Username && user.Password == Password);
+            var validUser = ValidateUser(usersFromDb, Username, Password);
 
             if (validUser != null) {
                 // Valid user found in the database
@@ -41,6 +40,17 @@ namespace REA.ViewModels {
                 ErrorMessage = "Invalid username or password";
             }
         }
-       
+
+        /// <summary>
+        /// Validates given user credentials within a given list of available users
+        /// </summary>
+        /// <param name="users">List of available users</param>
+        /// <param name="username">New username to authenticate with</param>
+        /// <param name="password">New password to authenticate with</param>
+        /// <returns>Valid user (if found)</returns>
+        public User ValidateUser(IEnumerable<User> users, string username, string password) {
+            return users.FirstOrDefault(user => user.Username == username && user.Password == password);
+        }
+
     }
 }
