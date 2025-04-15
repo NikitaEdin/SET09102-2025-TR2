@@ -13,37 +13,32 @@ namespace REA.Utils
     {
         private ObservableCollection<T> collection;
 
+        /// <summary>
+        /// Initialises the constructor with the provided generic collection
+        /// </summary>
+        /// <param name="genericCollection"> This is the collection that gets passed in from the different methods in the factory</param>
         private MeasurementFactory(ObservableCollection<T> genericCollection) 
         { 
             collection = genericCollection;
         }
 
-        private static async Task<MeasurementFactory<AirMeasurement>> CreateAsyncAirCollection()
+        /// <summary>
+        /// Populates database data into a collection from the database
+        /// </summary>
+        /// <returns> MeasurementFactory that has generic collection </returns>
+        public static async Task<MeasurementFactory<T>> CreateAsync<T>() where T : new() 
         {
-            var airMessurement = await SQLiteDatabaseService.Instance.GetItemsAsync<AirMeasurement>();
-            var airCollection = new ObservableCollection<AirMeasurement>(airMessurement);
-            return new MeasurementFactory<AirMeasurement>(airCollection);
+            var items = await SQLiteDatabaseService.Instance.GetItemsAsync<T>();
+            var collection = new ObservableCollection<T>(items);
+            return new MeasurementFactory<T>(collection);
         }
 
-        private static async Task<MeasurementFactory<WaterMeasurement>> CreateAsyncWaterCollection()
-        {
-            var waterMessurement = await SQLiteDatabaseService.Instance.GetItemsAsync<WaterMeasurement>();
-            var waterCollection = new ObservableCollection<WaterMeasurement>(waterMessurement);
-            return new MeasurementFactory<WaterMeasurement>(waterCollection);
-        }
-
-        private static async Task<MeasurementFactory<WeatherMeasurement>> CreateAsyncWeatherCollection()
-        {
-            var weatherMessurement = await SQLiteDatabaseService.Instance.GetItemsAsync<WeatherMeasurement>();
-            var weatherCollection = new ObservableCollection<WeatherMeasurement>(weatherMessurement);
-            return new MeasurementFactory<WeatherMeasurement>(weatherCollection);
-        }
 
         /// <summary>
         /// Public method to get the collection
         /// </summary>
-        /// <returns>The collection with the configs</returns>
-        public ObservableCollection<T> GetConfigurations()
+        /// <returns>The collection</returns>
+        public ObservableCollection<T> GetMeasurements()
         {
             return collection;
         }
