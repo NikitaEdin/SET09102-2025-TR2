@@ -22,24 +22,29 @@ namespace REA.ViewModels {
         [ObservableProperty]
         private Role selectedRole;
 
+        // DB service 
+        private readonly IDatabaseService _db;
 
-        public UserManagementViewModel() {
-            // Load users and roles async from database
-            LoadDataAsync();
+        // Overloading with parameterless constructor for XAML
+        public UserManagementViewModel() : this(SQLiteDatabaseService.Instance) {}
+
+        public UserManagementViewModel(IDatabaseService? db = null) {
+            // Any DB passed? if not - get instance from SQLite service
+            _db = db ?? SQLiteDatabaseService.Instance;
         }
 
         /// <summary>
         /// Loads data async from database
         /// </summary>
-        private async void LoadDataAsync() {
+        public async Task LoadDataAsync() {
             // Users
-            var users = await User.GetAllUsersAsync();
+            var users = await _db.GetItemsAsync<User>();
             Users.Clear();
             foreach (var user in users)
                 Users.Add(user);
 
             // Roles
-            var roles = await Role.GetAllRolesAsync();
+            var roles = await _db.GetItemsAsync<Role>();
             Roles.Clear();
             foreach (var role in roles)
                 Roles.Add(role);
@@ -49,30 +54,33 @@ namespace REA.ViewModels {
         private async Task SaveAsync() {
             // Both selected?
             if (SelectedUser != null && SelectedRole != null) {
-                SelectedUser.RoleId = SelectedRole.RoleID.ToString();
-
-                // Valid - Update, Invalid - Insert
-                if (SelectedUser.UserID > 0) {
-                    var result = await SQLiteDatabaseService.Instance.UpdateAsync(SelectedUser);
-                } else {
-                    var result = await SQLiteDatabaseService.Instance.InsertAsync(SelectedUser);
-                }
-
-                // Update list from lastest DB commit
-                LoadDataAsync(); 
+                SelectedUser.RoleId = SelectedRole.RoleID;
+                // Update
+                await UpdateUserRoleAsync();
             }
+        }
+
+        /// <summary> Update user's role </summary>
+        public async Task UpdateUserRoleAsync() {
+            // Validate data
+            if (SelectedRole == null || SelectedUser == null)
+                throw new ArgumentNullException("One of the given elements are null.");
+
+            // Update
+            SelectedUser.RoleId = SelectedRole.RoleID;
+            await _db.UpdateAsync(SelectedUser);
         }
 
         /// <summary> Can save only if user and role are selected, and new role is different than current </summary>
         private bool CanSave() {
-            return SelectedUser != null &&  SelectedRole != null && SelectedUser.RoleId != SelectedRole.RoleID.ToString();
+            return SelectedUser != null &&  SelectedRole != null && SelectedUser.RoleId != SelectedRole.RoleID;
         }
 
 
         partial void OnSelectedUserChanged(User value) {
             if (value != null) {
                 // Select the correct Role for the selected User
-                SelectedRole = Roles.FirstOrDefault(r => r.RoleID.ToString() == value.RoleId);
+                SelectedRole = Roles.FirstOrDefault(r => r.RoleID == value.RoleId);
                 SaveCommand.NotifyCanExecuteChanged();
             }
         }
