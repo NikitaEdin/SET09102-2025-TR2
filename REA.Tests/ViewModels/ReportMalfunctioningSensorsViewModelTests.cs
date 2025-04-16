@@ -12,17 +12,14 @@ namespace REA.Tests.ViewModels
 {
     public class ReportMalfunctioningSensorsViewModelTests
     {
+        private List<Sensors> sensorsList;
+        private List<Sensors> malfunctioningSensors;
+        private List<Sensors> functioningSensors;
+
         [Fact]
         public async Task LoadSensorsTest_Valid()
         {
             // Arrange
-            List<Sensors> sensorsList;
-            List<Sensors> malfunctioningSensors;
-            List<Sensors> functioningSensors;
-           
-
-            var viewModel = new ReportMalfunctioningSensorsViewModel();
-
             IDatabaseService fakeDb = new FakeDatabaseService();
 
             var sensors = await fakeDb.GetItemsAsync<Sensors>();
@@ -35,33 +32,71 @@ namespace REA.Tests.ViewModels
             Assert.NotEmpty(sensors);
             Assert.NotEmpty(sensorsList);
             Assert.NotEmpty(malfunctioningSensors);
-            Assert.NotEmpty(functioningSensors);    
+            Assert.NotEmpty(functioningSensors); 
+            
         }
 
         [Fact]
-        public async Task LoadSensorsTest_Invalid()
+        public async Task LoadSensorsTest_EmptyDB()
         {
-            // Arrange
-            List<Sensors> sensorsList;
-            List<Sensors> malfunctioningSensors;
-            List<Sensors> functioningSensors;
+            // Act
+            var sensors = new List<Sensors>(); // Simulate the db being down by passing an empty list
 
-
-            var viewModel = new ReportMalfunctioningSensorsViewModel();
-
-            IDatabaseService fakeDb = new FakeDatabaseService();
-
-            var sensors = await fakeDb.GetItemsAsync<Sensors>();
-
-            sensorsList = new List<Sensors>(); // This is an empty list to test the logic for handling the case if the database returns nothing
+            sensorsList = new List<Sensors>(sensors);
             malfunctioningSensors = new List<Sensors>(sensors.Where(s => !s.SensorOperational));
             functioningSensors = new List<Sensors>(sensors.Where(s => s.SensorOperational));
 
+            // Assert
+            Assert.Empty(sensorsList);
+            Assert.Empty(malfunctioningSensors);
+            Assert.Empty(functioningSensors);
+        }
+
+        [Fact]
+        public async Task LoadSensorsTest_EmptyCollection()
+        {
+            // Arrange
+            var sensors = new List<Sensors>
+            {
+                new Sensors { SensorId = 1, SiteId = 1, SensorType = "Air", SensorUrl = "https://airly.org/en/features/air-quality-sensors/", DeploymentDate = "2025-04-06", SensorOperational = true },
+                new Sensors { SensorId = 5, SiteId = 2, SensorType = "Water", SensorUrl = "https://clearwatersensors.com/nitrate-sensor.html", DeploymentDate = "2023-01-01", SensorOperational = true }
+            };
+
             // Act
-            Assert.NotEmpty(sensors);
+            sensorsList = new List<Sensors>(sensors);
+            malfunctioningSensors = new List<Sensors>(sensors.Where(s => !s.SensorOperational));
+            functioningSensors = new List<Sensors>(sensors.Where(s => s.SensorOperational));
+
+            // Assert
             Assert.NotEmpty(sensorsList);
-            Assert.NotEmpty(malfunctioningSensors);
+            Assert.Empty(malfunctioningSensors); // This should be empty as all sensors are operational.
             Assert.NotEmpty(functioningSensors);
+        }
+
+        [Fact]
+        public async Task CountSensorsTest_ValidAsync()
+        {
+            // Arrange
+            ObservableCollection<Sensors> allSensors;
+            ObservableCollection<Sensors> malfunctioningSensors;
+
+            int expectedSensorCount = 3;
+            int expectedSensorErrorCount = 1;
+
+            IDatabaseService fakeDb = new FakeDatabaseService();
+
+            var sensors =  await fakeDb.GetItemsAsync<Sensors>();
+            var viewModel = new ReportMalfunctioningSensorsViewModel();
+
+            allSensors = new ObservableCollection<Sensors>(sensors);
+            malfunctioningSensors = new ObservableCollection<Sensors>(sensors.Where(s => !s.SensorOperational));
+
+            // Act
+            viewModel.CountSensors(allSensors, malfunctioningSensors);
+
+            // Assert
+            Assert.Equal(expectedSensorCount,allSensors.Count);
+            Assert.Equal(expectedSensorErrorCount, malfunctioningSensors.Count);
         }
 
     }
