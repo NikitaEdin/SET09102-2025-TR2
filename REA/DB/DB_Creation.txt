@@ -117,3 +117,14 @@ CREATE TABLE IF NOT EXISTS "Alerts" (
     PRIMARY KEY("ID" AUTOINCREMENT),
     FOREIGN KEY("Metadata_ID") REFERENCES "Metadata"("ID") ON DELETE CASCADE
 );
+
+-- Ramsay Maintenance Table
+CREATE TABLE IF NOT EXISTS "Maintenance" (
+	"Id"	INTEGER,
+	"Name"	TEXT NOT NULL,
+	"ScheduledDate"	TEXT NOT NULL,
+	"AssignedUser"	INTEGER NOT NULL,
+	"Type"	TEXT NOT NULL,
+	PRIMARY KEY("Id" AUTOINCREMENT),
+	FOREIGN KEY("AssignedUser") REFERENCES "Users"("user_id")
+);
