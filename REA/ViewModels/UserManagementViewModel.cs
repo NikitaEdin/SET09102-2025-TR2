@@ -55,6 +55,7 @@ namespace REA.ViewModels {
             // Both selected?
             if (SelectedUser != null && SelectedRole != null) {
                 SelectedUser.RoleId = SelectedRole.RoleID;
+                
                 // Update
                 await UpdateUserRoleAsync();
             }

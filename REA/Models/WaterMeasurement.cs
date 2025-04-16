@@ -10,7 +10,8 @@ namespace REA.Models {
     public class WaterMeasurement {
         [PrimaryKey, AutoIncrement]
 
-        public int ID { get; set; }
+        [Column("id")]
+        public int WaterMeasurementId { get; set; }
 
         public string Datetime { get; set; }
 
@@ -38,7 +39,7 @@ namespace REA.Models {
         /// </summary>
         /// <returns>String containing all object attributes</returns>
         public override string ToString() {
-            return $"ID: {ID}, " +
+            return $"ID: {WaterMeasurementId}, " +
                    $"DateTime: {Datetime}, " +
                    $"Nitrate: {(Nitrate.HasValue ? Nitrate.Value.ToString("F2") : "null")}, " +
                    $"Nitrite: {(Nitrite.HasValue ? Nitrite.Value.ToString("F2") : "null")}, " +
