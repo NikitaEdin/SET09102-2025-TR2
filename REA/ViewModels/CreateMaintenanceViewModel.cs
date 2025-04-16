@@ -10,10 +10,10 @@ namespace REA.ViewModels;
 
 public partial class CreateMaintenanceViewModel : ObservableObject {
     // Form values
-    [ObservableProperty] private string name;
-    [ObservableProperty] private DateTime scheduledDate;
-    [ObservableProperty] private int assignedUser;
-    [ObservableProperty] private string type;
+    [ObservableProperty] public string name;
+    [ObservableProperty] public DateTime scheduledDate;
+    [ObservableProperty] public int assignedUser;
+    [ObservableProperty] public string type;
 
     // List of available users
     public ObservableCollection<User> AvailableUsers { get; set; } = new();
