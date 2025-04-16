@@ -47,16 +47,16 @@ namespace REA.Tests.Services {
 
         // Sensors
         public List<Sensors> Sensors { get; set; } = new List<Sensors> {
-            new Sensors { SensorId = 1, SiteId = 1, SensorType = "Air", SensorUrl = "https://airly.org/en/features/air-quality-sensors/", DeploymentDate = "2025-04-06", SensorOperational = true },
-            new Sensors { SensorId = 5, SiteId = 2, SensorType = "Water", SensorUrl = "https://clearwatersensors.com/nitrate-sensor.html", DeploymentDate = "2023-01-01", SensorOperational = true },
-            new Sensors { SensorId = 10, SiteId = 3, SensorType = "Weather", SensorUrl = "https://www.alliot.co.uk/product/netvox-outdoor-temperature-and-humidity-sensor/", DeploymentDate = "2024-08-12", SensorOperational = true }
+            new Sensors { SensorId = 0, SiteId = 1, SensorType = "Air", SensorUrl = "https://airly.org/en/features/air-quality-sensors/", DeploymentDate = "2025-04-06", SensorOperational = true },
+            new Sensors { SensorId = 1, SiteId = 2, SensorType = "Water", SensorUrl = "https://clearwatersensors.com/nitrate-sensor.html", DeploymentDate = "2023-01-01", SensorOperational = true },
+            new Sensors { SensorId = 2, SiteId = 3, SensorType = "Weather", SensorUrl = "https://www.alliot.co.uk/product/netvox-outdoor-temperature-and-humidity-sensor/", DeploymentDate = "2024-08-12", SensorOperational = true }
         };
 
         // Configuration
         public List<Configuration> Configurations { get; set; } = new List<Configuration> {
-            new Configuration { SensorId = 1, MinMeasurement = 0.1f, MaxMeasurement = 199, Type = "Nitrogen dioxide", Firmware = 0.1f },
-            new Configuration { SensorId = 5, MinMeasurement = 0.1f, MaxMeasurement = 2, Type = "Nitrate", Firmware = 0.1f },
-            new Configuration { SensorId = 10, MinMeasurement = 0.1f, MaxMeasurement = 184, Type = "Air Temperature", Firmware = 0.1f }
+            new Configuration { SensorId = 0, MinMeasurement = 0.1f, MaxMeasurement = 199, Type = "Nitrogen dioxide", Firmware = 0.1f },
+            new Configuration { SensorId = 1, MinMeasurement = 0.1f, MaxMeasurement = 2, Type = "Nitrate", Firmware = 0.1f },
+            new Configuration { SensorId = 2, MinMeasurement = 0.1f, MaxMeasurement = 184, Type = "Air Temperature", Firmware = 0.1f }
         };
 
         // Metadata
@@ -68,9 +68,9 @@ namespace REA.Tests.Services {
 
         // Alerts
         public List<Alert> Alerts { get; set; } = new List<Alert> {
-            new Alert { Id = 1, Metadata_ID = 1, Message = "Sensor reading breached threshold with value 2123. Please review.", TriggeredAt = "2024-04-09 16:37:00" },
-            new Alert { Id = 2, Metadata_ID = 2, Message = "Sensor failed to get readings for 10 minutes", TriggeredAt = "2024-05-10 20:41:00" },
-            new Alert { Id = 3, Metadata_ID = 3, Message = "Sensor reading breached threshold with value 1233", TriggeredAt = "2024-04-10 16:40:00" }
+            new Alert { Id = 0, Metadata_ID = 1, Message = "Sensor reading breached threshold with value 2123. Please review.", TriggeredAt = "2024-04-09 16:37:00" },
+            new Alert { Id = 1, Metadata_ID = 2, Message = "Sensor failed to get readings for 10 minutes", TriggeredAt = "2024-05-10 20:41:00" },
+            new Alert { Id = 2, Metadata_ID = 3, Message = "Sensor reading breached threshold with value 1233", TriggeredAt = "2024-04-10 16:40:00" }
         };
 
 
