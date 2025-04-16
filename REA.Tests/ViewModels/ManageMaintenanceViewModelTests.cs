@@ -8,9 +8,16 @@ using REA.Tests.Services;
 
 namespace REA.Tests.ViewModels
 {
+    /// <summary>
+    /// Unit testing for ManageMaintenanceViewModel
+    /// Author: Ramsay Foy
+    /// </summary>
     public class ManageMaintenanceViewModelTests
     {
 
+        /// <summary>
+        /// Test retrieval of all maintenance records from mocked database and ensure they are sorted correctly
+        /// </summary>
         [Fact]
         public async Task LoadMaintenanceTest_Valid()
         {

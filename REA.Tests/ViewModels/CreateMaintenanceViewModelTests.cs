@@ -10,8 +10,16 @@ using REA.ViewModels;
 
 namespace REA.Tests.ViewModels
 {
+    /// <summary>
+    /// Unit testing for CreateMaintenanceViewModel
+    /// Author: Ramsay Foy
+    /// </summary>
     public class CreateMaintenanceViewModelTests
     {
+        /// <summary>
+        /// Test applying the selected user to the AssignedUser property and check if it is set correctly
+        /// </summary>
+        /// <returns></returns>
         [Fact]
         public async Task SelectedUserTest_Valid()
         {

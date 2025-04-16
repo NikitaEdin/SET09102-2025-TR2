@@ -8,8 +8,15 @@ using REA.ViewModels;
 
 namespace REA.Tests.ViewModels
 {
+    /// <summary>
+    /// Unit testing for MaintenanceDetailsViewModel
+    /// Author: Ramsay Foy
+    /// </summary>
     public class MaintenanceDetailsViewModelTests
     {
+        /// <summary>
+        /// Test applying query attributes to the view model and ensure virtual fields resolve correctly
+        /// </summary>
         [Fact]
         public void ApplyQueryAttributesTest_Valid()
         {
