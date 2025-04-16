@@ -47,9 +47,9 @@ namespace REA.Tests.Services {
 
         // Sensors
         public List<Sensors> Sensors { get; set; } = new List<Sensors> {
-            new Sensors { SensorId = 1, SiteId = 1, SensorType = "Air", SensorUrl = "https://airly.org/en/features/air-quality-sensors/", DeploymentDate = "2025-04-06", SensorOperational = true },
-            new Sensors { SensorId = 5, SiteId = 2, SensorType = "Water", SensorUrl = "https://clearwatersensors.com/nitrate-sensor.html", DeploymentDate = "2023-01-01", SensorOperational = false },
-            new Sensors { SensorId = 10, SiteId = 3, SensorType = "Weather", SensorUrl = "https://www.alliot.co.uk/product/netvox-outdoor-temperature-and-humidity-sensor/", DeploymentDate = "2024-08-12", SensorOperational = true }
+            new Sensors { SensorId = 0, SiteId = 1, SensorType = "Air", SensorUrl = "https://airly.org/en/features/air-quality-sensors/", DeploymentDate = "2025-04-06", SensorOperational = true },
+            new Sensors { SensorId = 1, SiteId = 2, SensorType = "Water", SensorUrl = "https://clearwatersensors.com/nitrate-sensor.html", DeploymentDate = "2023-01-01", SensorOperational = false },
+            new Sensors { SensorId = 2, SiteId = 3, SensorType = "Weather", SensorUrl = "https://www.alliot.co.uk/product/netvox-outdoor-temperature-and-humidity-sensor/", DeploymentDate = "2024-08-12", SensorOperational = true }
         };
 
         // Configuration
