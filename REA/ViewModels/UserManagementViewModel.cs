@@ -49,7 +49,7 @@ namespace REA.ViewModels {
         private async Task SaveAsync() {
             // Both selected?
             if (SelectedUser != null && SelectedRole != null) {
-                SelectedUser.RoleId = SelectedRole.RoleID.ToString();
+                SelectedUser.RoleId = SelectedRole.RoleID;
 
                 // Valid - Update, Invalid - Insert
                 if (SelectedUser.UserID > 0) {
@@ -65,14 +65,14 @@ namespace REA.ViewModels {
 
         /// <summary> Can save only if user and role are selected, and new role is different than current </summary>
         private bool CanSave() {
-            return SelectedUser != null &&  SelectedRole != null && SelectedUser.RoleId != SelectedRole.RoleID.ToString();
+            return SelectedUser != null &&  SelectedRole != null && SelectedUser.RoleId != SelectedRole.RoleID;
         }
 
 
         partial void OnSelectedUserChanged(User value) {
             if (value != null) {
                 // Select the correct Role for the selected User
-                SelectedRole = Roles.FirstOrDefault(r => r.RoleID.ToString() == value.RoleId);
+                SelectedRole = Roles.FirstOrDefault(r => r.RoleID == value.RoleId);
                 SaveCommand.NotifyCanExecuteChanged();
             }
         }
