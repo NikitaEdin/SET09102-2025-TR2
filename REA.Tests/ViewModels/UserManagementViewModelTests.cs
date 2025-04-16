@@ -4,7 +4,14 @@ using REA.Tests.Services;
 using REA.ViewModels;
 
 namespace REA.Tests.ViewModels {
+    /// <summary>
+    /// Unit tests for UserManagement ViewModel
+    /// Author: Nikita Lanetsky
+    /// </summary>
     public class UserManagementViewModelTests {
+        /// <summary>
+        /// Basic test of populating records (Users and Roles) into the VM from the database
+        /// </summary>
         [Fact]
         public async Task Populate_UsersAndRoles() {
             // Arrange
@@ -19,6 +26,9 @@ namespace REA.Tests.ViewModels {
             Assert.NotNull(vm.Roles);
         }
 
+        /// <summary>
+        /// Testing the update functionality - changing user role to a different role
+        /// </summary>
         [Fact]
         public async Task UpdateUserRole() {
             // Arrange
@@ -43,8 +53,5 @@ namespace REA.Tests.ViewModels {
                 // Empty DB - Pass
             }
         }
-
-
-
     }
 }
