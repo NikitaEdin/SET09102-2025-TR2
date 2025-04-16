@@ -6,4 +6,9 @@ public partial class HistoricalDataPage : ContentPage
 	{
 		InitializeComponent();
 	}
+
+	protected override async void OnAppearing() {
+		base.OnAppearing();
+		await ViewModel.PopulateRecords();
+    }
 }

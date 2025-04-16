@@ -5,7 +5,7 @@
              xmlns:vm="clr-namespace:REA.ViewModels"
              Title="Historical Data">
     <ContentPage.BindingContext>
-        <vm:HistoricalDataViewModel />
+        <vm:HistoricalDataViewModel x:Name="ViewModel" />
     </ContentPage.BindingContext>
 
     <StackLayout Padding="10">
