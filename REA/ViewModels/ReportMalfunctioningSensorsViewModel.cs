@@ -67,8 +67,8 @@ namespace REA.ViewModels
         /// <param name="errorSensors">Collection with the list of malfunctioning sensors.</param>
         public void CountSensors(ObservableCollection<Sensors> allSensors, ObservableCollection<Sensors> errorSensors)
         {
-            SensorCount = allSensors.Count;
-            SensorErrorCount = errorSensors.Count;
+            SensorCount = allSensors?.Count ?? 0;
+            SensorErrorCount = errorSensors?.Count ?? 0;
         }
 
 
