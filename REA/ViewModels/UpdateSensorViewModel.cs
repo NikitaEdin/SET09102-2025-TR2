@@ -191,7 +191,7 @@ namespace REA.ViewModels
         /// </summary>
         /// <param name="input">The string to be converted to float</param>
         /// <returns>returns a float from the string input</returns>
-        private float ConvertStringToFloat(string input)
+        public float ConvertStringToFloat(string input)
         {
             float convertedFloat = 0f;
             try

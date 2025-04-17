@@ -9,7 +9,7 @@ using REA.Models;
 
 namespace REA.Utils
 {
-    internal class ConfigFactory
+    public class ConfigFactory
     { 
         private ObservableCollection<Configuration> collection;
         /// <summary>
