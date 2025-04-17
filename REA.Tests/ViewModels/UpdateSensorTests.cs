@@ -19,35 +19,7 @@ namespace REA.Tests.ViewModels
     /// </summary>
     public class UpdateSensorTests
     {
-        private readonly IDatabaseService fakeDb;
-        private UpdateSensorViewModel viewModel;
 
-        // LoadSensor  Lists
-        // AIR
-        private List<Configuration> nitrogenDioxide;
-        private List<Configuration> sulphurDioxide;
-        private List<Configuration> particulateMatter;
-
-        // Water
-        private List<Configuration> nitrate;
-        private List<Configuration> phosphate;
-        private List<Configuration> escherichiaColi;
-        private List<Configuration> intestinalEnterococci;
-
-        // Weather
-        private List<Configuration> airTemperature;
-        private List<Configuration> humidity;
-        private List<Configuration> windSpeed;
-        private List<Configuration> windDirection;
-
-
-
-
-        public UpdateSensorTests() 
-        { 
-            fakeDb = new FakeDatabaseService();
-            viewModel = new UpdateSensorViewModel(fakeDb);
-        }
 
         /// <summary>
         /// Test LoadConfig to populate collections with the mocked database.
@@ -57,99 +29,66 @@ namespace REA.Tests.ViewModels
         public async Task LoadConfigsTest_Valid()
         {
             // Arrange
-            var configs = await fakeDb.GetItemsAsync<Configuration>();
+            var fakeDb = new FakeDatabaseService();
+            var viewModel = new UpdateSensorViewModel(fakeDb);
 
             // Act
             await viewModel.LoadConfigs();
 
-            // Air
-            nitrogenDioxide = new List<Configuration>(configs.Where(c => c.Type == "Nitrogen dioxide"));
-            sulphurDioxide = new List<Configuration>(configs.Where(c => c.Type == "Sulphur dioxide"));
-            particulateMatter = new List<Configuration>(configs.Where(c => c.Type == "Particulate matter"));
-
-            // Water
-            nitrate = new List<Configuration>(configs.Where(c => c.Type == "Nitrate"));
-            phosphate = new List<Configuration>(configs.Where(c => c.Type == "Phosphate"));
-            escherichiaColi = new List<Configuration>(configs.Where(c => c.Type == "Escherichia coli"));
-            intestinalEnterococci = new List<Configuration>(configs.Where(c => c.Type == "Intestinal enterococci"));
-
-
-            // Weather
-            airTemperature = new List<Configuration>(configs.Where(c => c.Type == "Air Temperature"));
-            humidity = new List<Configuration>(configs.Where(c => c.Type == "Humidity"));
-            windSpeed = new List<Configuration>(configs.Where(c => c.Type == "Wind speed"));
-            windDirection = new List<Configuration>(configs.Where(c => c.Type == "Wind Direction"));
-
-
             // Assert
 
             // Air
-            Assert.NotNull(nitrogenDioxide);
-            Assert.NotNull(sulphurDioxide);
-            Assert.NotNull(particulateMatter);
+            Assert.NotNull(viewModel.NitrogenDioxide);
+            Assert.NotNull(viewModel.SulphurDioxide);
+            Assert.NotNull(viewModel.ParticulateMatter);
 
             // Water
-            Assert.NotNull(nitrate);
-            Assert.NotNull(phosphate);
-            Assert.NotNull(escherichiaColi);
-            Assert.NotNull(intestinalEnterococci);
+            Assert.NotNull(viewModel.Nitrate);
+            Assert.NotNull(viewModel.Phosphate);
+            Assert.NotNull(viewModel.EscherichiaColi);
+            Assert.NotNull(viewModel.IntestinalEnterococci);
 
             // Weather
-            Assert.NotNull(airTemperature);
-            Assert.NotNull(humidity);
-            Assert.NotNull(windSpeed);
-            Assert.NotNull(windDirection);
+            Assert.NotNull(viewModel.AirTemperature);
+            Assert.NotNull(viewModel.Humidity);
+            Assert.NotNull(viewModel.WindSpeed);
+            Assert.NotNull(viewModel.WindDirection);
         }
 
         /// <summary>
-        /// Test LoadConfigs with an "empty" database list
+        /// Test LoadConfigs with an an empty database
         /// </summary>
         [Fact]
         public async Task LoadConfigsTest_EmptyDB()
         {
             // Arrange
-            var configs = new List<Configuration>();
+            var fakeDb = new FakeDatabaseService();
+
+            fakeDb.SetItems(new List<Configuration>()); // Populate with an empty list
+
+            var viewModel = new UpdateSensorViewModel(fakeDb);
 
             // Act
             await viewModel.LoadConfigs();
-            // Air
-
-            nitrogenDioxide = new List<Configuration>(configs.Where(c => c.Type == "Nitrogen dioxide"));
-            sulphurDioxide = new List<Configuration>(configs.Where(c => c.Type == "Sulphur dioxide"));
-            particulateMatter = new List<Configuration>(configs.Where(c => c.Type == "Particulate matter"));
-
-            // Water
-            nitrate = new List<Configuration>(configs.Where(c => c.Type == "Nitrate"));
-            phosphate = new List<Configuration>(configs.Where(c => c.Type == "Phosphate"));
-            escherichiaColi = new List<Configuration>(configs.Where(c => c.Type == "Escherichia coli"));
-            intestinalEnterococci = new List<Configuration>(configs.Where(c => c.Type == "Intestinal enterococci"));
-
-
-            // Weather
-            airTemperature = new List<Configuration>(configs.Where(c => c.Type == "Air Temperature"));
-            humidity = new List<Configuration>(configs.Where(c => c.Type == "Humidity"));
-            windSpeed = new List<Configuration>(configs.Where(c => c.Type == "Wind speed"));
-            windDirection = new List<Configuration>(configs.Where(c => c.Type == "Wind Direction"));
-
 
             // Assert
             
             // Air
-            Assert.Empty(nitrogenDioxide);
-            Assert.Empty(sulphurDioxide);
-            Assert.Empty(particulateMatter);
+            Assert.Empty(viewModel.NitrogenDioxide);
+            Assert.Empty(viewModel.SulphurDioxide);
+            Assert.Empty(viewModel.ParticulateMatter);
 
             // Water
-            Assert.Empty(nitrate);
-            Assert.Empty(phosphate);
-            Assert.Empty(escherichiaColi);
-            Assert.Empty(intestinalEnterococci);
+            Assert.Empty(viewModel.Nitrate);
+            Assert.Empty(viewModel.Phosphate);
+            Assert.Empty(viewModel.EscherichiaColi);
+            Assert.Empty(viewModel.IntestinalEnterococci);
 
             // Weather
-            Assert.Empty(airTemperature);
-            Assert.Empty(humidity);
-            Assert.Empty(windSpeed);
-            Assert.Empty(windDirection);
+            Assert.Empty(viewModel.AirTemperature);
+            Assert.Empty(viewModel.Humidity);
+            Assert.Empty(viewModel.WindSpeed);
+            Assert.Empty(viewModel.WindDirection);
         }
 
         /// <summary>
@@ -159,6 +98,9 @@ namespace REA.Tests.ViewModels
         public void ConvertStringToFloatTest_Valid()
         {
             // Arrange
+            var fakeDb = new FakeDatabaseService();
+            var viewModel = new UpdateSensorViewModel(fakeDb);
+
             float convertedFloat;
             string input = "0.2";
 
@@ -176,6 +118,9 @@ namespace REA.Tests.ViewModels
         public void ConvertStringToFloatTest_Invalid() 
         {
             // Arrange
+            var fakeDb = new FakeDatabaseService();
+            var viewModel = new UpdateSensorViewModel(fakeDb);
+
             float convertedFloat;
             string input = "Hello World";
 
@@ -193,6 +138,10 @@ namespace REA.Tests.ViewModels
         [Fact]
         public void ConvertStringToFloatTest_Null()
         {
+            // Arrange
+            var fakeDb = new FakeDatabaseService();
+            var viewModel = new UpdateSensorViewModel(fakeDb);
+
             float convertedFloat;
             string input = null;
 

@@ -122,7 +122,12 @@ namespace REA.Tests.Services {
         
 
         /// <summary>  No operation for testing </summary>
-        public Task CreateTableAsync<T>() where T : new() => Task.CompletedTask; 
-        
+        public Task CreateTableAsync<T>() where T : new() => Task.CompletedTask;
+
+        public void SetItems<T>(List<T> items)
+        {
+            _dataSets[typeof(T)] = items;
+        }
+
     }
 }
