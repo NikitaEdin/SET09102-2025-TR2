@@ -17,15 +17,20 @@ namespace REA.ViewModels {
 
         // List of available sensors
         [ObservableProperty]
-        private ObservableCollection<Sensors> sensors;
+        public ObservableCollection<Sensors> sensors;
 
-        public MonitorSensorsViewModel() {
-            GetSensors();
+        // DB service
+        private readonly IDatabaseService _db;
+
+        public MonitorSensorsViewModel() : this(SQLiteDatabaseService.Instance) { }
+
+        public MonitorSensorsViewModel(IDatabaseService? db = null) {
+            _db = db ?? SQLiteDatabaseService.Instance;
         }
 
-        private async void GetSensors() {
+        public async Task GetSensors() {
             // Get all sensors from database
-            Sensors = new ObservableCollection<Sensors>(await SQLiteDatabaseService.Instance.GetItemsAsync<Sensors>());
+            Sensors = new ObservableCollection<Sensors>(await _db.GetItemsAsync<Sensors>());
         }
 
         // Set the selected sensor
