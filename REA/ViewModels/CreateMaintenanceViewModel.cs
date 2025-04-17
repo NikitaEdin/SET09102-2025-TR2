@@ -10,10 +10,10 @@ namespace REA.ViewModels;
 
 public partial class CreateMaintenanceViewModel : ObservableObject {
     // Form values
-    [ObservableProperty] public string name;
-    [ObservableProperty] public DateTime scheduledDate;
-    [ObservableProperty] public int assignedUser;
-    [ObservableProperty] public string type;
+    [ObservableProperty] public string name = string.Empty;
+    [ObservableProperty] public DateTime scheduledDate = DateTime.Now;
+    [ObservableProperty] public int assignedUser = -1;
+    [ObservableProperty] public string type = string.Empty;
 
     // List of available users
     public ObservableCollection<User> AvailableUsers { get; set; } = new();
@@ -68,7 +68,7 @@ public partial class CreateMaintenanceViewModel : ObservableObject {
     /// </summary>
     private async Task CreateMaintenance() {
         // Ensure all fields are filled
-        if (string.IsNullOrWhiteSpace(Name) || string.IsNullOrWhiteSpace(Type) || AssignedUser == 0) {
+        if (string.IsNullOrWhiteSpace(Name) || string.IsNullOrWhiteSpace(Type) || AssignedUser == -1) {
             await Shell.Current.DisplayAlert("Error", "Please fill all fields", "OK");
             return;
         }
