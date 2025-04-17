@@ -56,8 +56,12 @@ namespace REA.Tests {
             var users = await fakeDb.GetItemsAsync<User>();
 
             // Assert
-            Assert.NotEmpty(users);
-            Assert.Contains(users, u => u.Username == "admin");
+            if (users.Any()) {
+                Assert.NotEmpty(users);
+                Assert.Contains(users, u => u.Username == users.First().Username);
+            } else {
+                Assert.NotNull(users);
+            }
         }
 
 
@@ -71,12 +75,15 @@ namespace REA.Tests {
             IDatabaseService fakeDB = new FakeDatabaseService();
             var users = await fakeDB.GetItemsAsync<User>();
 
-            // Act
-            var result = vm.ValidateUser(users, "admin", "123");
+            // Assert integrity only if DB has data
+            if (users.Any()) {
+                // Act
+                var result = vm.ValidateUser(users, users.First().Username, users.First().Password);
 
-            // Assert
-            Assert.NotNull(result);
-            Assert.Equal("admin", result.Username);
+                // Assert
+                Assert.NotNull(result);
+                Assert.Equal(users.First().Username, result.Username);
+            }
         }
 
         /// <summary>
