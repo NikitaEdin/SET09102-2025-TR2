@@ -17,6 +17,7 @@ namespace REA.ViewModels
 {
     public partial class UpdateSensorViewModel : ObservableObject
     {
+        private readonly IDatabaseService _db;
         // AIR
         [ObservableProperty]
         private ObservableCollection<Configuration> nitrogenDioxide;
@@ -69,10 +70,21 @@ namespace REA.ViewModels
         [ObservableProperty]
         private string sensorFirmware;
 
-      
+        /// <summary>
+        /// Default Constructuor
+        /// </summary>
         public UpdateSensorViewModel()
         {
-            
+
+        }
+
+        /// <summary>
+        /// Dependency injection for the database in the constructor
+        /// </summary>
+        /// <param name="db"> pass in the database either fakeDb or SQLiteDatabaseService</param>
+        public UpdateSensorViewModel(IDatabaseService db)
+        {
+            _db = db;
         }
 
         /// <summary>
@@ -82,9 +94,9 @@ namespace REA.ViewModels
         public async Task LoadConfigs()
         {
             // Call the factory
-            ConfigFactory factory = await ConfigFactory.CreateAsync();
+            var factory = await ConfigFactory.CreateAsync(_db);
 
-            ObservableCollection<Configuration> configs = factory.GetConfigurations();
+            var configs = factory.GetConfigurations();
 
             SensorTypes = new ObservableCollection<string> { "Nitrogen dioxide", "Sulphur dioxide", "Particulate matter", "Nitrate", "Phosphate", "Escherichia coli", "Intestinal enterococci", "Air Temperature", "Humidity", "Wind speed", "Wind Direction" };
 
@@ -179,7 +191,7 @@ namespace REA.ViewModels
                 item.MaxMeasurement = ConvertStringToFloat(sensorMaxValue);
                 item.Firmware = ConvertStringToFloat(sensorFirmware);
 
-                await SQLiteDatabaseService.Instance.UpdateAsync(item);
+                await _db.UpdateAsync(item);
 
                 // Trigger IPropertyChanged to update the ui 
                 SelectedSensorCollection = new ObservableCollection<Configuration>(SelectedSensorCollection);

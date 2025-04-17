@@ -1,4 +1,5 @@
 using REA.ViewModels;
+using REA.DB;
 namespace REA.Views;
 
 public partial class UpdateSensorPage : ContentPage
@@ -7,7 +8,7 @@ public partial class UpdateSensorPage : ContentPage
     public UpdateSensorPage()
 	{
 		InitializeComponent();
-        viewModel = new UpdateSensorViewModel();
+        viewModel = new UpdateSensorViewModel(SQLiteDatabaseService.Instance);
         BindingContext = viewModel; // Connects the ui Binding to the viewModel
     }
 
