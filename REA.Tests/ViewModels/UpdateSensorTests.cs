@@ -57,8 +57,26 @@ namespace REA.Tests.ViewModels
             // Act
             convertedFloat = viewModel.ConvertStringToFloat(input);
 
+            // Assert
             Assert.IsType<float>(convertedFloat);
             Assert.Equal(0,convertedFloat); 
+        }
+
+        /// <summary>
+        /// Test case to check if the method can handle null values 
+        /// </summary>
+        [Fact]
+        public void ConvertStringToFloatTest_Null()
+        {
+            float convertedFloat;
+            string input = null;
+
+            // Act
+            convertedFloat = viewModel.ConvertStringToFloat(input);
+
+            // Assert
+            Assert.NotNull(convertedFloat);
+            Assert.Equal(0, convertedFloat); 
         }
 
     }

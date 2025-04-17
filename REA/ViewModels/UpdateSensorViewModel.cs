@@ -198,9 +198,14 @@ namespace REA.ViewModels
             {
                 convertedFloat = float.Parse(input);
             }
-            catch(FormatException)
+            catch (FormatException)
             {
                 Debug.WriteLine("Invalid format");
+                convertedFloat = 0f;
+            }
+            catch (ArgumentNullException)
+            {
+                Debug.WriteLine("Null Value Provided");
                 convertedFloat = 0f;
             }
             return convertedFloat;
