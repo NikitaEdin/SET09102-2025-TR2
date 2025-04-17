@@ -10,11 +10,28 @@ using REA.Models;
 using System.Collections.ObjectModel;
 namespace REA.Tests.ViewModels
 {
+    /// <summary>
+    /// Unit tests for the ReportMalfunctioningSensorsViewModel
+    /// Author: Thomas Smith
+    /// </summary>
     public class ReportMalfunctioningSensorsViewModelTests
     {
         private List<Sensors> sensorsList;
         private List<Sensors> malfunctioningSensors;
         private List<Sensors> functioningSensors;
+        private readonly IDatabaseService fakeDb;
+        private ReportMalfunctioningSensorsViewModel viewModel;
+
+        public ReportMalfunctioningSensorsViewModelTests() 
+        {
+            viewModel = new ReportMalfunctioningSensorsViewModel();
+            fakeDb = new FakeDatabaseService();
+            sensorsList = new List<Sensors>();
+            malfunctioningSensors = new List<Sensors>();
+            functioningSensors = new List<Sensors>();
+        }
+    
+       
 
         /// <summary>
         /// Test LoadSensors with mocked database to populate collections
@@ -24,8 +41,6 @@ namespace REA.Tests.ViewModels
         public async Task LoadSensorsTest_Valid()
         {
             // Arrange
-            IDatabaseService fakeDb = new FakeDatabaseService();
-
             var sensors = await fakeDb.GetItemsAsync<Sensors>();
 
             sensorsList = new List<Sensors>(sensors);
@@ -95,8 +110,6 @@ namespace REA.Tests.ViewModels
             int expectedSensorCount = 3;
             int expectedSensorErrorCount = 1;
 
-            IDatabaseService fakeDb = new FakeDatabaseService();
-
             var sensors =  await fakeDb.GetItemsAsync<Sensors>();
 
             var viewModel = new ReportMalfunctioningSensorsViewModel();
@@ -125,10 +138,6 @@ namespace REA.Tests.ViewModels
 
             int expectedSensorCount = 0;
             int expectedSensorErrorCount = 0;
-
-            IDatabaseService fakeDb = new FakeDatabaseService();
-
-            var viewModel = new ReportMalfunctioningSensorsViewModel();
 
             var sensors = new List<Sensors>();
 
