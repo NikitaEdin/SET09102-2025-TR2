@@ -72,7 +72,7 @@ namespace REA.ViewModels
       
         public UpdateSensorViewModel()
         {
-            LoadConfigs();
+            
         }
 
         /// <summary>
@@ -168,7 +168,7 @@ namespace REA.ViewModels
         /// </summary>
         /// <returns>Updates the database based on user input </returns>
         [RelayCommand]
-        public async Task UpdateConfig()
+        private async Task UpdateConfig()
         {
             if (SelectedSensorCollection == null || SelectedSensorCollection.Count == 0)
                 return;

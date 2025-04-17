@@ -19,12 +19,23 @@ namespace REA.Tests.ViewModels
     {
         private readonly IDatabaseService fakeDb;
         private UpdateSensorViewModel viewModel;
-        private ConfigFactory configFactory;
 
         public UpdateSensorTests() 
         { 
             viewModel = new UpdateSensorViewModel();
             fakeDb = new FakeDatabaseService();
+        }
+
+        [Fact]
+        public async Task LoadConfigsTest()
+        {
+            // Act
+            await viewModel.LoadConfigs();
+
+            // Assert
+            Assert.NotNull(viewModel.SensorTypes);
+
+
         }
 
         /// <summary>
