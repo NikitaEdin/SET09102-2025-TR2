@@ -122,3 +122,10 @@ INSERT INTO "Alerts" VALUES (3,3,'Sensor reading breached threshold with value 1
 INSERT INTO "Alerts" VALUES (4,4,'Sensor reading breached threshold with value 23413','2024-04-11 16:40:00');
 INSERT INTO "Alerts" VALUES (5,5,'Sensor reading breached threshold with value 9412','2024-04-12 16:40:00');
 INSERT INTO "Alerts" VALUES (6,6,'Sensor reading breached threshold with value 6123','2024-04-13 16:40:00');
+
+-- Ramsay Maintenance Table
+INSERT INTO "Maintenance" VALUES (1,'Check sensor 3 is functioning','2025-04-16 10:05',2,'Check');
+INSERT INTO "Maintenance" VALUES (2,'Update firmware of sensor 2','2025-04-16 10:04',2,'Update');
+INSERT INTO "Maintenance" VALUES (3,'Update firmware for sensor 5','2025-04-17 10:05',2,'Update');
+INSERT INTO "Maintenance" VALUES (4,'Check operation status of sensor 8','2025-04-18 10:05',2,'Check');
+INSERT INTO "Maintenance" VALUES (5,'Update firmware of sensor 10','2025-04-20',2,'Update');

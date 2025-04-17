@@ -73,6 +73,13 @@ namespace REA.Tests.Services {
             new Alert { Id = 2, Metadata_ID = 3, Message = "Sensor reading breached threshold with value 1233", TriggeredAt = "2024-04-10 16:40:00" }
         };
 
+        // Maintenance
+       public List<Maintenance> Maintenances { get; set; } = new List<Maintenance> {
+            new Maintenance { Id = 1, Name = "Sensor Calibration", ScheduledDate = "2024-04-15 10:00:00", Type = "Check", AssignedUser = 2 },
+            new Maintenance { Id = 2, Name = "Sensor Replacement", ScheduledDate = "2024-05-20 14:00:00", Type = "Check", AssignedUser = 2 },
+            new Maintenance { Id = 3, Name = "Sensor Firmware Update", ScheduledDate = "2024-06-10 09:00:00", Type = "Update", AssignedUser = 2 }
+        };
+
 
         // Dictionary mapping type to a class
         private readonly Dictionary<Type, object> _dataSets;
@@ -87,7 +94,8 @@ namespace REA.Tests.Services {
                 { typeof(Sensors), Sensors },
                 { typeof(Configuration), Configurations },
                 { typeof(Metadata), MetadataList },
-                { typeof(Alert), Alerts }
+                { typeof(Alert), Alerts },
+                { typeof(Maintenance), Maintenances }
             };
         }
 
