@@ -11,6 +11,7 @@ using System.Diagnostics;
 
 
 
+
 namespace REA.ViewModels
 {
     public partial class GenerateReportsViewModel : ObservableObject
@@ -21,8 +22,7 @@ namespace REA.ViewModels
         }
         private async Task LoadMeasurements()
         {
-            double? sum = 0;
-            int count = 0;
+            
             MeasurementFactory<AirMeasurement> airFactory = await MeasurementFactory<AirMeasurement>.CreateAsync<AirMeasurement>();
             MeasurementFactory<WaterMeasurement> waterFactory = await MeasurementFactory<WaterMeasurement>.CreateAsync<WaterMeasurement>();
             MeasurementFactory<WeatherMeasurement> weatherFactory = await MeasurementFactory<WeatherMeasurement>.CreateAsync<WeatherMeasurement>();
@@ -30,19 +30,27 @@ namespace REA.ViewModels
             ObservableCollection<AirMeasurement> airMeasurements = airFactory.GetMeasurements();
             ObservableCollection<WaterMeasurement> waterMeasurements = waterFactory.GetMeasurements();
             ObservableCollection<WeatherMeasurement> weatherMeasurements = weatherFactory.GetMeasurements();
+            CalculateAverage<WaterMeasurement>(waterMeasurements, "Nitrate");
 
         }
 
-        private void CalculateAverage(ObservableCollection<WaterMeasurement> collection)
+        private void CalculateAverage<T>(ObservableCollection<T> collection, string propertyName)
         {
-            double? sum = 0;
-            double? average = 0;
+            double sum = 0;
+            double average = 0;
             int count = 0;
             
-            foreach (WaterMeasurement item in collection)
+            foreach (T item in collection)
             {
-                sum += item.Nitrate;
-                count++;
+                var prop = typeof(T).GetProperty(propertyName);
+
+                if (prop != null)
+                {
+                    double value = (double)prop.GetValue(item);
+                    sum += value;
+                    count++;
+                }
+               
 
                 Debug.WriteLine(item.ToString());
 
