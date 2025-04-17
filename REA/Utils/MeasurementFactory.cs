@@ -26,7 +26,7 @@ namespace REA.Utils
         /// Populates database data into a collection from the database
         /// </summary>
         /// <returns> MeasurementFactory that has generic collection </returns>
-        public static async Task<MeasurementFactory<T>> CreateAsync<T>() where T : new() 
+        internal static async Task<MeasurementFactory<T>> CreateAsync<T>() where T : new() 
         {
             var items = await SQLiteDatabaseService.Instance.GetItemsAsync<T>();
             var collection = new ObservableCollection<T>(items);

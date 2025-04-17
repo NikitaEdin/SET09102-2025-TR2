@@ -8,6 +8,7 @@ using REA.Utils;
 using REA.Models;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
+using CommunityToolkit.Mvvm.Input;
 
 
 
@@ -16,6 +17,19 @@ namespace REA.ViewModels
 {
     public partial class GenerateReportsViewModel : ObservableObject
     {
+        [ObservableProperty]
+        private ObservableCollection<AirMeasurement> airMeasurements;
+        [ObservableProperty]
+        private ObservableCollection<WaterMeasurement> waterMeasurements;
+        [ObservableProperty]
+        private ObservableCollection<WeatherMeasurement> weatherMeasurements;
+
+        [ObservableProperty]
+        private ObservableCollection<string> selectedCollection;
+
+        [ObservableProperty]
+        private ObservableCollection<Object> selectedMeasurement;
+
         public GenerateReportsViewModel() 
         {
             LoadMeasurements();
@@ -27,14 +41,15 @@ namespace REA.ViewModels
             MeasurementFactory<WaterMeasurement> waterFactory = await MeasurementFactory<WaterMeasurement>.CreateAsync<WaterMeasurement>();
             MeasurementFactory<WeatherMeasurement> weatherFactory = await MeasurementFactory<WeatherMeasurement>.CreateAsync<WeatherMeasurement>();
 
-            ObservableCollection<AirMeasurement> airMeasurements = airFactory.GetMeasurements();
-            ObservableCollection<WaterMeasurement> waterMeasurements = waterFactory.GetMeasurements();
-            ObservableCollection<WeatherMeasurement> weatherMeasurements = weatherFactory.GetMeasurements();
-            CalculateAverage<WaterMeasurement>(waterMeasurements, "Nitrate");
+            AirMeasurements = airFactory.GetMeasurements();
+            WaterMeasurements = waterFactory.GetMeasurements();
+            WeatherMeasurements = weatherFactory.GetMeasurements();
+
+            // Testing
 
         }
 
-        private void CalculateAverage<T>(ObservableCollection<T> collection, string propertyName)
+        private double CalculateAverage<T>(ObservableCollection<T> collection, string propertyName)
         {
             double sum = 0;
             double average = 0;
@@ -51,7 +66,6 @@ namespace REA.ViewModels
                     count++;
                 }
                
-
                 Debug.WriteLine(item.ToString());
 
             }
@@ -64,8 +78,20 @@ namespace REA.ViewModels
             {
                 average = 0;
             }
-
             Debug.WriteLine("Average of Nitrate : " + average);
+
+
+            return average;
+        }
+
+        [RelayCommand]
+        private void SelectCollection(string userSelection)
+        {
+            if (userSelection == "AirMeasurements")
+            {
+                SelectedMeasurement = new ObservableCollection<object>(AirMeasurements);
+            }
+            if (userSelection == "AirMeasurements");
         }
 
     }

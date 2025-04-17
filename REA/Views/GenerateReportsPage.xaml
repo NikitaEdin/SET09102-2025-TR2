@@ -10,8 +10,8 @@
     <VerticalStackLayout Spacing="10">
         <StackLayout Spacing="10" Padding="10">
             <Label FontSize="24" HorizontalOptions="Center">Generate Sensor Reports</Label>
-            
-            <Button Text="Generate Water Report (Dummy)"></Button>
+
+            <Button Text="Generate Air Report" Command="{Binding SelectCollectionCommand}" CommandParameter="AirMeasurements" />
 
             <Button Text="Generate Air Report (Dummy)"></Button>
 
