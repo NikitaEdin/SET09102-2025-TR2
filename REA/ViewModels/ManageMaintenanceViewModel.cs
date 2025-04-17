@@ -1,6 +1,7 @@
 using System.Collections.ObjectModel;
 using System.Windows.Input;
 using CommunityToolkit.Mvvm.ComponentModel;
+using REA.DB;
 using REA.Models;
 
 namespace REA.ViewModels;
@@ -13,10 +14,22 @@ public class ManageMaintenanceViewModel : ObservableObject {
     // Maintenance list to select from
     public ObservableCollection<Maintenance> MaintenanceList { get; set; } = new();
 
+    // Database instance
+    private readonly IDatabaseService _db;
+
+    /// <summary>
+    /// ViewModel responsible for displaying the details of a selected maintenance
+    /// </summary>
+    public ManageMaintenanceViewModel() : this(SQLiteDatabaseService.Instance) {
+    }
+
+
     /// <summary>
     /// ViewModel responsible for viewing all maintenance
     /// </summary>
-    public ManageMaintenanceViewModel() {
+    public ManageMaintenanceViewModel(IDatabaseService db) {
+        _db = db;
+
         NavigateToMaintenanceDetailsCommand =
             new Command<Maintenance>(async (maintenance) => await NavigateToMaintenanceDetails(maintenance));
         NavigateToCreateMaintenanceCommand = new Command(async () => await NavigateToCreateMaintenance());
@@ -29,7 +42,7 @@ public class ManageMaintenanceViewModel : ObservableObject {
         // clear the list of maintenance so theres no duplicates
         MaintenanceList.Clear();
 
-        var maintenance = await Maintenance.GetAllMaintenanceAsync();
+        var maintenance = await _db.GetItemsAsync<Maintenance>();
 
         // sort maintenance descending by date
         maintenance = maintenance.OrderByDescending(m => m.GetScheduledAtDateTime()).ToList();
@@ -46,7 +59,7 @@ public class ManageMaintenanceViewModel : ObservableObject {
     /// Navigate to the maintenance details page
     /// </summary>
     /// <param name="maintenance"></param>
-    public async Task NavigateToMaintenanceDetails(Maintenance maintenance) {
+    private async Task NavigateToMaintenanceDetails(Maintenance maintenance) {
         var navQuery = new Dictionary<string, object> {
             { "Maintenance", maintenance }
         };
@@ -57,7 +70,7 @@ public class ManageMaintenanceViewModel : ObservableObject {
     /// <summary>
     /// Navigate to the create maintenance page
     /// </summary>
-    public async Task NavigateToCreateMaintenance() {
+    private async Task NavigateToCreateMaintenance() {
         await Shell.Current.GoToAsync("CreateMaintenance");
     }
 }

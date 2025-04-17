@@ -1,6 +1,7 @@
 using System.Windows.Input;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using REA.DB;
 using REA.Models;
 
 namespace REA.ViewModels;
@@ -18,10 +19,21 @@ public class MaintenanceDetailsViewModel : ObservableObject, IQueryAttributable 
     // Navigation commands
     public ICommand BackCommand { get; }
 
+    // Database instance
+    private readonly IDatabaseService _db;
+
     /// <summary>
     /// ViewModel responsible for displaying the details of a selected maintenance
     /// </summary>
-    public MaintenanceDetailsViewModel() {
+    public MaintenanceDetailsViewModel() : this(SQLiteDatabaseService.Instance) {
+    }
+
+    /// <summary>
+    /// ViewModel responsible for displaying the details of a selected maintenance (with db dependency injection)
+    /// </summary>
+    public MaintenanceDetailsViewModel(IDatabaseService db) {
+        _db = db;
+
         BackCommand = new RelayCommand(Back);
     }
 

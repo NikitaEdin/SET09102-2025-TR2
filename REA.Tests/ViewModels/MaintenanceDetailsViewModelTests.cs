@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using REA.Models;
+using REA.Tests.Services;
 using REA.ViewModels;
 
 namespace REA.Tests.ViewModels
@@ -20,8 +21,11 @@ namespace REA.Tests.ViewModels
         [Fact]
         public void ApplyQueryAttributesTest_Valid()
         {
-            var vm = new MaintenanceDetailsViewModel();
+            // Create a fake database service and initialize the ViewModel
+            var fakeDb = new FakeDatabaseService();
+            var vm = new MaintenanceDetailsViewModel(fakeDb);
 
+            // Create a maintenance object with test data
             var scheduledDate = DateTime.Now;
             var maintenance = new Maintenance()
             {
@@ -31,6 +35,7 @@ namespace REA.Tests.ViewModels
                 Type = "Calibration"
             };
 
+            // Create a dictionary to simulate the query attributes
             var query = new Dictionary<string, object>
             {
                 { "Maintenance", maintenance }
@@ -38,10 +43,11 @@ namespace REA.Tests.ViewModels
 
             vm.ApplyQueryAttributes(query);
 
-            Assert.Equal("Sensor Calibration", vm.Name);
+            // Check if the properties are set correctly
+            Assert.Equal(maintenance.Name, vm.Name);
             Assert.Equal(maintenance.GetScheduledAtDateTime().ToString("g"), vm.ScheduledAt);
-            Assert.Equal("2", vm.AssignedUser);
-            Assert.Equal("Calibration", vm.Type);
+            Assert.Equal(maintenance.AssignedUser.ToString(), vm.AssignedUser);
+            Assert.Equal(maintenance.Type, vm.Type);
         }
     }
 }

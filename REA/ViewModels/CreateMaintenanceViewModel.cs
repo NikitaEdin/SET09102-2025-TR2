@@ -21,14 +21,23 @@ public partial class CreateMaintenanceViewModel : ObservableObject {
     // Command to commit the maintenance creation
     public ICommand CreateMaintenanceCommand { get; }
 
+    // Database instance
+    private readonly IDatabaseService _db;
+
     /// <summary>
     /// ViewModel responsible for creating a new maintenance
     /// </summary>
-    public CreateMaintenanceViewModel() {
-        ScheduledDate = DateTime.Now;
-
-        CreateMaintenanceCommand = new RelayCommand(CreateMaintenance);
+    public CreateMaintenanceViewModel() : this(SQLiteDatabaseService.Instance) {
     }
+
+    /// <summary>
+    /// ViewModel responsible for creating a new maintenance (with db dependency injection)
+    /// </summary>
+    public CreateMaintenanceViewModel(IDatabaseService db) {
+        _db = db;
+        CreateMaintenanceCommand = new AsyncRelayCommand(CreateMaintenance);
+    }
+
 
     /// <summary>
     /// Load all available users from the database. Should be called in OnAppearing of the page.
@@ -36,7 +45,7 @@ public partial class CreateMaintenanceViewModel : ObservableObject {
     public async Task LoadUsers() {
         AvailableUsers.Clear();
 
-        var users = await User.GetAllUsersAsync();
+        var users = await _db.GetItemsAsync<User>();
 
         foreach (var user in users) {
             AvailableUsers.Add(user);
@@ -57,7 +66,18 @@ public partial class CreateMaintenanceViewModel : ObservableObject {
     /// <summary>
     /// Create a new maintenance and insert it into the database
     /// </summary>
-    private async void CreateMaintenance() {
+    private async Task CreateMaintenance() {
+        // Ensure all fields are filled
+        if (string.IsNullOrWhiteSpace(Name) || string.IsNullOrWhiteSpace(Type) || AssignedUser == 0) {
+            await Shell.Current.DisplayAlert("Error", "Please fill all fields", "OK");
+            return;
+        }
+        // Ensure the scheduled date is in the future
+        if (ScheduledDate < DateTime.Now) {
+            await Shell.Current.DisplayAlert("Error", "Scheduled date must be in the future", "OK");
+            return;
+        }
+
         // Instantiate a new maintenance object
         var maintenance = new Models.Maintenance() {
             Name = name,
@@ -67,7 +87,7 @@ public partial class CreateMaintenanceViewModel : ObservableObject {
         };
 
         // Insert the maintenance into the database
-        await SQLiteDatabaseService.Instance.InsertAsync(maintenance);
+        await _db.InsertAsync(maintenance);
 
         await Shell.Current.GoToAsync("..");
     }
