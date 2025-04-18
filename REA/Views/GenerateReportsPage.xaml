@@ -11,7 +11,7 @@
         <VerticalStackLayout Spacing="10">
  
         <StackLayout Spacing="10" Padding="10">
-            <Label FontSize="24" HorizontalOptions="Center">Generate Sensor Reports</Label>
+                <Label FontSize="24" HorizontalOptions="Center">Generate Sensor Reports</Label>
 
                 <Label FontSize="18" HorizontalOptions="Center" Text="Air Measurements" Margin="5" TextColor="Blue"></Label>
                 <Border Padding="10" Margin="5">
@@ -44,7 +44,12 @@
                     </VerticalStackLayout>
                 </Border>
             </StackLayout>
-
+            <StackLayout Margin="15">
+                <Button Text="Calculate Mean" Margin="15" ></Button>
+                <Button Text="Calculate Mode" Margin="15" IsEnabled="False"></Button>
+                <Button Text="Calculate Median" Margin="15" IsEnabled="False"></Button>
+            </StackLayout>
+           
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>

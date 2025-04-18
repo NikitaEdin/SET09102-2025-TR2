@@ -10,9 +10,6 @@ using System.Collections.ObjectModel;
 using System.Diagnostics;
 using CommunityToolkit.Mvvm.Input;
 
-
-
-
 namespace REA.ViewModels
 {
     public partial class GenerateReportsViewModel : ObservableObject
