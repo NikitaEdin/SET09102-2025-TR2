@@ -100,10 +100,7 @@ namespace REA.ViewModels
             Temperature2m = CalculateAverage(Temperature2mValues);
             //This is an int need to convert it RelativeHumidity2m = CalculateAverage(RelativeHumidity2mValues);
             WindSpeed10m = CalculateAverage(WindSpeed10mValues);
-           // This is an int need to convert WindDirection10m = CalculateAverage(WindDirection10mValues);
-
-
-
+           // This is an int need to convert WindDirection10m = CalculateAverage(WindDirection10mValues
         }
 
         private double CalculateAverage(ObservableCollection<double> collection)

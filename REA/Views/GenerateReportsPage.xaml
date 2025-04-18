@@ -14,55 +14,36 @@
             <Label FontSize="24" HorizontalOptions="Center">Generate Sensor Reports</Label>
 
                 <Label FontSize="18" HorizontalOptions="Center" Text="Air Measurements" Margin="5" TextColor="Blue"></Label>
-            <!-- This is dummy example based on what the user clicks on generates a report for the user to view-->
-            <CollectionView ItemsSource="{Binding AirMeasurements}">
-                <CollectionView.ItemTemplate>
-                    <DataTemplate>
-                        <Border Padding="10" Margin="5">
+                <Border Padding="10" Margin="5">
                             <VerticalStackLayout>
                                 <Label Text="{Binding NitrogenDioxide, StringFormat='Nitrogen Dioxide: {0}'}" FontSize="16" />
                                 <Label Text="{Binding SulphurDioxide, StringFormat='Sulphur Dioxide: {0}'}" FontSize="16"/>
-                                <Label Text="{Binding PM2_5, StringFormat='PM2_5: {0}'}" FontSize="16"/>
-                                <Label Text="{Binding PM10, StringFormat='PM10: {0}'}" FontSize="16"/>
+                                <Label Text="{Binding Pm2_5, StringFormat='PM2_5: {0}'}" FontSize="16"/>
+                                <Label Text="{Binding Pm10, StringFormat='PM10: {0}'}" FontSize="16"/>
                             </VerticalStackLayout>
                         </Border>
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
-            </CollectionView>
+
 
                 <Label FontSize="18" HorizontalOptions="Center" Text="Water Measurements" Margin="5" TextColor="Blue"></Label>
-                <CollectionView ItemsSource="{Binding WaterMeasurements}">
-                <CollectionView.ItemTemplate>
-                    <DataTemplate>
-                        <Border Padding="10" Margin="5">
-                            <VerticalStackLayout>
-                                <Label Text="{Binding Nitrate, StringFormat='Nitrate: {0}'}" FontSize="16" />
-                                <Label Text="{Binding Nitrite, StringFormat='Nitrate: {0}'}" FontSize="16"/>
-                                <Label Text="{Binding Phosphate, StringFormat='Phosphate: {0}'}" FontSize="16"/>
-                                <Label Text="{Binding EC, StringFormat='EC: {0}'}" FontSize="16"/>
-                            </VerticalStackLayout>
-                        </Border>
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
-            </CollectionView>
-            
-                <Label FontSize="18" HorizontalOptions="Center" Text="Weather Measurements" Margin="5" TextColor="Blue"></Label>
-                <CollectionView ItemsSource="{Binding WeatherMeasurements}">
-                <CollectionView.ItemTemplate>
-                    <DataTemplate>
-                        <Border Padding="10" Margin="5">
-                            <VerticalStackLayout>
-                                <Label Text="{Binding Temperature2m, StringFormat='Temperature: {0}'}" FontSize="16" />
-                                <Label Text="{Binding RelativeHumidity2m, StringFormat='Relative Humidity: {0}'}" FontSize="16"/>
-                                <Label Text="{Binding WindSpeed10m, StringFormat='Wind Speed: {0}'}" FontSize="16"/>
-                                <Label Text="{Binding WindDirection10m, StringFormat='Wind Direction: {0}'}" FontSize="16"/>
-                            </VerticalStackLayout>
-                        </Border>
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
-            </CollectionView>
+                <Border Padding="10" Margin="5">
+                    <VerticalStackLayout>
+                        <Label Text="{Binding Nitrate1, StringFormat='Nitrate: {0}'}" FontSize="16" />
+                        <Label Text="{Binding Nitrate2, StringFormat='Nitrate: {0}'}" FontSize="16"/>
+                        <Label Text="{Binding Phosphate, StringFormat='Phosphate: {0}'}" FontSize="16"/>
+                        <Label Text="{Binding Ec, StringFormat='EC: {0}'}" FontSize="16"/>
+                    </VerticalStackLayout>
+                </Border>
 
-        </StackLayout>
+                <Label FontSize="18" HorizontalOptions="Center" Text="Weather Measurements" Margin="5" TextColor="Blue"></Label>
+                <Border Padding="10" Margin="5">
+                    <VerticalStackLayout>
+                        <Label Text="{Binding Temperature2m, StringFormat='Temperature: {0}'}" FontSize="16" />
+                        <Label Text="{Binding RelativeHumidity2m, StringFormat='Relative Humidity: {0}'}" FontSize="16"/>
+                        <Label Text="{Binding WindSpeed10m, StringFormat='Wind Speed: {0}'}" FontSize="16"/>
+                        <Label Text="{Binding WindDirection10m, StringFormat='Wind Direction: {0}'}" FontSize="16"/>
+                    </VerticalStackLayout>
+                </Border>
+            </StackLayout>
 
         </VerticalStackLayout>
     </ScrollView>
