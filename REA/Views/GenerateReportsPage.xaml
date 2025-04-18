@@ -7,36 +7,63 @@
     <ContentPage.BindingContext>
         <viewModels:GenerateReportsViewModel/>
     </ContentPage.BindingContext>
-    <VerticalStackLayout Spacing="10">
+    <ScrollView>
+        <VerticalStackLayout Spacing="10">
+ 
         <StackLayout Spacing="10" Padding="10">
             <Label FontSize="24" HorizontalOptions="Center">Generate Sensor Reports</Label>
 
-            <Button Text="Generate Air Report" Command="{Binding SelectCollectionCommand}" CommandParameter="AirMeasurements" />
-
-            <Button Text="Generate Air Report (Dummy)"></Button>
-
-            <Button Text="Generate Weather Report (Dummy)"></Button>
-
+                <Label FontSize="18" HorizontalOptions="Center" Text="Air Measurements" Margin="5" TextColor="Blue"></Label>
             <!-- This is dummy example based on what the user clicks on generates a report for the user to view-->
-            <TableView Intent="Data">
-                <TableRoot>
-                    <TableSection Title="Weather">
-                        <TextCell Text="Monday - Weather Average Data"
-                      Detail="Speed:6MPH | Wind Direction:78 | Temp:12C | Humidity:98" />
-                        <TextCell Text="Tuesday - Weather Average Data"
-                      Detail="Speed:12MPH | Wind Direction:140 | Temp: 06C | Humidity:78" />
-                        <TextCell Text="Wednesday - Weather Average Data"
-                      Detail="Speed:1MPH | Wind Direction:120 | Temp:18C | Humidity:80" />
-                        <TextCell Text="Thursday -  Weather Average Data"
-                      Detail="Speed:3MPH | Wind Direction:20 | Temp:15C | Humidity:88" /> 
-                        <TextCell Text="Friday - Weather Average Data"
-                      Detail="Speed:3MPH | Wind Direction:190 | Temp:13C | Humidity:99" />
-                    </TableSection>
-                </TableRoot>
-            </TableView>
+            <CollectionView ItemsSource="{Binding AirMeasurements}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Border Padding="10" Margin="5">
+                            <VerticalStackLayout>
+                                <Label Text="{Binding NitrogenDioxide, StringFormat='Nitrogen Dioxide: {0}'}" FontSize="16" />
+                                <Label Text="{Binding SulphurDioxide, StringFormat='Sulphur Dioxide: {0}'}" FontSize="16"/>
+                                <Label Text="{Binding PM2_5, StringFormat='PM2_5: {0}'}" FontSize="16"/>
+                                <Label Text="{Binding PM10, StringFormat='PM10: {0}'}" FontSize="16"/>
+                            </VerticalStackLayout>
+                        </Border>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
 
-            <!-- This button when clicked, it reads the database again and outputs new data if the database has modifed data-->
-            <Button BackgroundColor="Green" Margin="0,25,0,0" Text="Update Reports (Dummy)"></Button>
+                <Label FontSize="18" HorizontalOptions="Center" Text="Water Measurements" Margin="5" TextColor="Blue"></Label>
+                <CollectionView ItemsSource="{Binding WaterMeasurements}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Border Padding="10" Margin="5">
+                            <VerticalStackLayout>
+                                <Label Text="{Binding Nitrate, StringFormat='Nitrate: {0}'}" FontSize="16" />
+                                <Label Text="{Binding Nitrite, StringFormat='Nitrate: {0}'}" FontSize="16"/>
+                                <Label Text="{Binding Phosphate, StringFormat='Phosphate: {0}'}" FontSize="16"/>
+                                <Label Text="{Binding EC, StringFormat='EC: {0}'}" FontSize="16"/>
+                            </VerticalStackLayout>
+                        </Border>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+            
+                <Label FontSize="18" HorizontalOptions="Center" Text="Weather Measurements" Margin="5" TextColor="Blue"></Label>
+                <CollectionView ItemsSource="{Binding WeatherMeasurements}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Border Padding="10" Margin="5">
+                            <VerticalStackLayout>
+                                <Label Text="{Binding Temperature2m, StringFormat='Temperature: {0}'}" FontSize="16" />
+                                <Label Text="{Binding RelativeHumidity2m, StringFormat='Relative Humidity: {0}'}" FontSize="16"/>
+                                <Label Text="{Binding WindSpeed10m, StringFormat='Wind Speed: {0}'}" FontSize="16"/>
+                                <Label Text="{Binding WindDirection10m, StringFormat='Wind Direction: {0}'}" FontSize="16"/>
+                            </VerticalStackLayout>
+                        </Border>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
         </StackLayout>
-    </VerticalStackLayout>
+
+        </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>
