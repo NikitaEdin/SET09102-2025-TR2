@@ -3,19 +3,19 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:viewModels="clr-namespace:REA.ViewModels"
-             x:Class="REA.Views.Maintenance.MaintenanceDetailPage"
+             x:Class="REA.Views.MaintenanceDetailPage"
              Title="{Binding Name}"
              >
+    <ContentPage.BindingContext>
+        <viewModels:MaintenanceDetailsViewModel x:Name="ViewModel"/>
+    </ContentPage.BindingContext>
+
     <VerticalStackLayout Padding="20" Spacing="10">
-        <Label Text="Scheduled Date"/>
-        <Label Text="{Binding ScheduledDate, StringFormat='{0:MMMM dd, yyyy}'}"/>
+        <Label Text="{Binding Name, StringFormat='Name: {0}'}"/>
+        <Label Text="{Binding ScheduledAt, StringFormat='Scheduled: {0:MMMM dd, yyyy}'}"/>
+        <Label Text="{Binding Type, StringFormat='Type: {0}'}"/>
+        <Label Text="{Binding AssignedUser, StringFormat='Conducted by: {0}'}"/>
 
-        <Label Text="Type"/>
-        <Label Text="{Binding Type}"/>
-
-        <Label Text="Assigned User"/>
-        <Label Text="{Binding AssignedUser}"/>
-
-        <Button Text="Back" Clicked="OnBackClicked"/>
+        <Button Text="Back" Command="{Binding BackCommand}"/>
     </VerticalStackLayout>
 </ContentPage>

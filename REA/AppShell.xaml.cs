@@ -25,6 +25,8 @@ namespace REA {
             // Operations Manager routes
             Routing.RegisterRoute("MonitorSensors", typeof(MonitorSensorsPage)); // Nikita
             Routing.RegisterRoute("ManageMaintenance", typeof(ManageMaintenancePage)); // Ramsay
+            Routing.RegisterRoute("MaintenanceDetails", typeof(MaintenanceDetailPage)); // Ramsay
+            Routing.RegisterRoute("CreateMaintenance", typeof(CreateMaintenancePage)); // Ramsay
             // Routing.RegisterRoute("CollectedData", typeof(CLASS)); // Rachael
             Routing.RegisterRoute("SensorMalfunctions", typeof(ReportMalfunctioningSensorsPage)); // Thomas - Main Page
             Routing.RegisterRoute("SensorMalfunctionsReport", typeof(SensorErrorsPage)); // Thomas - sub-page of ReportMalfunctioningSensorsPage
