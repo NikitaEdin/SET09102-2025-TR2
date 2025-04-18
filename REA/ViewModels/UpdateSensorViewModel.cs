@@ -185,11 +185,17 @@ namespace REA.ViewModels
             if (SelectedSensorCollection == null || SelectedSensorCollection.Count == 0)
                 return;
 
+            if (string.IsNullOrWhiteSpace(sensorMinValue) || string.IsNullOrWhiteSpace(sensorMaxValue) || string.IsNullOrWhiteSpace(sensorFirmware)) return;
+
+            float minValue = ConvertStringToFloat(sensorMinValue);
+            float maxValue = ConvertStringToFloat(sensorMaxValue);
+            float firmware = ConvertStringToFloat(sensorFirmware);
+
             foreach (var item in SelectedSensorCollection)
             {
-                item.MinMeasurement = ConvertStringToFloat(sensorMinValue);
-                item.MaxMeasurement = ConvertStringToFloat(sensorMaxValue);
-                item.Firmware = ConvertStringToFloat(sensorFirmware);
+                item.MinMeasurement = minValue;
+                item.MaxMeasurement = maxValue;
+                item.Firmware = firmware;
 
                 await _db.UpdateAsync(item);
 

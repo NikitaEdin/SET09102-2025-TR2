@@ -133,23 +133,22 @@ namespace REA.Tests.ViewModels
         }
 
         /// <summary>
-        /// Test case to check if the method can handle null values 
+        /// Test case to check if the method can handle empty values 
         /// </summary>
         [Fact]
-        public void ConvertStringToFloatTest_Null()
+        public void ConvertStringToFloatTest_Empty()
         {
             // Arrange
             var fakeDb = new FakeDatabaseService();
             var viewModel = new UpdateSensorViewModel(fakeDb);
 
             float convertedFloat;
-            string input = null;
+            string input = string.Empty;
 
             // Act
             convertedFloat = viewModel.ConvertStringToFloat(input);
 
             // Assert
-            Assert.NotNull(convertedFloat);
             Assert.Equal(0, convertedFloat); 
         }
 
