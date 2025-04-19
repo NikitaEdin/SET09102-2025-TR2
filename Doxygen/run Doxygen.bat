@@ -5,7 +5,7 @@ cd /d "%~dp0"
 rmdir /s /q "html"
 
 :: Run Doxygen with REA-ALL config file
-doxygen "Doxygen Settings REA ALL"
+doxygen "Doxygen_Settings_REA_ALL"
 
 echo Doxygen run completed. Press any key to exit.
 
