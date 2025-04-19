@@ -2,6 +2,8 @@ name: Docs
 on:
   workflow_dispatch:
   push:
+    branches:
+      - dev 
 jobs:
   build:
     name: Build docs
