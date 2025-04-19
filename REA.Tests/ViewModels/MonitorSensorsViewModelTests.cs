@@ -27,12 +27,12 @@ namespace REA.Tests.ViewModels {
             // Assert NotNull (empty db records are still valid pass)
             Assert.NotNull(vm.Sensors);
 
+            Assert.Equal(expectedSensors.Count, vm.Sensors.Count);
+
             // Assert data structure
             Assert.Equal(expectedSensors.Count, vm.Sensors.Count);
-            if (expectedSensors != null && expectedSensors.Count > 0 && expectedSensors.Count == vm.Sensors.Count) {
-                for (int i = 0; i < expectedSensors.Count; i++) {
-                    Assert.Equal(expectedSensors[i].SiteId, vm.Sensors[i].SiteId);
-                }
+            for (int i = 0; i < expectedSensors.Count; i++) {
+                Assert.Equal(expectedSensors[i].SiteId, vm.Sensors[i].SiteId);
             }
 
         }
