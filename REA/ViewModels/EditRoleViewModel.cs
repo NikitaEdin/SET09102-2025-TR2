@@ -70,7 +70,7 @@ public partial class EditRoleViewModel : ObservableObject, IQueryAttributable {
         _role.Power = Power;
         await _db.UpdateAsync(_role);
 
-        Shell.Current.DisplayAlert("Success", "Role updated successfully", "OK");
+        Shell.Current?.DisplayAlert("Success", "Role updated successfully", "OK");
     }
 
     private bool CanSave() {
