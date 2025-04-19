@@ -6,7 +6,7 @@
              Title="Monitor Sensors">
     
     <ContentPage.BindingContext>
-        <vm:MonitorSensorsViewModel />
+        <vm:MonitorSensorsViewModel x:Name="ViewModel" />
     </ContentPage.BindingContext>
 
     <VerticalStackLayout Padding="10" Spacing="10">

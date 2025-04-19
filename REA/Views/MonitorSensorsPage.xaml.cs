@@ -2,11 +2,13 @@ using REA.ViewModels;
 
 namespace REA.Views;
 
-public partial class MonitorSensorsPage : ContentPage
-{
-	public MonitorSensorsPage()
-	{
+public partial class MonitorSensorsPage : ContentPage {
+	public MonitorSensorsPage() {
 		InitializeComponent();
-        BindingContext = new MonitorSensorsViewModel();
+    }
+
+    protected override async void OnAppearing() {
+        base.OnAppearing();
+        await ViewModel.GetSensors();
     }
 }
