@@ -35,23 +35,25 @@ namespace REA.ViewModels {
         // Switching categories
         public IRelayCommand SelectCategoryCommand { get; }
 
+        // DB service
+        private readonly IDatabaseService _db;
 
-        public HistoricalDataViewModel() {
+        public HistoricalDataViewModel() : this(SQLiteDatabaseService.Instance) { }
+
+        public HistoricalDataViewModel(IDatabaseService? db = null) {
+            _db = db ?? SQLiteDatabaseService.Instance;
             SelectCategoryCommand = new RelayCommand<string>(SelectCategory);
-
-            // Populate lists
-            populateRecords();
         }
 
-        public async void populateRecords() {
+        public async Task PopulateRecords() {
             // Water
-            var water = await SQLiteDatabaseService.Instance.GetItemsAsync<WaterMeasurement>();
+            var water = await _db.GetItemsAsync<WaterMeasurement>();
             WaterMeasurements = new ObservableCollection<WaterMeasurement>(water?.ToList() ?? new List<WaterMeasurement>());
             // Air
-            var air = await SQLiteDatabaseService.Instance.GetItemsAsync<AirMeasurement>();
+            var air = await _db.GetItemsAsync<AirMeasurement>();
             AirMeasurements = new ObservableCollection<AirMeasurement>(air?.ToList() ?? new List<AirMeasurement>());
             // Weather
-            var weather = await SQLiteDatabaseService.Instance.GetItemsAsync<WeatherMeasurement>();
+            var weather = await _db.GetItemsAsync<WeatherMeasurement>();
             WeatherMeasurements = new ObservableCollection<WeatherMeasurement>(weather?.ToList() ?? new List<WeatherMeasurement>());
         }
 
