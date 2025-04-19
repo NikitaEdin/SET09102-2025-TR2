@@ -20,7 +20,7 @@
             <Button Text="Update Sensor Config" Command="{Binding NavigateToUpdateSensorCommand}" Margin="10"/>
             <Button Text="User Management" Command="{Binding NavigateToManageUserAccessCommand}" Margin="10" />
             <Button Text="Storage Management" Command="{Binding NavigateToStorageManagementCommand}" Margin="10" />
-            <Button Text="Authorisation Configuration" Command="{Binding NavigateToAuthConfigCommand}" Margin="10" />
+            <Button Text="Security &amp; Data Info" Command="{Binding NavigateToDataInfoCommand}" Margin="10" />
 
             <Button Text="Back Dashboard" Command="{Binding NavigateToDashboardCommand}" Margin="10, 30, 10, 0" />
 
