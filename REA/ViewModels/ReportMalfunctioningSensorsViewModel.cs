@@ -61,10 +61,10 @@ namespace REA.ViewModels
                 SensorsList = new ObservableCollection<Sensors>(sensors);
                 
                 MalfunctioningSensors = new ObservableCollection<Sensors>(
-                    sensors.Where(s => !s.SensorOperational));
+                    sensors.Where(s => s !=null && !s.SensorOperational));
 
                 FunctioningSensors = new ObservableCollection<Sensors>(
-                    sensors.Where(s => s.SensorOperational));
+                    sensors.Where(s => s !=null && s.SensorOperational));
 
                 CountSensors(SensorsList, MalfunctioningSensors);
 

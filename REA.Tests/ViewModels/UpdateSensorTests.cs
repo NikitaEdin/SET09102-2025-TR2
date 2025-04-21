@@ -64,7 +64,8 @@ namespace REA.Tests.ViewModels
             // Arrange
             var fakeDb = new FakeDatabaseService();
 
-            fakeDb.SetItems(new List<Configuration>()); // Populate with an empty list
+            // Populate with an empty list
+            fakeDb.SetItems(new List<Configuration>());
 
             var viewModel = new UpdateSensorViewModel(fakeDb);
 

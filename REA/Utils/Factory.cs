@@ -34,7 +34,7 @@ namespace REA.Utils
         internal static async Task<Factory<T>> CreateAsync<T>(IDatabaseService dbService) where T : new() 
         {
             var items = await dbService.GetItemsAsync<T>();
-            var collection = new ObservableCollection<T>(items);
+            var collection = new ObservableCollection<T>(items.Where(item => item != null));
             return new Factory<T>(collection);
         }
 
