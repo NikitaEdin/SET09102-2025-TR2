@@ -14,11 +14,9 @@ namespace REA.ViewModels
 {
     public partial class GenerateReportsViewModel : ObservableObject
     {
-        [ObservableProperty]
+        // Hold the measurements in a collection
         private ObservableCollection<AirMeasurement> airMeasurements;
-        [ObservableProperty]
         private ObservableCollection<WaterMeasurement> waterMeasurements;
-        [ObservableProperty]
         private ObservableCollection<WeatherMeasurement> weatherMeasurements;
 
         // Air
@@ -45,11 +43,11 @@ namespace REA.ViewModels
         [ObservableProperty]
         private double temperature2m;
         [ObservableProperty]
-        private ObservableCollection<int> relativeHumidity2m;
+        private double relativeHumidity2m;
         [ObservableProperty]
         private double windSpeed10m;
         [ObservableProperty]
-        private int windDirection10m;
+        private double windDirection10m;
 
         public GenerateReportsViewModel() 
         {
@@ -57,59 +55,78 @@ namespace REA.ViewModels
         }
         private async Task LoadMeasurements()
         {
-            
+            // Initalise the factory for each of the measurement types
             MeasurementFactory<AirMeasurement> airFactory = await MeasurementFactory<AirMeasurement>.CreateAsync<AirMeasurement>();
             MeasurementFactory<WaterMeasurement> waterFactory = await MeasurementFactory<WaterMeasurement>.CreateAsync<WaterMeasurement>();
             MeasurementFactory<WeatherMeasurement> weatherFactory = await MeasurementFactory<WeatherMeasurement>.CreateAsync<WeatherMeasurement>();
 
-            AirMeasurements = airFactory.GetMeasurements();
-            WaterMeasurements = waterFactory.GetMeasurements();
-            WeatherMeasurements = weatherFactory.GetMeasurements();
+            //  Populate the collection with measurements
+            airMeasurements = airFactory.GetMeasurements();
+            waterMeasurements = waterFactory.GetMeasurements();
+            weatherMeasurements = weatherFactory.GetMeasurements();
 
             // Air
-            var NitrogenDioxideValues = new ObservableCollection<double>(AirMeasurements.Select(a => a.NitrogenDioxide ?? 0));
-            var SulphurDioxideValues = new ObservableCollection<double>(AirMeasurements.Select(a => a.SulphurDioxide ?? 0));
-            var Pm2_5Values = new ObservableCollection<double>(AirMeasurements.Select(a => a.PM2_5 ?? 0));
-            var Pm10Values = new ObservableCollection<double>(AirMeasurements.Select(a =>a.PM10 ?? 0));
+            var NitrogenDioxideValues = new ObservableCollection<double>(airMeasurements.Select(a => a.NitrogenDioxide ?? 0));
+            var SulphurDioxideValues = new ObservableCollection<double>(airMeasurements.Select(a => a.SulphurDioxide ?? 0));
+            var Pm2_5Values = new ObservableCollection<double>(airMeasurements.Select(a => a.PM2_5 ?? 0));
+            var Pm10Values = new ObservableCollection<double>(airMeasurements.Select(a =>a.PM10 ?? 0));
 
+            // Calculate the mean of the measurements for Air
             NitrogenDioxide = CalculateAverage(NitrogenDioxideValues);
             SulphurDioxide = CalculateAverage(SulphurDioxideValues);
             Pm2_5 = CalculateAverage(Pm2_5Values);
             Pm10 = CalculateAverage(Pm10Values);
 
             // Water
-            var Nitrate1Values = new ObservableCollection<double>(WaterMeasurements.Select(a => a.Nitrite ?? 0));
-            var Nitrate2Values = new ObservableCollection<double>(WaterMeasurements.Select(a => a.Nitrate ?? 0));
-            var PhosphateValues = new ObservableCollection<double>(WaterMeasurements.Select(a => a.Phosphate ?? 0));
-            var ecValues = new ObservableCollection<double>(WaterMeasurements.Select(a => a.EC ?? 0));
+            var Nitrate1Values = new ObservableCollection<double>(waterMeasurements.Select(a => a.Nitrite ?? 0));
+            var Nitrate2Values = new ObservableCollection<double>(waterMeasurements.Select(a => a.Nitrate ?? 0));
+            var PhosphateValues = new ObservableCollection<double>(waterMeasurements.Select(a => a.Phosphate ?? 0));
+            var ecValues = new ObservableCollection<double>(waterMeasurements.Select(a => a.EC ?? 0));
 
+            // Calculate the mean of the measurements for Water
             Nitrate1 = CalculateAverage(Nitrate1Values);
             Nitrate2 = CalculateAverage(Nitrate2Values);
             Phosphate = CalculateAverage(PhosphateValues);
             Ec = CalculateAverage(ecValues);
 
             // Weather
-            var Temperature2mValues = new ObservableCollection<double>(WeatherMeasurements.Select(a => a.Temperature2m ?? 0));
-            var RelativeHumidity2mValues = new ObservableCollection<int>(WeatherMeasurements.Select(a => a.RelativeHumidity2m ?? 0));
-            var WindSpeed10mValues = new ObservableCollection<double>(WeatherMeasurements.Select(a => a.WindSpeed10m ?? 0));
-            var WindDirection10mValues = new ObservableCollection<int>(WeatherMeasurements.Select(a => a.WindDirection10m ?? 0));
+            var Temperature2mValues = new ObservableCollection<double>(weatherMeasurements.Select(a => a.Temperature2m ?? 0));
+            var RelativeHumidity2mValues = new ObservableCollection<int>(weatherMeasurements.Select(a => a.RelativeHumidity2m ?? 0));
+            var WindSpeed10mValues = new ObservableCollection<double>(weatherMeasurements.Select(a => a.WindSpeed10m ?? 0));
+            var WindDirection10mValues = new ObservableCollection<int>(weatherMeasurements.Select(a => a.WindDirection10m ?? 0));
 
+            // Calculate the mean of the measurements for Weather
             Temperature2m = CalculateAverage(Temperature2mValues);
-            //This is an int need to convert it RelativeHumidity2m = CalculateAverage(RelativeHumidity2mValues);
+            RelativeHumidity2m = CalculateAverage(RelativeHumidity2mValues);
             WindSpeed10m = CalculateAverage(WindSpeed10mValues);
-           // This is an int need to convert WindDirection10m = CalculateAverage(WindDirection10mValues
+            WindDirection10m = CalculateAverage(WindDirection10mValues);
         }
 
-        private double CalculateAverage(ObservableCollection<double> collection)
+        /// <summary>
+        /// Generic method to allow the calculation of averages by providing a collection of values and returning an average
+        /// </summary>
+        /// <typeparam name="T"> Accept generic type to allow the calculation of int,float,double etc</typeparam>
+        /// <param name="collection"> This is the collection thats passed in to calculate it's average</param>
+        /// <returns>Returns the average of the values of a collection</returns>
+        private double CalculateAverage<T>(ObservableCollection<T> collection)
         {
             double sum = 0;
             double average = 0;
             int count = 0;
             
-            foreach (double value in collection)
+            foreach (T value in collection)
             {
-                sum += value;
-                count++;
+                try
+                {
+                    double numericValue = Convert.ToDouble(value);
+                    sum += numericValue;
+                    count++;
+                }
+                catch (Exception)
+                {
+                    Debug.WriteLine($"Not a numeric value: { value}");
+                }
+               
             }
             
             if (count > 0)
@@ -120,8 +137,6 @@ namespace REA.ViewModels
             {
                 average = 0;
             }
-            Debug.WriteLine("Average of Nitrate : " + average);
-
 
             return average;
         }
