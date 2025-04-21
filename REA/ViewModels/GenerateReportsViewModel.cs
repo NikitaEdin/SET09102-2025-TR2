@@ -14,10 +14,10 @@ namespace REA.ViewModels
     public partial class GenerateReportsViewModel : ObservableObject
     {
         private readonly IDatabaseService _db;
-        // Hold the measurements in a collection
-        private ObservableCollection<AirMeasurement> airMeasurements;
-        private ObservableCollection<WaterMeasurement> waterMeasurements;
-        private ObservableCollection<WeatherMeasurement> weatherMeasurements;
+        // Hold the measurements in a collection(these are public for testing)
+        public ObservableCollection<AirMeasurement> airMeasurements;
+        public ObservableCollection<WaterMeasurement> waterMeasurements;
+        public ObservableCollection<WeatherMeasurement> weatherMeasurements;
 
         // Air
         [ObservableProperty]
