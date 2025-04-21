@@ -1,14 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using CommunityToolkit.Mvvm.ComponentModel;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
 using REA.Utils;
 using REA.Models;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
-using CommunityToolkit.Mvvm.Input;
 using REA.DB;
 
 namespace REA.ViewModels
@@ -69,14 +63,14 @@ namespace REA.ViewModels
         public async Task LoadMeasurements()
         {
             // Initalise the factory for each of the measurement types
-            Factory<AirMeasurement> airFactory = await Factory<AirMeasurement>.CreateAsync<AirMeasurement>(_db);
-            Factory<WaterMeasurement> waterFactory = await Factory<WaterMeasurement>.CreateAsync<WaterMeasurement>(_db);
-            Factory<WeatherMeasurement> weatherFactory = await Factory<WeatherMeasurement>.CreateAsync<WeatherMeasurement>(_db);
+            var airFactory = await Factory<AirMeasurement>.CreateAsync<AirMeasurement>(_db);
+            var waterFactory = await Factory<WaterMeasurement>.CreateAsync<WaterMeasurement>(_db);
+            var weatherFactory = await Factory<WeatherMeasurement>.CreateAsync<WeatherMeasurement>(_db);
 
             //  Populate the collection with measurements
-            airMeasurements = airFactory.GetMeasurements();
-            waterMeasurements = waterFactory.GetMeasurements();
-            weatherMeasurements = weatherFactory.GetMeasurements();
+            airMeasurements = airFactory.GetCollection();
+            waterMeasurements = waterFactory.GetCollection();
+            weatherMeasurements = weatherFactory.GetCollection();
 
             // Air
             var NitrogenDioxideValues = new ObservableCollection<double>(airMeasurements.Select(a => a.NitrogenDioxide ?? 0));

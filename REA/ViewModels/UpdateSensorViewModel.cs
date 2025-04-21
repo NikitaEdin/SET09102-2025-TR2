@@ -1,16 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.ObjectModel;
 using CommunityToolkit.Mvvm.ComponentModel;
 using REA.Utils;
 using REA.Models;
 using System.Diagnostics;
-using Microsoft.Maui.Controls;
 using REA.DB;
-using static Microsoft.Maui.ApplicationModel.Permissions;
 using CommunityToolkit.Mvvm.Input;
 
 namespace REA.ViewModels
@@ -94,9 +87,9 @@ namespace REA.ViewModels
         public async Task LoadConfigs()
         {
             // Call the factory
-            var factory = await ConfigFactory.CreateAsync(_db);
+            var factory = await Factory<Configuration>.CreateAsync<Configuration>(_db);
 
-            var configs = factory.GetConfigurations();
+            var configs = factory.GetCollection();
 
             SensorTypes = new ObservableCollection<string> { "Nitrogen dioxide", "Sulphur dioxide", "Particulate matter", "Nitrate", "Phosphate", "Escherichia coli", "Intestinal enterococci", "Air Temperature", "Humidity", "Wind speed", "Wind Direction" };
 

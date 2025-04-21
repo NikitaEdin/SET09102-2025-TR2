@@ -38,7 +38,7 @@ namespace REA.Utils
         /// Public method to get the collection
         /// </summary>
         /// <returns>The collection</returns>
-        public ObservableCollection<T> GetMeasurements()
+        public ObservableCollection<T> GetCollection()
         {
             return collection;
         }
