@@ -18,7 +18,7 @@ public class ManageMaintenanceViewModel : ObservableObject {
     private readonly IDatabaseService _db;
 
     /// <summary>
-    /// ViewModel responsible for displaying the details of a selected maintenance
+    /// ViewModel responsible for viewing all maintenance
     /// </summary>
     public ManageMaintenanceViewModel() : this(SQLiteDatabaseService.Instance) {
     }
