@@ -21,7 +21,6 @@ namespace REA.Tests.ViewModels
     {
         /// <summary>
         /// Test LoadConfig to populate collections with the mocked database.
-        /// Currently does not use the method from the view model as the view model currently depends on the database
         /// </summary>
         [Fact]
         public async Task LoadConfigsTest_Valid()

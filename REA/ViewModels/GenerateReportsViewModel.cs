@@ -119,7 +119,7 @@ namespace REA.ViewModels
         /// <typeparam name="T"> Accept generic type to allow the calculation of int,float,double etc</typeparam>
         /// <param name="collection"> This is the collection thats passed in to calculate it's average</param>
         /// <returns>Returns the average of the values of a collection</returns>
-        private double CalculateAverage<T>(ObservableCollection<T> collection)
+        public double CalculateAverage<T>(ObservableCollection<T> collection)
         {
             double sum = 0;
             double average = 0;
