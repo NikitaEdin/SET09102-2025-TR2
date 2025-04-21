@@ -45,9 +45,9 @@
                 </Border>
             </StackLayout>
             <StackLayout Margin="15">
-                <Button Text="Calculate Mean" Margin="15" ></Button>
-                <Button Text="Calculate Mode" Margin="15" IsEnabled="False"></Button>
-                <Button Text="Calculate Median" Margin="15" IsEnabled="False"></Button>
+                <Button Text="Calculate Mean" Margin="15"  IsEnabled="False"></Button>
+                <Button Text="Calculate Mode (Dummy) " Margin="15" IsEnabled="True"></Button>
+                <Button Text="Calculate Median (Dummy)" Margin="15" IsEnabled="True"></Button>
             </StackLayout>
            
         </VerticalStackLayout>
