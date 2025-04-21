@@ -7,6 +7,10 @@ using REA.DB;
 
 namespace REA.ViewModels
 {
+    /// <summary>
+    /// Author: Thomas Smith
+    /// Backend for the View "GenerateReportsPage" which calculates and displays the mean of the measurements
+    /// </summary>
     public partial class GenerateReportsViewModel : ObservableObject
     {
         private readonly IDatabaseService _db;

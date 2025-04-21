@@ -8,6 +8,10 @@ using REA.Utils;
 
 namespace REA.ViewModels
 {
+    /// <summary>
+    /// Author: Thomas Smith
+    /// Backend for the view "ReportMalfunctioningSensorsPage" which displays functioning and non-functioning sensors to the user
+    /// </summary>
     public partial class ReportMalfunctioningSensorsViewModel : ObservableObject
     {
         private readonly IDatabaseService _db;

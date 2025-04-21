@@ -9,6 +9,11 @@ using System.Collections.ObjectModel;
 
 namespace REA.Utils
 {
+    /// <summary>
+    /// Author: Thomas Smith
+    /// Factory Design method to be used to read the database and populate a collection
+    /// </summary>
+    /// <typeparam name="T"> Pass in a model to be it's type</typeparam>
     internal class Factory<T>
     {
         private ObservableCollection<T> collection;

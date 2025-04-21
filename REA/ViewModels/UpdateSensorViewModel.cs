@@ -8,6 +8,10 @@ using CommunityToolkit.Mvvm.Input;
 
 namespace REA.ViewModels
 {
+    /// <summary>
+    /// Author: Thomas Smith
+    /// Backend for the View "UpdateSensorPage" which allows the user to update the configuration of sensors based on type selected
+    /// </summary>
     public partial class UpdateSensorViewModel : ObservableObject
     {
         private readonly IDatabaseService _db;
@@ -222,7 +226,10 @@ namespace REA.ViewModels
             return convertedFloat;
         }
 
-        // When the dropdown is selected load the method
+        /// <summary>
+        /// When the dropdown is selected load the sollection based on user selection
+        /// </summary>
+        /// <param name="value"> Type of sensor that the user selected</param>
         partial void OnSelectedSensorTypeChanged(string value)
         {
             LoadSelectedSensorCollection(); 

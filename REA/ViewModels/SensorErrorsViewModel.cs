@@ -15,21 +15,35 @@ using REA.Utils;
 
 namespace REA.ViewModels
 {
+    /// <summary>
+    /// Author: Thomas Smith
+    /// Backend for the view "SensorsErrorPage" which displays to the user the sensor malfunction count and the list of non-functional sensors
+    /// </summary>
     public partial class SensorErrorsViewModel : ObservableObject
     {
         private readonly IDatabaseService _db;
         [ObservableProperty]
         private ObservableCollection<Sensors> malfunctioningSensors;
 
+        /// <summary>
+        /// Default Constructuor
+        /// </summary>
         public SensorErrorsViewModel()
         {
 
         }
+        /// <summary>
+        /// Dependency injection for the database in the constructor
+        /// </summary>
+        /// <param name="db"> pass in the database either fakeDb or SQLiteDatabaseService</param>
         public SensorErrorsViewModel(IDatabaseService db)
         {
             _db = db;
         }
 
+        /// <summary>
+        /// Populates the ObservableCollection with the malfunctioning sensors
+        /// </summary>
         public async Task LoadSensors()
         {
             Debug.WriteLine("LoadSensors method is being called...");
