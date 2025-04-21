@@ -17,6 +17,7 @@ namespace REA.ViewModels
 {
     public partial class UpdateSensorViewModel : ObservableObject
     {
+        private readonly IDatabaseService _db;
         // AIR
         [ObservableProperty]
         private ObservableCollection<Configuration> nitrogenDioxide;
@@ -69,10 +70,21 @@ namespace REA.ViewModels
         [ObservableProperty]
         private string sensorFirmware;
 
-      
+        /// <summary>
+        /// Default Constructuor
+        /// </summary>
         public UpdateSensorViewModel()
         {
-            LoadConfigs();
+
+        }
+
+        /// <summary>
+        /// Dependency injection for the database in the constructor
+        /// </summary>
+        /// <param name="db"> pass in the database either fakeDb or SQLiteDatabaseService</param>
+        public UpdateSensorViewModel(IDatabaseService db)
+        {
+            _db = db;
         }
 
         /// <summary>
@@ -82,9 +94,9 @@ namespace REA.ViewModels
         public async Task LoadConfigs()
         {
             // Call the factory
-            ConfigFactory factory = await ConfigFactory.CreateAsync();
+            var factory = await ConfigFactory.CreateAsync(_db);
 
-            ObservableCollection<Configuration> configs = factory.GetConfigurations();
+            var configs = factory.GetConfigurations();
 
             SensorTypes = new ObservableCollection<string> { "Nitrogen dioxide", "Sulphur dioxide", "Particulate matter", "Nitrate", "Phosphate", "Escherichia coli", "Intestinal enterococci", "Air Temperature", "Humidity", "Wind speed", "Wind Direction" };
 
@@ -168,18 +180,24 @@ namespace REA.ViewModels
         /// </summary>
         /// <returns>Updates the database based on user input </returns>
         [RelayCommand]
-        public async Task UpdateConfig()
+        private async Task UpdateConfig()
         {
             if (SelectedSensorCollection == null || SelectedSensorCollection.Count == 0)
                 return;
 
+            if (string.IsNullOrWhiteSpace(sensorMinValue) || string.IsNullOrWhiteSpace(sensorMaxValue) || string.IsNullOrWhiteSpace(sensorFirmware)) return;
+
+            float minValue = ConvertStringToFloat(sensorMinValue);
+            float maxValue = ConvertStringToFloat(sensorMaxValue);
+            float firmware = ConvertStringToFloat(sensorFirmware);
+
             foreach (var item in SelectedSensorCollection)
             {
-                item.MinMeasurement = ConvertStringToFloat(sensorMinValue);
-                item.MaxMeasurement = ConvertStringToFloat(sensorMaxValue);
-                item.Firmware = ConvertStringToFloat(sensorFirmware);
+                item.MinMeasurement = minValue;
+                item.MaxMeasurement = maxValue;
+                item.Firmware = firmware;
 
-                await SQLiteDatabaseService.Instance.UpdateAsync(item);
+                await _db.UpdateAsync(item);
 
                 // Trigger IPropertyChanged to update the ui 
                 SelectedSensorCollection = new ObservableCollection<Configuration>(SelectedSensorCollection);
@@ -191,16 +209,21 @@ namespace REA.ViewModels
         /// </summary>
         /// <param name="input">The string to be converted to float</param>
         /// <returns>returns a float from the string input</returns>
-        private float ConvertStringToFloat(string input)
+        public float ConvertStringToFloat(string input)
         {
             float convertedFloat = 0f;
             try
             {
                 convertedFloat = float.Parse(input);
             }
-            catch(FormatException)
+            catch (FormatException)
             {
                 Debug.WriteLine("Invalid format");
+                convertedFloat = 0f;
+            }
+            catch (ArgumentNullException)
+            {
+                Debug.WriteLine("Null Value Provided");
                 convertedFloat = 0f;
             }
             return convertedFloat;
