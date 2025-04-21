@@ -13,7 +13,7 @@
             <VerticalStackLayout Padding="20" Spacing="30">
                 <Label Text="{Binding Title, StringFormat='Role: {0}'}" />
 
-                <Label Text="Power:" />
+                <Label Text="{Binding Power, StringFormat='Power: {0}'}" />
                 <Slider Minimum="0" Maximum="100" Value="{Binding Power}" />
 
                 <Button Text="Save Changes" Command="{Binding EditRoleCommand}" IsEnabled="{Binding EditRoleCommand.CanExecute(null)}" />
