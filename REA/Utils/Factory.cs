@@ -9,7 +9,7 @@ using System.Collections.ObjectModel;
 
 namespace REA.Utils
 {
-    internal class MeasurementFactory<T>
+    internal class Factory<T>
     {
         private ObservableCollection<T> collection;
 
@@ -17,7 +17,7 @@ namespace REA.Utils
         /// Initialises the constructor with the provided generic collection
         /// </summary>
         /// <param name="genericCollection"> This is the collection that gets passed in from the different methods in the factory</param>
-        private MeasurementFactory(ObservableCollection<T> genericCollection) 
+        private Factory(ObservableCollection<T> genericCollection) 
         { 
             collection = genericCollection;
         }
@@ -25,12 +25,12 @@ namespace REA.Utils
         /// <summary>
         /// Populates database data into a collection from the database
         /// </summary>
-        /// <returns> MeasurementFactory that has generic collection </returns>
-        internal static async Task<MeasurementFactory<T>> CreateAsync<T>() where T : new() 
+        /// <returns> Factory that has generic collection </returns>
+        internal static async Task<Factory<T>> CreateAsync<T>(IDatabaseService dbService) where T : new() 
         {
-            var items = await SQLiteDatabaseService.Instance.GetItemsAsync<T>();
+            var items = await dbService.GetItemsAsync<T>();
             var collection = new ObservableCollection<T>(items);
-            return new MeasurementFactory<T>(collection);
+            return new Factory<T>(collection);
         }
 
 

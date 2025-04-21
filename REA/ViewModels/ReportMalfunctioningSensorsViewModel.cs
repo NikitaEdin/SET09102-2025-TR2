@@ -10,6 +10,8 @@ namespace REA.ViewModels
 {
     public partial class ReportMalfunctioningSensorsViewModel : ObservableObject
     {
+        private readonly IDatabaseService _db;
+
         // Initialise collections for the sensors
         [ObservableProperty]
         private ObservableCollection<Sensors> sensorsList;

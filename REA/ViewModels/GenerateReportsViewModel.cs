@@ -9,11 +9,13 @@ using REA.Models;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using CommunityToolkit.Mvvm.Input;
+using REA.DB;
 
 namespace REA.ViewModels
 {
     public partial class GenerateReportsViewModel : ObservableObject
     {
+        private readonly IDatabaseService _db;
         // Hold the measurements in a collection
         private ObservableCollection<AirMeasurement> airMeasurements;
         private ObservableCollection<WaterMeasurement> waterMeasurements;
@@ -49,16 +51,27 @@ namespace REA.ViewModels
         [ObservableProperty]
         private double windDirection10m;
 
-        public GenerateReportsViewModel() 
+        /// <summary>
+        /// Default Constructor for the class which uses the SQLite database
+        /// </summary>
+        public GenerateReportsViewModel()
         {
-            LoadMeasurements();
+
         }
-        private async Task LoadMeasurements()
+        /// <summary>
+        /// Dependency injection for the database in the constructor
+        /// </summary>
+        /// <param name="db"> pass in the database either fakeDb or SQLiteDatabaseService</param>
+        public GenerateReportsViewModel(IDatabaseService db) 
+        {
+            _db = db;
+        }
+        public async Task LoadMeasurements()
         {
             // Initalise the factory for each of the measurement types
-            MeasurementFactory<AirMeasurement> airFactory = await MeasurementFactory<AirMeasurement>.CreateAsync<AirMeasurement>();
-            MeasurementFactory<WaterMeasurement> waterFactory = await MeasurementFactory<WaterMeasurement>.CreateAsync<WaterMeasurement>();
-            MeasurementFactory<WeatherMeasurement> weatherFactory = await MeasurementFactory<WeatherMeasurement>.CreateAsync<WeatherMeasurement>();
+            Factory<AirMeasurement> airFactory = await Factory<AirMeasurement>.CreateAsync<AirMeasurement>(_db);
+            Factory<WaterMeasurement> waterFactory = await Factory<WaterMeasurement>.CreateAsync<WaterMeasurement>(_db);
+            Factory<WeatherMeasurement> weatherFactory = await Factory<WeatherMeasurement>.CreateAsync<WeatherMeasurement>(_db);
 
             //  Populate the collection with measurements
             airMeasurements = airFactory.GetMeasurements();
