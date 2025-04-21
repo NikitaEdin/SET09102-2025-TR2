@@ -12,7 +12,8 @@ namespace REA {
             // Admin routes
             Routing.RegisterRoute("UserManagement", typeof(UserManagementPage)); // Nikita
             Routing.RegisterRoute("UpdateSensor", typeof(UpdateSensorPage)); // Thomas
-            // Routing.RegisterRoute("AuthConfig", typeof(CLASS)); // Ramsay
+            Routing.RegisterRoute("DataInfo", typeof(DataInfoPage)); // Ramsay
+            Routing.RegisterRoute("EditRole", typeof(EditRolePage)); // Nikita
             Routing.RegisterRoute("StorageManagement", typeof(StorageManagementPage)); // Rachael
 
             // Environmetal Scientist routes

@@ -8,7 +8,7 @@ public partial class AdministratorViewModel : ObservableObject {
     public ICommand NavigateToUpdateSensorCommand { get; }
     public ICommand NavigateToManageUserAccessCommand { get; }
     public ICommand NavigateToStorageManagementCommand { get; }
-    public ICommand NavigateToAuthConfigCommand { get; }
+    public ICommand NavigateToDataInfoCommand { get; }
 
     // Back command
     public ICommand NavigateToDashboardCommand { get; }
@@ -18,7 +18,7 @@ public partial class AdministratorViewModel : ObservableObject {
         NavigateToUpdateSensorCommand = new Command(async () => await NavigateToUpdateSensor());
         NavigateToManageUserAccessCommand = new Command(async () => await NavigateToManageUserAccess());
         NavigateToStorageManagementCommand = new Command(async () => await NavigateToStorageManagement());
-        NavigateToAuthConfigCommand = new Command(async () => await NavigateToAuthConfig());
+        NavigateToDataInfoCommand = new Command(async () => await NavigateToDataInfo());
 
         NavigateToDashboardCommand = new Command(async () => await NavigateToDashboard());
     }
@@ -48,9 +48,8 @@ public partial class AdministratorViewModel : ObservableObject {
     /// Manage to Authorisaion Configuration - Ramsay
     /// </summary>
     /// <returns></returns>
-    private async Task NavigateToAuthConfig() {
-        await Shell.Current.DisplayAlert("Feature Unavailable", "This feature is not yet implemented.", "OK");
-        //await Shell.Current.GoToAsync("AuthConfig");
+    private async Task NavigateToDataInfo() {
+        await Shell.Current.GoToAsync("DataInfo");
     }
 
 
