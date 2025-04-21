@@ -9,12 +9,15 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using REA.Models;
 using REA.DB;
 using CommunityToolkit.Mvvm.Input;
+using __XamlGeneratedCode__;
+using REA.Utils;
 
 
 namespace REA.ViewModels
 {
     public partial class SensorErrorsViewModel : ObservableObject
     {
+        private readonly IDatabaseService _db;
         [ObservableProperty]
         private ObservableCollection<Sensors> malfunctioningSensors;
 
@@ -22,20 +25,23 @@ namespace REA.ViewModels
         {
 
         }
+        public SensorErrorsViewModel(IDatabaseService db)
+        {
+            _db = db;
+        }
 
         public async Task LoadSensors()
         {
             Debug.WriteLine("LoadSensors method is being called...");
             // Get the sensors from the database
-            var sensors = await SQLiteDatabaseService.Instance.GetItemsAsync<Sensors>();
+            var factory = await Factory<Sensors>.CreateAsync<Sensors>(_db);
+            var sensors = factory.GetCollection();
 
             if (sensors != null && sensors.Count > 0)
             {
                 // Take the database list and put them into collections 
                 MalfunctioningSensors = new ObservableCollection<Sensors>(
                     sensors.Where(s => !s.SensorOperational));
-
-
             }
             else
             {

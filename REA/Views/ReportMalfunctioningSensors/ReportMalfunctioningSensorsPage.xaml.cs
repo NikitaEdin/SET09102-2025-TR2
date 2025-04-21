@@ -1,3 +1,4 @@
+using REA.DB;
 using REA.ViewModels;
 
 namespace REA.Views;
@@ -9,7 +10,7 @@ public partial class ReportMalfunctioningSensorsPage : ContentPage
 	public ReportMalfunctioningSensorsPage()
 	{
 		InitializeComponent();
-        viewModel = new ReportMalfunctioningSensorsViewModel();
+        viewModel = new ReportMalfunctioningSensorsViewModel(SQLiteDatabaseService.Instance);
         BindingContext = viewModel; // Connects the ui Binding to the viewModel
 	}
     /// <summary>

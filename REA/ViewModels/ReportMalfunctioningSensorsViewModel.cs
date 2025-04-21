@@ -4,6 +4,7 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using REA.DB;
 using REA.Models;
+using REA.Utils;
 
 namespace REA.ViewModels
 {
@@ -23,9 +24,21 @@ namespace REA.ViewModels
         [ObservableProperty]
         private int sensorErrorCount;
 
-
+        /// <summary>
+        /// Default Constructuor
+        /// </summary>
         public ReportMalfunctioningSensorsViewModel()
+        {
+
+        }
+
+        /// <summary>
+        /// Dependency injection for the database in the constructor
+        /// </summary>
+        /// <param name="db"> pass in the database either fakeDb or SQLiteDatabaseService</param>
+        public ReportMalfunctioningSensorsViewModel(IDatabaseService db)
         { 
+            _db = db;
         }
 
 
@@ -36,7 +49,8 @@ namespace REA.ViewModels
         {
             Debug.WriteLine("LoadSensors method is being called...");
             // Get the sensors from the database
-            var sensors = await SQLiteDatabaseService.Instance.GetItemsAsync<Sensors>();
+            var factory = await Factory<Sensors>.CreateAsync<Sensors>(_db);
+            var sensors = factory.GetCollection();
           
             if (sensors != null && sensors.Count > 0){
                 // Take the database list and put them into collections 
