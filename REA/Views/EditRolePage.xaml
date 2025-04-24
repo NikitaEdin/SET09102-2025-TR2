@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewModels="clr-namespace:REA.ViewModels"
+             x:Class="REA.Views.EditRolePage">
+    <ContentPage.BindingContext>
+        <viewModels:EditRoleViewModel x:Name="ViewModel" />
+    </ContentPage.BindingContext>
+
+    <ContentPage.Content>
+        <ScrollView>
+            <VerticalStackLayout Padding="20" Spacing="30">
+                <Label Text="{Binding Title, StringFormat='Role: {0}'}" />
+
+                <Label Text="{Binding Power, StringFormat='Power: {0}'}" />
+                <Slider Minimum="0" Maximum="100" Value="{Binding Power}" />
+
+                <Button Text="Save Changes" Command="{Binding EditRoleCommand}" IsEnabled="{Binding EditRoleCommand.CanExecute(null)}" />
+            </VerticalStackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

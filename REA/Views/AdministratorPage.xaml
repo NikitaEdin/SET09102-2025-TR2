@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="REA.Views.AdministratorPage"
+             xmlns:viewModels="clr-namespace:REA.ViewModels"
+             Title="Administrator Page">
+
+    <ContentPage.BindingContext>
+        <viewModels:AdministratorViewModel/>
+    </ContentPage.BindingContext>
+
+    <VerticalStackLayout>
+        <StackLayout>
+            <Label 
+                Text="Welcome Adminstrator"
+                VerticalOptions="Center" 
+                HorizontalOptions="Center" FontSize="24" Margin="25" />
+
+             
+            <Button Text="Update Sensor Config" Command="{Binding NavigateToUpdateSensorCommand}" Margin="10"/>
+            <Button Text="User Management" Command="{Binding NavigateToManageUserAccessCommand}" Margin="10" />
+            <Button Text="Storage Management" Command="{Binding NavigateToStorageManagementCommand}" Margin="10" />
+            <Button Text="Security &amp; Data Info" Command="{Binding NavigateToDataInfoCommand}" Margin="10" />
+
+            <Button Text="Back Dashboard" Command="{Binding NavigateToDashboardCommand}" Margin="10, 30, 10, 0" />
+
+            <Border Margin="10">
+                <Label Text="Manage system settings and user access from this panel. Select an option above to proceed."
+                LineBreakMode="WordWrap" MaxLines="3" Margin="25" />
+            </Border>
+
+
+        </StackLayout>
+    </VerticalStackLayout>
+    
+</ContentPage>

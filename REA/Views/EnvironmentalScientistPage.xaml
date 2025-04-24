@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="REA.Views.EnvironmentalScientistPage"
+             xmlns:viewModels="clr-namespace:REA.ViewModels"
+             xmlns:utils="clr-namespace:REA.Utils"
+             Title="Environmental Scientist Page">
+    
+    <ContentPage.BindingContext>
+        <viewModels:EnvironmentalScientistViewModel/>
+    </ContentPage.BindingContext>
+
+    <VerticalStackLayout>
+        <StackLayout>
+            <Label  Text="Welcome Environmental Scientist"
+                VerticalOptions="Center"  HorizontalOptions="Center" FontSize="24" Margin="25" />
+
+            <Button Text="Generate Reports" Command="{Binding NavigateToReportsCommand}" Margin="10" />
+            <Button Text="Historical Data" Command="{Binding NavigateToHistoricalDataCommand}" Margin="10" />
+            <Button Text="Alerts" Command="{Binding NavigateToAlertsCommand}" Margin="10" />
+            <Button Text="Sensor Accounts" Command="{Binding NavigateToManageSensorCommand}" Margin="10" />
+                
+            <Button Text="Back Dashboard" Command="{Binding NavigateToDashboardCommand}" Margin="10, 30, 10, 0" />
+
+            <Border Margin="10">
+                <Label Text="Access reports, analyse historical data, and manage sensor accounts to monitor environmental conditions."
+                LineBreakMode="WordWrap" MaxLines="3" Margin="25" />
+            </Border>
+
+
+        </StackLayout>
+    </VerticalStackLayout>
+</ContentPage>

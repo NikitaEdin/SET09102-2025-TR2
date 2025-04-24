@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="REA.Views.GenerateReportsPage"
+             xmlns:viewModels="clr-namespace:REA.ViewModels"
+             Title="Generate Reports Page">
+    <ContentPage.BindingContext>
+        <viewModels:GenerateReportsViewModel/>
+    </ContentPage.BindingContext>
+    <ScrollView>
+        <VerticalStackLayout Spacing="10">
+ 
+        <StackLayout Spacing="10" Padding="10">
+                <Label FontSize="24" HorizontalOptions="Center">Generate Sensor Reports</Label>
+
+                <Label FontSize="18" HorizontalOptions="Center" Text="Air Measurements" Margin="5" TextColor="Blue"></Label>
+                <Border Padding="10" Margin="5">
+                            <VerticalStackLayout>
+                                <Label Text="{Binding NitrogenDioxide, StringFormat='Nitrogen Dioxide: {0}'}" FontSize="16" />
+                                <Label Text="{Binding SulphurDioxide, StringFormat='Sulphur Dioxide: {0}'}" FontSize="16"/>
+                                <Label Text="{Binding Pm2_5, StringFormat='PM2_5: {0}'}" FontSize="16"/>
+                                <Label Text="{Binding Pm10, StringFormat='PM10: {0}'}" FontSize="16"/>
+                            </VerticalStackLayout>
+                        </Border>
+
+
+                <Label FontSize="18" HorizontalOptions="Center" Text="Water Measurements" Margin="5" TextColor="Blue"></Label>
+                <Border Padding="10" Margin="5">
+                    <VerticalStackLayout>
+                        <Label Text="{Binding Nitrate1, StringFormat='Nitrate: {0}'}" FontSize="16" />
+                        <Label Text="{Binding Nitrate2, StringFormat='Nitrate: {0}'}" FontSize="16"/>
+                        <Label Text="{Binding Phosphate, StringFormat='Phosphate: {0}'}" FontSize="16"/>
+                        <Label Text="{Binding Ec, StringFormat='EC: {0}'}" FontSize="16"/>
+                    </VerticalStackLayout>
+                </Border>
+
+                <Label FontSize="18" HorizontalOptions="Center" Text="Weather Measurements" Margin="5" TextColor="Blue"></Label>
+                <Border Padding="10" Margin="5">
+                    <VerticalStackLayout>
+                        <Label Text="{Binding Temperature2m, StringFormat='Temperature: {0}'}" FontSize="16" />
+                        <Label Text="{Binding RelativeHumidity2m, StringFormat='Relative Humidity: {0}'}" FontSize="16"/>
+                        <Label Text="{Binding WindSpeed10m, StringFormat='Wind Speed: {0}'}" FontSize="16"/>
+                        <Label Text="{Binding WindDirection10m, StringFormat='Wind Direction: {0}'}" FontSize="16"/>
+                    </VerticalStackLayout>
+                </Border>
+            </StackLayout>
+            <StackLayout Margin="15">
+                <Button Text="Calculate Mean" Margin="15"  IsEnabled="False"></Button>
+                <Button Text="Calculate Mode (Dummy) " Margin="15" IsEnabled="True"></Button>
+                <Button Text="Calculate Median (Dummy)" Margin="15" IsEnabled="True"></Button>
+            </StackLayout>
+           
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

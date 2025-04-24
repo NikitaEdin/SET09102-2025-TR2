@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="REA.Views.UpdateSensorPage"
+             xmlns:viewModels="clr-namespace:REA.ViewModels"
+             Title="Update Sensor Page">
+ 
+        <ContentPage.BindingContext>
+            <viewModels:UpdateSensorViewModel/>
+        </ContentPage.BindingContext>
+    <ScrollView>
+        <VerticalStackLayout Padding="30" Spacing="5" >
+
+        <Label FontSize="24" HorizontalOptions="Center">Sensor Config</Label>
+            <Label Text="Select Sensor Type:" FontSize="20"/>
+            <Picker Title="Select a type" SelectedItem="{Binding SelectedSensorType}" ItemsSource="{Binding SensorTypes}"/>
+        <Entry Text="{Binding SensorMinValue, Mode=TwoWay}"  Placeholder="Sensor Min Value" Keyboard="Numeric" />
+        <Entry Text="{Binding SensorMaxValue, Mode=TwoWay}"  Placeholder="Sensor Max Value" Keyboard="Numeric" />
+        <Entry Text="{Binding SensorMesFreq, Mode=TwoWay}"  Placeholder="Sensor Messurement Frequency" Keyboard="Numeric" />
+        <Entry Text="{Binding SensorFirmware, Mode=TwoWay}"  Placeholder="Sensor Firmware Version" Keyboard="Numeric" />
+
+        
+            <CollectionView ItemsSource="{Binding SelectedSensorCollection}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Border Padding="10" Margin="5">
+                            <VerticalStackLayout>
+                                <Label Text="{Binding ConfigId, StringFormat='ID: {0}'}" FontSize="16"/>
+                                <Label Text="{Binding MinMeasurement, StringFormat='Min Messurement: {0}'}" FontSize="16"/>
+                                <Label Text="{Binding MaxMeasurement, StringFormat='Max Messurement: {0}'}" FontSize="16"/>
+                                <Label Text="{Binding Type, StringFormat='Type: {0}'}" FontSize="16"/>
+                                <Label Text="{Binding Firmware, StringFormat='Firmware: {0}'}" FontSize="16"/>
+                            </VerticalStackLayout>
+                        </Border>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+
+        <Button Margin="40" Command="{Binding UpdateConfigCommand}" Text="Update"></Button>
+    </VerticalStackLayout>
+        </ScrollView>
+</ContentPage>
