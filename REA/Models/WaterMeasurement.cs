@@ -1,43 +1,42 @@
 ﻿
-using REA.DB;
 using SQLite;
 namespace REA.Models {
     /// <summary>
-    /// Water Measurement Model holding record data of water related attributes
-    /// Author: Nikita Lanetsky.
+    /// Represents a record of water quality measurements
     /// </summary>
+    /// 
+    /// \author Nikita Lanetsky
     [Table("WaterMeasurements")]
     public class WaterMeasurement {
-        [PrimaryKey, AutoIncrement]
 
+        /// <summary>Unique identifier for  water measurement entry</summary>
+        [PrimaryKey, AutoIncrement]
         [Column("id")]
         public int WaterMeasurementId { get; set; }
 
+        /// <summary>Date and time of the measurement</summary>
         public string Datetime { get; set; }
 
+        /// <summary>Nitrate concentration</summary>
         public double? Nitrate { get; set; }
 
+        /// <summary>Nitrite concentration</summary>
         public double? Nitrite { get; set; }
 
+        /// <summary>Phosphate concentration</summary>
         public double? Phosphate { get; set; }
 
+        /// <summary>Electrical conductivity</summary>
         public double? EC { get; set; }
 
-        public int? Metadata { get; set; } // Metadata table
+        /// <summary>Reference to the Metadata by its ID</summary>
+        public int? Metadata { get; set; }
+
 
         /// <summary>
-        /// Retrieve all records from database of this type
+        /// Returns a string representation of the record
         /// </summary>
-        /// <returns>Return list of WaterMeasurements from DB</returns>
-        public static async Task<List<WaterMeasurement>> GetAllWaterMeasurementsAsync() {
-            var items = await SQLiteDatabaseService.Instance.GetItemsAsync<WaterMeasurement>();
-            return items?.ToList() ?? new List<WaterMeasurement>();
-        }
-
-        /// <summary>
-        /// Override the base ToString to print all object attributes
-        /// </summary>
-        /// <returns>String containing all object attributes</returns>
+        /// <returns>String containing all record's attributes</returns>
         public override string ToString() {
             return $"ID: {WaterMeasurementId}, " +
                    $"DateTime: {Datetime}, " +

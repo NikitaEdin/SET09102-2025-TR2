@@ -7,12 +7,15 @@ using System.Collections.ObjectModel;
 namespace REA.ViewModels {
     /// <summary>
     /// ViewModel responsible for backend of displaying and updating user roles.
-    /// Author: Nikita Lanetsky
     /// </summary>
+    ///
+    /// \author Nikita Lanetsky
     public partial class UserManagementViewModel : ObservableObject {
 
         // All users and available roles
+        /// <summary>Collection of users retrieved from database</summary>
         public ObservableCollection<User> Users { get; } = new();
+        /// <summary>Collection of roles retrieved from database</summary>
         public ObservableCollection<Role> Roles { get; } = new();
 
         // Keep track of selected user/role
@@ -25,17 +28,21 @@ namespace REA.ViewModels {
         // DB service 
         private readonly IDatabaseService _db;
 
-        // Overloading with parameterless constructor for XAML
+        /// <summary>
+        /// Initialises the ViewModel with default database service
+        /// </summary>
         public UserManagementViewModel() : this(SQLiteDatabaseService.Instance) {}
 
+        /// <summary>
+        /// Initialises the ViewModel with specific database service (optional for service override)
+        /// </summary>
+        /// <param name="db">The database service to use -null to use default</param>
         public UserManagementViewModel(IDatabaseService? db = null) {
             // Any DB passed? if not - get instance from SQLite service
             _db = db ?? SQLiteDatabaseService.Instance;
         }
 
-        /// <summary>
-        /// Loads data async from database
-        /// </summary>
+        /// <summary>Loads users and roles from database</summary>
         public async Task LoadDataAsync() {
             // Users
             var users = await _db.GetItemsAsync<User>();
@@ -61,7 +68,7 @@ namespace REA.ViewModels {
             }
         }
 
-        /// <summary> Update user's role </summary>
+        /// <summary>Update selected user's role in database</summary>
         public async Task UpdateUserRoleAsync() {
             // Validate data
             if (SelectedRole == null || SelectedUser == null)

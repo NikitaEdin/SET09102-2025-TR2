@@ -7,27 +7,38 @@ using REA.Models;
 namespace REA.ViewModels {
     /// <summary>
     /// ViewModel responsible for backend for displaying all sensors and their details.
-    /// Author: Nikita Lanetsky
     /// </summary>
+    ///
+    /// \author Nikita Lanetsky
     public partial class MonitorSensorsViewModel : ObservableObject {
 
         // Selected sensor (if any)
         [ObservableProperty]
         private Sensors selectedSensor;
 
-        // List of available sensors
+        /// <summary>Collection of available sensors to display</summary>
         [ObservableProperty]
         public ObservableCollection<Sensors> sensors;
 
         // DB service
         private readonly IDatabaseService _db;
 
+        /// <summary>
+        /// Initialises the ViewModel with default database service
+        /// </summary>
         public MonitorSensorsViewModel() : this(SQLiteDatabaseService.Instance) { }
 
+        /// <summary>
+        /// Initialises the ViewModel with specific database service (optional for service override)
+        /// </summary>
+        /// <param name="db">The database service to use -null to use default</param>
         public MonitorSensorsViewModel(IDatabaseService? db = null) {
             _db = db ?? SQLiteDatabaseService.Instance;
         }
 
+        /// <summary>
+        /// Retrieves all sensors from database and populates the Sensors collection.
+        /// </summary>
         public async Task GetSensors() {
             // Get all sensors from database
             Sensors = new ObservableCollection<Sensors>(await _db.GetItemsAsync<Sensors>());

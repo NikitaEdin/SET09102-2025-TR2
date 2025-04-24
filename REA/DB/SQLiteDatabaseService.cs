@@ -3,9 +3,13 @@
 namespace REA.DB {
 
     /// <summary>
-    /// SQLite service implemention which adds SQL specific database functionality with singleton pattern for global access.
-    /// Author: Nikita Lanetsky.
+    /// Provides SQLite-specific database functionality, implementing the singleton pattern for global access.
     /// </summary>
+    /// <remarks>
+    /// This service encapsulates SQL operations tailored for SQLite and ensures a single instance is used throughout the application.
+    /// </remarks>
+    /// 
+    /// \author Nikita Lanetsky
     public class SQLiteDatabaseService : IDatabaseService {
         private SQLiteAsyncConnection _database;
         private static SQLiteDatabaseService? _instance;
@@ -47,29 +51,62 @@ namespace REA.DB {
         _database = new SQLiteAsyncConnection(dbPath);
 
         }
-      
-        // Insert a new item into the database
+
+        /// <summary>
+        /// Inserts new item into database asynchronously
+        /// </summary>
+        /// <typeparam name="T">The type of the item to be inserted</typeparam>
+        /// <param name="item">The item instance to insert</param>
+        /// <returns>
         public async Task<int> InsertAsync<T>(T item) {
             return await _database.InsertAsync(item);
         }
 
 
-        // Get all items of type T from the database
+        /// <summary>
+        /// Retrieves all items of specified type from  database asynchronously
+        /// </summary>
+        /// <typeparam name="T">The type of items to retrieve</typeparam>
+        /// <returns>
+        /// A task representing asynchronous operation - containing a list of items retrieved from database.
+        /// </returns>
         public async Task<List<T>> GetItemsAsync<T>() where T : new() {
             return await _database.Table<T>().ToListAsync();
         }
 
-        // Update an item of type T into existing record
+
+        /// <summary>
+        /// Updates an existing record in database with specified item asynchronously
+        /// </summary>
+        /// <typeparam name="T">The type of the item to update</typeparam>
+        /// <param name="item">The item containing updated values</param>
+        /// <returns>
+        /// A task representing asynchronous operation - containing the number of rows affected
+        /// </returns>
         public async Task<int> UpdateAsync<T>(T item) {
             return await _database.UpdateAsync(item); 
         }
 
 
-        // Delete an item from the database
+        /// <summary>
+        /// Deletes specified item from database asynchronously
+        /// </summary>
+        /// <typeparam name="T">The type of item to delete</typeparam>
+        /// <param name="item">The item instance to delete</param>
+        /// <returns>
+        /// A task representing asynchronous operation - containing the number of rows affected
+        /// </returns>
         public async Task<int> DeleteAsync<T>(T item) {
             return await _database.DeleteAsync(item);
         }
 
+        /// <summary>
+        /// Create new table for specified type within database asynchronously
+        /// </summary>
+        /// <typeparam name="T">The type representing the table structure</typeparam>
+        /// <returns>
+        /// A task representing asynchronous operation
+        /// </returns>
         public async Task CreateTableAsync<T>() where T : new() =>  await _database.CreateTableAsync<T>();
         
     }

@@ -1,36 +1,35 @@
 ﻿
-using REA.DB;
 using SQLite;
 
 namespace REA.Models {
     /// <summary>
-    /// User model which holds the user related record data
-    /// Author: Nikita Lanetsky
+    /// Represents the user record
     /// </summary>
+    /// 
+    /// \author Nikita Lanetsky
     [Table("Users")]
     public  class User {
+        /// <summary>Unique identifier for user</summary>
         [PrimaryKey, AutoIncrement]
         [Column("user_id")]
         public int UserID { get; set; }
+
+        /// <summary>Username used for authentication</summary>
         public string Username { get; set; }
+
+        /// <summary>Plain-text password</summary>
+        /// \attention The user's password is currently stored in plain text - mainly for testing purposes
         public string Password { get; set; }
+
+        /// <summary>Reference to the Role by its ID</summary>
         [Column("role_id")]
         public int RoleId { get; set; }
 
 
         /// <summary>
-        /// Retrieve all records from database of this type
+        /// Returns a string representation of the record
         /// </summary>
-        /// <returns>Return list of Users from DB</returns>
-        public static async Task<List<User>> GetAllUsersAsync() {
-            var users = await SQLiteDatabaseService.Instance.GetItemsAsync<User>();
-            return users?.ToList() ?? new List<User>();
-        }
-
-        /// <summary>
-        /// Override the base ToString to print all object attributes
-        /// </summary>
-        /// <returns>String containing all object attributes</returns>
+        /// <returns>String containing all record's attributes</returns>
         public override string ToString() {
             return $"UserID: {UserID}, Username: {Username}, Password: {Password}";
         }

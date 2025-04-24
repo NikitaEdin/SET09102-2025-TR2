@@ -407,3 +407,6 @@ REA/REA.sln
 
 # Idea
 .idea/
+Doxygen/doxygen.exe
+Doxygen/libclang.dll
+/Doxygen/html
